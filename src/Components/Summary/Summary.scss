@@ -1,0 +1,70 @@
+$color_hover: rgba(82, 69, 83, 0.2);
+$tab_color: rgba(201, 168, 207, 0.1);
+$primary_color1: rgb(139, 37, 139);
+$primary_color2: orange;
+$font_color1: white;
+$font_color2: rgb(31, 29, 29);
+
+
+.canvas_header {
+    background-color: $primary_color2;
+}
+.canvas_body {
+    background-color: $primary_color1;
+    padding: 0px;
+    hr {
+        color: $font_color1;
+    }
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    .sum_link {
+        text-decoration: none;
+        color: $font_color1;
+        font-size: 2em;
+        background-color: $tab_color;
+        margin-bottom: 3px;
+        border-radius: 4px;
+    }
+
+    .sum_link:hover {
+        background-color: $color_hover ;
+        color: $font_color1;
+        border-left: 5px solid $font_color1;
+        transition: 0.5s;
+    }
+
+    .icon {
+        position: relative;
+        left: 2px;
+        bottom: 4px;
+        width: 6%;
+        height: 3vh;
+    }
+
+}
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_icon {
+        height: 50%;
+        width: 50%;
+        border-radius: 100%;
+    }
+}
+
+.user_details {
+    display: flex;
+    flex-direction: row;
+    &_1 {
+        border-radius: 10%;
+        color: $font_color1;
+        height: 10%;
+        margin-bottom:  10px;
+        margin-right: 5px;
+        font-size: auto;
+    }
+}
