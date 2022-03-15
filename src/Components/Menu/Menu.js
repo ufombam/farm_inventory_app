@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { Button, Offcanvas } from 'react-bootstrap';
-import './Summary.scss';
+import './Menu.scss';
 import home from './home.png';
 import user from './user.jpg';
 
-function Summary() {
+function Menu() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <div className="summary_app">
-            <Button variant="dark" onClick={handleShow}>
+            <Button variant="dark" onClick={handleShow} className='menu_button'>
                     MENU
             </Button>
             <Offcanvas show={show} onHide={handleClose} variant='dark'>
@@ -47,4 +47,4 @@ function Summary() {
     );
 }
 
-export default Summary;
+export default Menu;

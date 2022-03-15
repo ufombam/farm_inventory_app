@@ -1,11 +1,11 @@
 import React from "react";
 import './Record.scss';
-import Summary from '../Summary/Summary';
+import Menu from '../Menu/Menu';
 
 function Record() {
     return (
         <div className="record_app">
-            <Summary />
+            <Menu />
         </div>
     );
 }
