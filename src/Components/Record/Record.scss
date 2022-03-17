@@ -1,9 +1,11 @@
+@use '../../color_theme';
+
 * {
     box-sizing: border-box;
 }
 
 .record_app {
-    background-color: rgb(36, 36, 99);
+    background-color: color_theme.$primary_color1_feint;
     height: 100vh;
-    color: white;
+    color: color_theme.$font_color2;
 }

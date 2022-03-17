@@ -76,7 +76,7 @@ function Home() {
                 <div className='my_card_container1'>
                     <Card
                         text={'dark'}
-                        style={{ width: '40rem', height: '25rem', border: '1px solid purple' }}
+                        style={{ width: '30rem', height: '20rem', border: '1px solid purple' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Egg Laying Activity</Card.Header>
@@ -121,6 +121,19 @@ function Home() {
                         <Card.Title>{'success'} Card Title </Card.Title>
                         <Card.Text>
                             
+                        </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card
+                        text={'dark'}
+                        style={{ width: '28rem', border: '1px solid orange' }}
+                        className="mb-2 shadow"
+                    >
+                        <Card.Header className='card_header2 fw-bold'>Events (Todo)</Card.Header>
+                        <Card.Body>
+                        <Card.Title>{'success'} Card Title </Card.Title>
+                        <Card.Text>
+                           
                         </Card.Text>
                         </Card.Body>
                     </Card>
