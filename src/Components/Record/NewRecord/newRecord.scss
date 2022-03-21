@@ -1,0 +1,54 @@
+@use '../../../color_theme';
+
+*{
+    box-sizing: border-box;
+}
+
+.rec_body {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+form {
+    select:focus{
+        outline: none;
+    }
+    .input_with_select {
+        border: 1px solid color_theme.$card_header1;
+        margin: 5px;
+        width: fit-content;
+        border-radius: 10px;
+        padding: 5px;
+
+        input {
+            border: none;
+            width: fit-content;
+            border-radius: 10px;
+            background-color: color_theme.$primary_color1_feint;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        select {
+            border: none;
+            border-radius: 10px;
+            color: color_theme.$font_color2;
+            background-color: color_theme.$primary_color1_feint;
+        }
+    }
+
+    .my_btn {
+        background-color: color_theme.$primary_color1;
+        border: color_theme.$primary_color1;
+    }
+
+    .my_btn:hover {
+        background-color: color_theme.$primary_color1;
+    }
+    .my_btn:focus {
+        background-color: color_theme.$primary_color1;
+    }
+}

@@ -8,4 +8,20 @@
     background-color: color_theme.$primary_color1_feint;
     height: 100vh;
     color: color_theme.$font_color2;
+    .bx {
+        background-color: color_theme.$primary_color1_feint;
+        color: color_theme.$font_color1;
+        border-bottom: 1px solid color_theme.$card_header1;
+
+        .rec_text {
+            color: color_theme.$font_color2;
+        }
+
+        .rec_text:target {
+            background-color: color_theme.$primary_color1;
+            border: 1px solid color_theme.$primary_color1;
+            color: color_theme.$font_color1;
+            border-bottom: 1px solid color_theme.$card_header1;
+        }
+    }
 }

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import './Record.scss';
 import Menu from '../Menu/Menu';
+import NewRecord from './NewRecord/NewRecord';
 import { Nav } from 'react-bootstrap';
 
-export const NewRecord = () => {
-    return (
-        <div> I am the record page!</div>
-    )
-}
+
+
 export const ViewRecord = () => {
     return (
         <div> I am the ViewRecord page!</div>
@@ -20,7 +18,6 @@ export const Summary = () => {
 }
 
 
-
 function Record() {
     const [route, setRoute] = useState("");
     const handleTabChange = e => setRoute(e);
@@ -29,15 +26,15 @@ function Record() {
         <div className="record_app">
             <Menu />
             <Nav fill variant="tabs" defaultActiveKey="link-1">
-                <Nav.Item onClick={() => handleTabChange('newrecord')}>
-                    <Nav.Link eventKey="link-1">New Record</Nav.Link>
+                <Nav.Item className="bx" onClick={() => handleTabChange('newrecord')}>
+                    <Nav.Link className="rec_text" eventKey="link-1"><big>New Record</big></Nav.Link>
                 </Nav.Item>
-                <Nav.Item onClick={() => handleTabChange('viewrecord')}>
-                    <Nav.Link eventKey="link-2">View Records</Nav.Link>
+                <Nav.Item className="bx" onClick={() => handleTabChange('viewrecord')}>
+                    <Nav.Link className="rec_text" eventKey="link-2"><big>View Records</big></Nav.Link>
                 </Nav.Item>
-                <Nav.Item onClick={() => handleTabChange('summary')}>
-                    <Nav.Link eventKey="link-3">
-                    Summary
+                <Nav.Item className="bx" onClick={() => handleTabChange('summary')}>
+                    <Nav.Link className="rec_text" eventKey="link-3">
+                    <big>Summary</big>
                     </Nav.Link>
                 </Nav.Item>
             </Nav>
