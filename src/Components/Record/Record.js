@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import './Record.scss';
 import Menu from '../Menu/Menu';
 import NewRecord from './NewRecord/NewRecord';
+import ViewRecord from './ViewRecord/ViewRecord';
 import { Nav } from 'react-bootstrap';
 
 
-
-export const ViewRecord = () => {
-    return (
-        <div> I am the ViewRecord page!</div>
-    )
-}
 export const Summary = () => {
     return (
         <div> I am the summary page!</div>

@@ -6,8 +6,19 @@
 
 .rec_body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 50px;
+    width: 100vw;
+    justify-content: center;
+    .form0 {
+        width: 40vw;
+        border-right: 2px solid color_theme.$border_1;
+    }
+
+    .form1 {
+        width: 40vw;
+        margin-left: 15px;
+    }
 }
 
 form {
