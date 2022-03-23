@@ -1,10 +1,36 @@
-import React, { useRef } from "react";
-import { Accordion, Table, Button } from 'react-bootstrap';
+import React from "react";
+import { Accordion, Table } from 'react-bootstrap';
 import './ViewRecord.scss';
 
 
 const ViewRecord = () => {
-  
+  const tableHeader = [
+    "Date", "Egg Count", "Size", "Damaged Eggs", "Total"
+  ];
+
+  const tableInput = [
+      {
+        id: 1,
+        date: '11/2/2011',
+        egg_count: 12,
+        size: 'big',
+        damaged: 20
+      },
+      {
+      id: 2,
+      date: '11/2/2033',
+      egg_count: 100,
+      size: 'small',
+      damaged: 10
+    },
+    {
+      id: 3,
+      date: '11/2/2044',
+      egg_count: 300,
+      size: 'big',
+      damaged: 33
+    }
+  ]
     return (
         <div className="accordion_body">
             <Accordion flush>
@@ -15,30 +41,21 @@ const ViewRecord = () => {
                       <thead>
                         <tr>
                           <th>#</th>
-                          {Array.from({ length: 12 }).map((_, index) => (
-                            <th key={index}>Table heading</th>
+                          {tableHeader.map((header, index) => (
+                            <th key={index}>{header}</th>
                           ))}
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          {Array.from({ length: 12 }).map((_, index) => (
-                            <td key={index}>Table cell {index}</td>
+                          {tableInput.map((input, i) => (
+                            <tr>
+                              <td key={i}>{input.id}</td>
+                              <td key={i}>{input.date}</td>
+                              <td key={i}>{input.egg_count}</td>
+                              <td key={i}>{input.size}</td>
+                              <td key={i}>{input.damaged}</td>
+                            </tr>
                           ))}
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          {Array.from({ length: 12 }).map((_, index) => (
-                            <td key={index}>Table cell {index}</td>
-                          ))}
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          {Array.from({ length: 12 }).map((_, index) => (
-                            <td key={index}>Table cell {index}</td>
-                          ))}
-                        </tr>
                       </tbody>
                     </Table>
                     </Accordion.Body>
