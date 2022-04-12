@@ -1,0 +1,23 @@
+@use '../../../color_theme';
+
+.sum {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 30vw;
+    height: 30vh;
+    border-radius: 5px;
+    padding: 15px; 
+
+    &_header {
+        height: 30px;
+        background-color: color_theme.$primary_color1;
+        color: white;
+        font-weight: bold;
+    }
+
+    &_figure {
+        font-weight: bold;
+    }
+}
+

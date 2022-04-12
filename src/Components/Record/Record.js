@@ -3,14 +3,9 @@ import './Record.scss';
 import Menu from '../Menu/Menu';
 import NewRecord from './NewRecord/NewRecord';
 import ViewRecord from './ViewRecord/ViewRecord';
+import Summary from './Summary/Summary';
 import { Nav } from 'react-bootstrap';
 
-
-export const Summary = () => {
-    return (
-        <div> I am the summary page!</div>
-    )
-}
 
 
 function Record() {
