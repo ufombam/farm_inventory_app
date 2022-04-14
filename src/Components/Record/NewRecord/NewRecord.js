@@ -31,19 +31,54 @@ const NewRecord = () => {
             name: 'Add new customer'
         },
     ];
-
+    //Get field values - 1
     const handleSubmit1 = (e) => {
         e.preventDefault();
-        const { date, egg_count } = e.target.elements;
-        console.log(egg_count.value, date.value);
+        const { date, eggs, egg_count, broken_eggs, egg_count_0, size1, egg_count_1, size2, egg_count_2 } = e.target.elements;
+        const record_input_1 = {
+            date: date.value, 
+            total_eggs:{ 
+                number: eggs[0].value,
+                unit: egg_count.value
+            },
+            damage_eggs: {
+                number: broken_eggs.value, 
+                unit: egg_count_0.value
+            },
+            sizes: {
+                big: {
+                    quantity: size1.value,
+                    unit: egg_count_1.value
+                },
+                small: {
+                    unit: size2.value,
+                    quantity: egg_count_2.value
+                }
+            }
+        };
+        console.log(record_input_1);
+        e.target.reset();
     }
-
+        //Get field values - 2
     const handleSubmit2 = (e) => {
         e.preventDefault();
-        console.log(e.target.elements);
-        
+        const { feed, diesel, crates, medic, compost, birds, customers, customer_qty, new_customer} = e.target.elements;
+        const record_input_2 = {
+            feed: feed.value,
+            diesel: diesel.value,
+            crates: crates.value,
+            medic: medic.value,
+            compost: compost.value,
+            birds: birds.value,
+            customers_purchase:{
+                name: customers.value,
+                quantity: customer_qty.value
+            }, 
+            new_customer: !new_customer.value ? null : new_customer.value
+        }
+        console.log(record_input_2);
     }
-
+    //Display new field to register customer
     const displayNewInput = (newCustomer) => {
         const customers = newCustomer.target.value;
         const container = document.getElementById('new_container');
@@ -53,7 +88,7 @@ const NewRecord = () => {
             container.style.display = 'none';
         }
     }
-    
+    //Register new customer
     const registerNewCustomer = (e) => {
         e.preventDefault();
         const customer_input = document.getElementById('new_customer');
@@ -83,37 +118,29 @@ const NewRecord = () => {
                         </div>
                         <label htmlFor='broken-eggs'>{'Damaged eggs:  '}</label><br />
                         <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='broken-eggs'/>
-                            <select name="eggs1">
+                            <input type="number" placeholder='input egg number' id='broken_eggs'/>
+                            <select name="eggs0" id='egg_count_0'>
                                 <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
                             </select>
                         </div>
                         <hr />
                         <h2>Egg count by Size</h2>
-                        <label htmlFor='size1'>{'Total egg count for today:  '}</label><br />
+                        <label htmlFor='size1'>{'Total egg count for today (big):  '}</label><br />
                         <div className='input_with_select'>
                             <input type="number" placeholder='input egg number' id='size1'/>
-                            <select name="eggs2" >
+                            <select name="eggs1" id='egg_count_1'>
                                 <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
-                            </select> {"| "}
-                            <input type="radio" id="big" name="size" value="big"/>{"  "}
-                            <label htmlFor='big'>{"Big"}</label>{"  "}
-                            <input type="radio" id="small" name="size" value="small"/>{"  "}
-                            <label htmlFor='small'>{"Small"}</label>
+                            </select>
                         </div>
-                        <label htmlFor='size2'>{'Total egg count for today:  '}</label><br />
+                        <label htmlFor='size2'>{'Total egg count for today (small):  '}</label><br />
                         <div className='input_with_select'>
                             <input type="number" placeholder='input egg number' id='size2'/>
-                            <select name="eggs3" >
+                            <select name="eggs2" id='egg_count_2'>
                                 <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
-                            </select> {"| "}
-                            <input type="radio" id="big-1" name="size-1" value="big"/>{"  "}
-                            <label htmlFor='big-1'>{"Big"}</label>{" "}
-                            <input type="radio" id="small-1" name="size-1" value="small"/>{"  "}
-                            <label htmlFor='small-1'>{"Small"}</label>
+                            </select>
                         </div><br />
                     <Button className="my_btn" type="submit">
                         Submit
