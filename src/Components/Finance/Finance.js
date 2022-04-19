@@ -94,7 +94,7 @@ const Finance = () => {
         }
         console.log(salesInput);
     }
-
+    //submit daily debt
     const handleDebt = (e) => {
         e.preventDefault();
         const { customers, debt } = e.target.elements;
@@ -104,7 +104,7 @@ const Finance = () => {
         }
         console.log(debtInput);
     }
-
+    //submit expenditure
     const handleExpenditure = (e) => {
         e.preventDefault();
         const { expense, purpose } = e.target.elements;

@@ -31,34 +31,37 @@ const NewRecord = () => {
             name: 'Add new customer'
         },
     ];
-    //Get field values - 1
+    //Submit field values to DB - 1
     const handleSubmit1 = (e) => {
         e.preventDefault();
-        const { date, eggs, egg_count, broken_eggs, egg_count_0, size1, egg_count_1, size2, egg_count_2 } = e.target.elements;
+        const { date, broken_eggs, size1, egg_count_1, size2, egg_count_2 } = e.target.elements;
+        const time = new Date();
         const record_input_1 = {
-            date: date.value, 
-            total_eggs:{ 
-                number: eggs[0].value,
-                unit: egg_count.value
-            },
-            damage_eggs: {
-                number: broken_eggs.value, 
-                unit: egg_count_0.value
-            },
+            date: date.value + " "+ (time.toLocaleTimeString()), 
+            damaged_eggs: broken_eggs.value,
             sizes: {
                 big: {
                     quantity: size1.value,
                     unit: egg_count_1.value
                 },
                 small: {
-                    unit: size2.value,
-                    quantity: egg_count_2.value
+                    unit: egg_count_2.value,
+                    quantity: size2.value
                 }
             }
         };
-        console.log(record_input_1);
+        fetch('http://localhost:5000/record', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(record_input_1)
+        })
+        .catch(err => console.log('unable to complete request'))
         e.target.reset();
     }
+
         //Get field values - 2
     const handleSubmit2 = (e) => {
         e.preventDefault();
@@ -107,14 +110,6 @@ const NewRecord = () => {
                         <h2>Daily Egg Inventory</h2>
                         <div className='input_with_select' >
                             <input id="date" type={'date'} />
-                        </div>
-                        <label htmlFor='eggs'>{'Total egg count for today:  '}</label><br />
-                        <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='eggs'/>
-                            <select name="eggs" id="egg_count" >
-                                <option value="eggs">Eggs</option>
-                                <option value="crates">Crates</option>
-                            </select>
                         </div>
                         <label htmlFor='broken-eggs'>{'Damaged eggs:  '}</label><br />
                         <div className='input_with_select'>

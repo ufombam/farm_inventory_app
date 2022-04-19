@@ -1,43 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Accordion, Table, Badge } from 'react-bootstrap';
 import './ViewRecord.scss';
 
 
 const ViewRecord = () => {
+  const [eggInput, setEggInput] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/record/egg')
+    .then(response => response.json())
+    .then(rec => {
+      setEggInput(rec)
+    })
+  },[]);
+
+
   const eggHeader = [
-    "Date", "Egg Count", "Size", "Damaged Eggs", "Total"
+    "Date", "Big", "Unit", "Small" , "Unit", "Damaged Eggs", "Total"
   ];
 
-  const eggInput = [
-      {
-        id: 1,
-        date: '11/2/2011',
-        egg_count: 12,
-        size: 'big',
-        damaged: 20
-      },
-      {
-      id: 2,
-      date: '11/2/2033',
-      egg_count: 100,
-      size: 'small',
-      damaged: 10
-    },
-    {
-      id: 3,
-      date: '11/2/2044',
-      egg_count: 300,
-      size: 'big',
-      damaged: 33
-    },
-    {
-      id: 4,
-      date: '11/2/2044',
-      egg_count: 300,
-      size: 'big',
-      damaged: 33
-    }
-  ]
+  // const eggInput = [
+  //     {
+  //       id: 1,
+  //       date: '11/2/2011',
+  //       unit: 'crates',
+  //       big: {
+  //         qty: 12,
+  //         unit: "small"
+  //       },
+  //       small: {
+  //         qty: 12,
+  //         unit: "crate"
+  //       },
+  //       damaged: 3,
+  //     },
+  //     {
+  //       id: 2,
+  //       date: '11/2/2011',
+  //       unit: 'crates',
+  //       big: {
+  //         qty: 12,
+  //         unit: "small"
+  //       },
+  //       small: {
+  //         qty: 12,
+  //         unit: "crate"
+  //       },
+  //       damaged: 3,
+  //     },
+  //     {
+  //       id: 3,
+  //       date: '11/2/2011',
+  //       unit: 'crates',
+  //       big: {
+  //         qty: 12,
+  //         unit: "small"
+  //       },
+  //       small: {
+  //         qty: 12,
+  //         unit: "crate"
+  //       },
+  //       damaged: 3,
+  //     },
+  //     {
+  //       id: 4,
+  //       date: '11/2/2011',
+  //       unit: 'crates',
+  //       big: {
+  //         qty: 12,
+  //         unit: "small"
+  //       },
+  //       small: {
+  //         qty: 12,
+  //         unit: "crate"
+  //       },
+  //       damaged: 3,
+  //     }
+  // ]
   const feedHeader = [
     "#", "Date", "Qty", "Store of Purchase", "Total"
   ];
@@ -70,7 +109,7 @@ const ViewRecord = () => {
   ]
 
   const birdHeader = [
-    "#", "Date", "# of Birds", "Age", "Sick Birds", "Dead Birds"
+    "#", "Date", "# of Birds", "Age", "Dead Birds", "Total"
   ];
 
   const birdInput = [
@@ -79,7 +118,6 @@ const ViewRecord = () => {
         date: '11/2/2011',
         bird_number: 18,
         age: 'A-Z Stores',
-        sick_birds: 10,
         dead_birds: 15
       },
       {
@@ -87,7 +125,6 @@ const ViewRecord = () => {
         date: '11/2/2011',
         bird_number: 18,
         age: 'A-Z Stores',
-        sick_birds: 10,
         dead_birds: 15
       },
       {
@@ -95,7 +132,6 @@ const ViewRecord = () => {
         date: '11/2/2011',
         bird_number: 18,
         age: 'A-Z Stores',
-        sick_birds: 10,
         dead_birds: 15
       },
       {
@@ -103,13 +139,12 @@ const ViewRecord = () => {
         date: '11/2/2011',
         bird_number: 18,
         age: 'A-Z Stores',
-        sick_birds: 10,
         dead_birds: 15
       }
   ]
 
   const customerHeader =     [
-    "#", "Name", "Registration Date", "Purchases", "Status"
+    "#", "Name", "Registration Date", "Purchases", "Debt Status", "Status"
   ];
 
   const customerInput = [
@@ -118,6 +153,7 @@ const ViewRecord = () => {
       name: 'Emeka Ozoani',
       registration: '11/2/2011',
       purchase: 300,
+      debt: 5000,
       status: 'old',
     },
     {
@@ -125,6 +161,7 @@ const ViewRecord = () => {
       name: 'Nkechi Sylvester',
       registration: '11/2/2011',
       purchase: 1000,
+      debt: 5100,
       status: 'veteran'
     },
     {
@@ -132,6 +169,7 @@ const ViewRecord = () => {
       name: 'Emeka Abali',
       registration: '11/2/2011',
       purchase: 200,
+      debt: 3000,
       status: 'new'
     },
     {
@@ -139,6 +177,7 @@ const ViewRecord = () => {
       name: 'Emeka Chuks',
       registration: '11/2/2011',
       purchase: 200,
+      debt: 10000,
       status: 'new'
     }
 ]
@@ -163,9 +202,12 @@ const ViewRecord = () => {
                             <tr key={input.id}>
                               <td >{input.id}</td>
                               <td>{input.date}</td>
-                              <td>{input.egg_count}</td>
-                              <td>{input.size}</td>
-                              <td>{input.damaged}</td>
+                              <td>{input.big}</td>
+                              <td>{input.bunit}</td>
+                              <td>{input.small}</td>
+                              <td>{input.sunit}</td>
+                              <td>{input.damaged_ggs}</td>
+                              <td>{(input.big + input.small) - input.damaged_ggs}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -214,8 +256,8 @@ const ViewRecord = () => {
                                 <td>{input.date}</td>
                                 <td>{input.bird_number}</td>
                                 <td>{input.age}</td>
-                                <td>{input.sick_birds}</td>
                                 <td>{input.dead_birds}</td>
+                                <td>{input.bird_number - input.dead_birds}</td>
                               </tr>
                             ))}
                         </tbody>
@@ -240,6 +282,7 @@ const ViewRecord = () => {
                                 <td>{input.name}</td>
                                 <td>{input.registration}</td>
                                 <td>{input.purchase}</td>
+                                <td>{input.debt}</td>
                                 <td><Badge pill bg={input.status === "new" ? "danger" : input.status === "old" ? "success" : "dark"}>
                                     {input.status}
                                   </Badge>{' '}</td>
