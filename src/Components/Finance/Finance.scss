@@ -62,15 +62,32 @@
         &_items {
             border: none;
             width: 33%;
+            border-radius: 10px;
             padding: 10px;
-            margin-right: 10px;
-            margin-top: 5px;
+            margin-right: 100px;
+            margin-top: 20px;
             margin-bottom: 5px;
             margin-left: 5px;
             box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
             text-align: left;
+            overflow-x: auto;
+            height: 80vh;
             h3 {
                 text-align: center;
+            }
+
+            &_1 {
+                display: flex;
+                flex-direction: row;
+                .items_0 {
+                    width: 50%;
+                    padding: 10px;
+                }
+                .items_1 {
+                    text-align: right;
+                    width: 50%;
+                    padding: 10px;
+                }
             }
         }
         .fin_input {

@@ -4,118 +4,99 @@ import { Button } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 
 const Finance = () => {
-    const [rate, setRate] = useState(
-        {
-            rate1:'',
-            rate2: ''
-        }
-        
-    );
+    const [rate, setRate] = useState([]);
+    const [sales, setSales] = useState([]);
+    const [compost, setCompost] = useState(0);
+    const [feed, setFeed] = useState(0);
+    const [msc, setMsc] = useState(0);
+    const [debt, setDebt] = useState(0);
 
-    const myCustomersDB = [
-        {
-            id: 1,
-            name: 'Emeka Useh'
-        },
-        {
-            id: 2,
-            name: 'Chika Ngozi'
-        },
-        {
-            id: 3,
-            name: 'Blessing Chukwudi'
-        },
-        {
-            id: 4,
-            name: 'Esther Ufomba'
-        },
-        {
-            id: 5,
-            name: 'George Bush'
-        },
-    ];
+    const salesSum = sales.big + sales.small;
+    let income = salesSum + compost;
+    let expense = feed + msc;
 
-    const purpose = [
-        {
-            id: 1,
-            item: 'Medication'
-        },
-        {
-            id: 2,
-            item: 'Diesel'
-        },
-        {
-            id: 3,
-            item: 'Feed'
-        },
-        {
-            id: 4,
-            item: 'Salaries'
-        },
-        {
-            id: 5,
-            item: 'Electricity'
-        },
-        {
-            id: 6,
-            item: 'Miscellaneous'
-        }
-    ];
+    //=========================Income=============================================
+    useEffect(() => {
+        //fetch rate
+        fetch('http://localhost:5000/finance/rate')
+        .then(data => data.json())
+        .then(rate => setRate({
+            big: rate[0].big,
+            small: rate[0].small
+        }))
+        .catch(() => console.log('unable to complete request'))
+        //Fetch sales sum
+        fetch('http://localhost:5000/finance/sales')
+        .then(data => data.json())
+        .then(sale => setSales({
+            big: Number(sale[0].big),
+            small: Number(sale[0].small)
+        }))
+        .catch(() => console.log('unable to complete request'))
+        //Fetch Compost
+        fetch('http://localhost:5000/finance/compost')
+        .then(data => data.json())
+        .then(comp => setCompost(Number(comp[0].sum)))
+        .catch(() => console.log('unable to complete request'))
+    },[])
+    //====================Expense====================================================
+    useEffect(() => {
+        //fetch feed
+        fetch('http://localhost:5000/finance/feed')
+        .then(data => data.json())
+        .then(myFeed => setFeed((Number(myFeed[0].sum))))
+        .catch(() => console.log('unable to complete request'))
+        //Fetch Compost
+        fetch('http://localhost:5000/finance/msc')
+        .then(data => data.json())
+        .then(misc => setMsc(Number(misc[0].sum)))
+        .catch(() => console.log('unable to complete request'))
+        //Fetch Compost
+        fetch('http://localhost:5000/finance/debt')
+        .then(data => data.json())
+        .then(debit => setDebt(Number(debit[0].sum)))
+        .catch(() => console.log('unable to complete request'))
+    },[])
 
-    // useEffect(() => {
-        
-    // },[rate]);
+
     //Set rate
     const handleRate = (e) => {
         e.preventDefault();
         const { rate1, rate2 } = e.target.elements;
         const rateInput = {
-            rate1: rate1.value,
-            rate2: rate2.value
+            big: rate1.value,
+            small: rate2.value
         }
-        setRate(rateInput)
-        console.log(rateInput);
+        fetch('http://localhost:5000/finance/rate', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(rateInput)
+        })
+        .catch(() => console.log('unable to complete request'));
         e.target.reset();
     }
     //Submit the sales request
     const handleSales = (e) => {
         e.preventDefault();
-        const { forBig, eggsUnit_1, forSmall, eggsUnit_2, money } = e.target.elements;
+        const { forBig, forSmall} = e.target.elements;
         const salesInput = {
-            bigEggs: {
-                quantity: forBig.value,
-                unit: eggsUnit_1.value
+                big: (forBig.value * rate.big),
+                small: (forSmall.value * rate.small)
+        }
+        fetch('http://localhost:5000/record/sales', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
-            smallEggs: {
-                quantity: forSmall.value,
-                unit: eggsUnit_2.value
-            },
-            orMoney: money.value
-        }
-        console.log(salesInput);
+            body: JSON.stringify(salesInput)
+        })
+        .catch(() => console.log('unable to complete request'));
+        e.target.reset();
     }
-    //submit daily debt
-    const handleDebt = (e) => {
-        e.preventDefault();
-        const { customers, debt } = e.target.elements;
-        const debtInput = {
-            customer: customers.value,
-            debt_amount: debt.value
-        }
-        console.log(debtInput);
-    }
-    //submit expenditure
-    const handleExpenditure = (e) => {
-        e.preventDefault();
-        const { expense, purpose } = e.target.elements;
-        const expenseInput = {
-            expenses: expense.value,
-            purpose: purpose.value
-        }
-        console.log(expenseInput);
-    }
-
-
     return (
         <div className="fin">
             <Menu />
@@ -137,16 +118,16 @@ const Finance = () => {
                 </div>
                 <div className='fin_header_box'>
                     <div className='fin_header_box_items'>
-                        <h5>{`Big: ${rate.rate1}`}</h5>
-                        <h5>{`small: ${rate.rate2}`}</h5  >
+                        <h5>{`Big Price: ₦ ${Number(rate.big).toLocaleString()}`}</h5>
+                        <h5>{`small Price: ₦ ${Number(rate.small).toLocaleString()}`}</h5  >
                     </div>
                     <div className='fin_header_box_items'>
                         <p>{`Running Profit:`}</p>
-                        <h4 style={{color: "Green"}}>{`${40000} NGN`}</h4>
+                        <h4 style={{color: "Green"}}>{`₦ ${((income - expense) + (debt)).toLocaleString()}`}</h4>
                     </div>
                     <div className='fin_header_box_items'>
                     <p>{`Running Debt:`}</p>
-                        <h4 style={{color: "red"}}>{`${-14000} NGN`}</h4>
+                        <h4 style={{color: "red"}}>{`₦ ${!debt ? 0 : debt.toLocaleString()}`}</h4>
                     </div>
                 </div>
             </div>
@@ -170,50 +151,52 @@ const Finance = () => {
                                 <option value="crates">Crates</option>
                             </select>
                         </div>
-                        <hr />
-                        OR<br />
-                        <label htmlFor='money'>{"Total Sales Realized :"}</label>
-                        <div className='input_with_select'>
-                            <input type="number" placeholder='input total sales' id='money'/>
-                        </div>
                         <br />
                         <Button className="my_btn" type="submit">
                         Submit
                         </Button>
                     </form>
                 </div>
-                <div className='fin_body_items'>
-                    <h3>Record Customer Debt</h3><hr />
-                    <form action="#" onSubmit={handleDebt}>
-                        <label htmlFor='customer'>{'Select Customer:  '}</label><br />
-                            <select className='fin_input' name="customers" id="customers">
-                                {myCustomersDB.map(customer => <option key={customer.id} value={customer.name}>{customer.name}</option>
-                                )}
-                            </select><br />
-                        <label htmlFor='debt'>{'Input Debt Amount:  '}</label><br />
-                        <div ><input className='fin_input' type="number" placeholder='#Amount' id='debt'/></div><br />
-                        <button className='fin_btn' type='submit'>
-                            Submit
-                        </button>
-                    </form>
-                </div>
-                <div className='fin_body_items'>
-                    <h3>Record Expenditure</h3><hr />
-                    <form action="#" onSubmit={handleExpenditure}>
-                        <label htmlFor='purpose'>{'Input Expenditure:  '}</label><br />
-                            <div ><input className='fin_input' type="number" placeholder='#Expenditure' id='expense'/></div><br />
-                        <label htmlFor='expense'>{'Input Expenditure:  '}</label><br />
-                            <div >
-                                <select className='fin_input' type="number" id='purpose'>
-                                    {purpose.map(purpose => {
-                                        return <option key={purpose.id}>{purpose.item}</option>
-                                    })}
-                                </select>
-                            </div><br />
-                            <button className='fin_btn' type='submit'>
-                                Submit
-                            </button>
-                    </form>
+                <div className='fin_body_items'> 
+                    <h3>Transactions</h3><hr />
+                    <h6>Current Month</h6>
+                    <h6>Income</h6>
+                    <div className='fin_body_items_1'>
+                        <div className='items_0'>
+                            <p>Egg Sales</p>
+                            <p>Compost</p>
+                        </div>
+                        <div className='items_1'>
+                            <p>{`₦ `}{salesSum.toLocaleString()}</p>
+                            <p>{`₦ `}{compost.toLocaleString()}</p>
+                        </div>
+                    </div>
+                    <div className='fin_body_items_1'>
+                        <h5 className='items_0'>Total</h5>
+                        <h5 className='items_1'>{`₦ ${income.toLocaleString()}`}</h5>
+                    </div>
+                    <hr />
+                    <h6>Expenses</h6>
+                    <div className='fin_body_items_1'>
+                        <div className='items_0'>
+                            <p>Feed</p>
+                            <p>miscellaneous</p>
+                        </div>
+                        <div className='items_1'>
+                            <p>{`₦ ${feed.toLocaleString()}`}</p>
+                            <p>{`₦ ${msc.toLocaleString()}`}</p>
+                        </div>
+                    </div>
+                    <div className='fin_body_items_1'>
+                        <h5 className='items_0'>Total</h5>
+                        <h5 className='items_1'>{`₦ ${expense.toLocaleString()}`}</h5>
+                    </div>
+                    <hr />
+                    <div className='fin_body_items_1'>
+                        <h5 className='items_0'>Net</h5>
+                        <h5 className='items_1'>{`₦ ${(income - expense).toLocaleString()}`}</h5>
+                    </div>
+                    <hr />
                 </div>
             </div>
             <div className='fin_footer'>

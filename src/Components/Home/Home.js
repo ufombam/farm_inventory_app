@@ -1,27 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Menu from '../Menu/Menu';
 import './Home.scss';
 import { Card } from 'react-bootstrap';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar, Line, Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 
-const barData =  {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-    datasets: [{
-        label: 'No of Eggs',
-        fill: false,
-        lineTension: 0.5,
-        data: [450, 350, 550, 750, 600, 700, 800, 250, 100, 300, 200, 500],
+// (async ()  => {
+//     let response = await fetch('http://localhost:5000/record/eggs');
+//     let dataB = response.json();
+// })();
+
+
+const pieData = {
+    labels: ['income', 'expense'],
+    datasets: [
+        {
+        label: '# of Votes',
+        data: [12, 19],
         backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
+            'rgba(6, 155, 113, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
         ],
         borderColor: [
-            'rgba(255, 99, 132, 1)'
+            'rgba(6, 155, 113, 1)',
+            'rgba(255, 99, 132, 1)',
         ],
-        borderWidth: 1
-    }]
-}
+        borderWidth: 1,
+        },
+    ],
+};
 
 const barOptions = {
     title:{
@@ -67,6 +75,41 @@ const lineOptions = {
 
 
 function Home() {
+    const [bar, setBar] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/record/egg')
+        .then(response => response.json())
+        .then(data => {
+            setBar(data)
+        })
+        console.log(bar)
+    },[])
+
+    const myBar = bar.reduce((total, item) => {
+        let month = item.date.slice(5,7);
+        if (!total[month]) {total[month] = 0};
+        //total[month] += (item.big + item.small)
+        console.log(total)
+        return setBar(total)
+    },{});
+
+    const barData =  {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'No of Eggs',
+            fill: false,
+            lineTension: 0.5,
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
 
     return (
         <div className="home_app">
@@ -101,11 +144,11 @@ function Home() {
                         style={{ width: '18rem', border: '1px solid purple' }}
                         className="mb-2 shadow"
                     >
-                        <Card.Header className='card_header1 fw-bold'>R.O.I</Card.Header>
+                        <Card.Header className='card_header1 fw-bold'>Monthly Cashflow</Card.Header>
                         <Card.Body>
-                        <Card.Title>{'success'} Card Title </Card.Title>
+                        <Card.Title> </Card.Title>
                         <Card.Text>
-                            You have made _____ in profit since you started doing business. Congratulations!
+                            <Doughnut data={pieData}></Doughnut>
                         </Card.Text>
                         </Card.Body>
                     </Card>
