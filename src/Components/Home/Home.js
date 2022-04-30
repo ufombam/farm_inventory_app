@@ -11,26 +11,6 @@ import 'chart.js/auto';
 //     let dataB = response.json();
 // })();
 
-
-const pieData = {
-    labels: ['income', 'expense'],
-    datasets: [
-        {
-        label: '# of Votes',
-        data: [12, 19],
-        backgroundColor: [
-            'rgba(6, 155, 113, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-        ],
-        borderColor: [
-            'rgba(6, 155, 113, 1)',
-            'rgba(255, 99, 132, 1)',
-        ],
-        borderWidth: 1,
-        },
-    ],
-};
-
 const barOptions = {
     title:{
         display:true,
@@ -42,24 +22,6 @@ const barOptions = {
         position:'right'
     }
 }
-
-const lineData =  {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-    datasets: [{
-        label: 'Amount in Naira',
-        fill: false,
-        lineTension: 0.5,
-        data: [300000, 350000, 550000, 750000, 600000, 70000, 800000, 250000, 150000, 300000, 200000, 500000],
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
-        ],
-        borderColor: [
-            'rgba(255, 99, 132, 1)'
-        ],
-        borderWidth: 1
-    }]
-}
-
 
 const lineOptions = {
     title:{
@@ -73,34 +35,64 @@ const lineOptions = {
     }
 }
 
+export const getBars = (x) => {
+    const dBarObj = x.reduce((total, item) => {
+    const month = item.date.slice(5,7);
+    const month2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]
+    month2.forEach(x => {
+        if (!total[x]) total[x] = 0;
+    })
+    //if (!total[month]) total[month] = 0
+    total[month] += (item.big + item.small)
+        return total
+    }, {})
 
-function Home() {
-    const [bar, setBar] = useState([]);
+    const sortedKey = Object.keys(dBarObj).sort();
+    const chartData = sortedKey.map((x)  => {
+    return dBarObj[x]
+    },{})
+    return chartData;
+}
+
+function Home({ income, expense, bar }) {
+    const [line, setLine] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/record/egg')
+        //fetch line chart coordinates
+        fetch('http://localhost:5000/record/sales')
         .then(response => response.json())
         .then(data => {
-            setBar(data)
+            setLine(data)
         })
-        console.log(bar)
     },[])
 
-    const myBar = bar.reduce((total, item) => {
-        let month = item.date.slice(5,7);
-        if (!total[month]) {total[month] = 0};
-        //total[month] += (item.big + item.small)
-        console.log(total)
-        return setBar(total)
-    },{});
+    //deduce line chart coordinates
+    const getLine = (x) => {
+        const dLineObj = x.reduce((total, item) => {
+        const month = item.date.slice(5,7);
+        const month2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]
+        month2.forEach(x => {
+            if (!total[x]) total[x] = 0;
+        })
+        //if (!total[month]) total[month] = 0
+        total[month] += (item.big + item.small)
+            return total
+        }, {})
 
-    const barData =  {
+        const sortedKey = Object.keys(dLineObj).sort();
+        const chartData = sortedKey.map((x)  => {
+        return dLineObj[x]
+        },{})
+        return chartData;
+    }
+    
+    const lineData =  {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'No of Eggs',
+            label: 'Amount in Naira',
             fill: false,
             lineTension: 0.5,
-            data: [],
+            data: getLine(line),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
             ],
@@ -110,6 +102,42 @@ function Home() {
             borderWidth: 1
         }]
     }
+
+    const barData =  {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'No of Eggs',
+            fill: false,
+            lineTension: 0.5,
+            data: getBars(bar),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
+
+    const doughData = {
+        labels: ['income', 'expense'],
+        datasets: [
+            {
+            label: '# of Votes',
+            data: [income, expense],
+            backgroundColor: [
+                'rgba(6, 155, 113, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(6, 155, 113, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1,
+            },
+        ],
+    };
 
     return (
         <div className="home_app">
@@ -148,7 +176,7 @@ function Home() {
                         <Card.Body>
                         <Card.Title> </Card.Title>
                         <Card.Text>
-                            <Doughnut data={pieData}></Doughnut>
+                            <Doughnut data={doughData}></Doughnut>
                         </Card.Text>
                         </Card.Body>
                     </Card>

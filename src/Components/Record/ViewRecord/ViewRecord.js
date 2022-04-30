@@ -3,13 +3,12 @@ import { Accordion, Table, Badge } from 'react-bootstrap';
 import './ViewRecord.scss';
 
 
-const ViewRecord = () => {
+const ViewRecord = ({ customerInput }) => {
   const [eggInput, setEggInput] = useState([]);
   const [feedInput, setFeedInput] = useState([]);
   const [birdInput, setBirdInput] = useState([]);
   const [compostInput, setCompostInput] = useState([]);
   const [mscInput, setMscInput] = useState([]);
-  const [customerInput, setCustomerInput] = useState([]);
   const [salesInput, setSalesInput] = useState([]);
 
   useEffect(() => {
@@ -48,13 +47,6 @@ const ViewRecord = () => {
     .then(response => response.json())
     .then(res => {
       setMscInput(res)
-    })
-
-    //fetch compost record
-    fetch('http://localhost:5000/record/customers')
-    .then(response => response.json())
-    .then(res => {
-      setCustomerInput(res)
     })
   },[]);
 
@@ -106,9 +98,9 @@ const mscHeader =     [
                             <tr key={input.id}>
                               <td >{input.id}</td>
                               <td >{input.date.slice(0,10)}</td>
-                              <td>{input.big}</td>
-                              <td>{input.small}</td>
-                              <td>{(input.big + input.small)}</td>
+                              <td>{input.big.toLocaleString()}</td>
+                              <td>{input.small.toLocaleString()}</td>
+                              <td>{(input.big + input.small).toLocaleString()}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -162,7 +154,7 @@ const mscHeader =     [
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.qty}</td>
                               <td>{input.store}</td>
-                              <td>{input.expense}</td>
+                              <td>{Number(input.expense).toLocaleString()}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -213,7 +205,7 @@ const mscHeader =     [
                               <td>{input.name}</td>
                               <td>{input.registration.slice(0,10)}</td>
                               <td>{input.purchases}</td>
-                              <td>{input.debt}</td>
+                              <td>{Number(input.debt).toLocaleString()}</td>
                               <td><Badge pill bg={input.purchases <= 50 ? "danger" : input.purchases <= 200 ? "success" : "dark"}>
                                   {input.purchases <= 50 ? "new" : input.purchases <= 200 ? "old" : "veteran"}
                                 </Badge>{' '}</td>
@@ -240,7 +232,7 @@ const mscHeader =     [
                               <td>{input.id}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.qty}</td>
-                              <td>{input.profit}</td>
+                              <td>{input.profit.toLocaleString()}</td>
                               <td>{input.debt}</td>
                             </tr>
                           ))}
@@ -265,7 +257,7 @@ const mscHeader =     [
                               <td>{input.id}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.purpose}</td>
-                              <td>{input.expense}</td>
+                              <td>{Number(input.expense).toLocaleString()}</td>
                             </tr>
                           ))}
                       </tbody>

@@ -184,6 +184,10 @@ const NewRecord = () => {
         },
         {
             id: 7,
+            item: 'Maintenance'
+        },
+        {
+            id: 8,
             item: 'Miscellaneous'
         }
     ];
@@ -320,7 +324,7 @@ const NewRecord = () => {
                             Submit
                             </Button>
                         </form>
-                        <form action={registerNewCustomer} onSubmit={registerNewCustomer}>
+                        <form action='' onSubmit={registerNewCustomer}>
                             <div id='new_container' style={{display: 'none'}} >
                                 <label htmlFor='new_customer'>{'Register new customer:  '}</label><br />
                                 <div className="input_with_select">

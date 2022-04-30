@@ -16,8 +16,49 @@
         font-weight: bold;
     }
 
-    &_figure {
-        font-weight: bold;
+    &_figure1 {
+        text-shadow: 2px 2px rgba(0, 0, 0, 0.23);
+        font-weight: none;
+        font-size: 50px;
+    }
+    &_figure2 {
+        margin-top: 15px;
+        font-weight: none;
+        font-size: 15px;
+        line-height: 10px;
+        text-decoration: italic;
+    }
+
+    &_figure_except {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 5px;
+        font-weight: none;
+        font-size: 15px;
+        line-height: 2px;
+        text-align: start;
+        height: 20vh;
+        p {
+            margin-right: 2px;
+        }
+    }
+
+    &_msc {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row;    
+        span {
+            font-size: 50px;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.23);
+        }
+        .sum_figure_msc {
+            width: 5px;
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
     }
 }
 

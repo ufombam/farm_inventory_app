@@ -3,19 +3,10 @@ import './Finance.scss';
 import { Button } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 
-const Finance = () => {
+const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
     const [rate, setRate] = useState([]);
-    const [sales, setSales] = useState([]);
-    const [compost, setCompost] = useState(0);
-    const [feed, setFeed] = useState(0);
-    const [msc, setMsc] = useState(0);
     const [debt, setDebt] = useState(0);
 
-    const salesSum = sales.big + sales.small;
-    let income = salesSum + compost;
-    let expense = feed + msc;
-
-    //=========================Income=============================================
     useEffect(() => {
         //fetch rate
         fetch('http://localhost:5000/finance/rate')
@@ -24,34 +15,10 @@ const Finance = () => {
             big: rate[0].big,
             small: rate[0].small
         }))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch sales sum
-        fetch('http://localhost:5000/finance/sales')
-        .then(data => data.json())
-        .then(sale => setSales({
-            big: Number(sale[0].big),
-            small: Number(sale[0].small)
-        }))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch Compost
-        fetch('http://localhost:5000/finance/compost')
-        .then(data => data.json())
-        .then(comp => setCompost(Number(comp[0].sum)))
-        .catch(() => console.log('unable to complete request'))
     },[])
-    //====================Expense====================================================
+
     useEffect(() => {
-        //fetch feed
-        fetch('http://localhost:5000/finance/feed')
-        .then(data => data.json())
-        .then(myFeed => setFeed((Number(myFeed[0].sum))))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch Compost
-        fetch('http://localhost:5000/finance/msc')
-        .then(data => data.json())
-        .then(misc => setMsc(Number(misc[0].sum)))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch Compost
+        //Fetch debt
         fetch('http://localhost:5000/finance/debt')
         .then(data => data.json())
         .then(debit => setDebt(Number(debit[0].sum)))

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Record.scss';
 import Menu from '../Menu/Menu';
 import NewRecord from './NewRecord/NewRecord';
@@ -8,10 +8,19 @@ import { Nav } from 'react-bootstrap';
 
 
 
-function Record() {
+function Record({ eggData, feedData, compostData, mscData }) {
     const [route, setRoute] = useState("");
+    const [customerInput, setCustomerInput] = useState([]);
     const handleTabChange = e => setRoute(e);
 
+    useEffect(() => {
+    //fetch compost record
+    fetch('http://localhost:5000/record/customers')
+    .then(response => response.json())
+    .then(res => {
+        setCustomerInput(res)
+    })
+    },[])
     return (
         <div className="record_app">
             <Menu />
@@ -29,7 +38,7 @@ function Record() {
                 </Nav.Item>
             </Nav>
             {
-                route === 'summary' ? <Summary /> : route === 'viewrecord' ? <ViewRecord /> : <NewRecord />
+                route === 'summary' ? <Summary egg={eggData} compost={compostData} msc={mscData} customer={customerInput}/> : route === 'viewrecord' ? <ViewRecord customerInput={customerInput}/> : <NewRecord />
             }
         </div>
     );
