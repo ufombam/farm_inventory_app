@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../Menu/Menu';
 import './Home.scss';
-import { Card } from 'react-bootstrap';
+import { Card, Carousel } from 'react-bootstrap';
 import { Bar, Line, Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 
@@ -55,7 +55,9 @@ export const getBars = (x) => {
 }
 
 function Home({ income, expense, bar }) {
-    const [line, setLine] = useState([]);
+    const [line, setLine] = useState([]);     
+    const [article, setArticle] = useState();    
+    const [articleIndex] = useState(Array.from({length:5}).map(x => Math.floor(Math.random() * 19)));    
 
     useEffect(() => {
         //fetch line chart coordinates
@@ -64,7 +66,17 @@ function Home({ income, expense, bar }) {
         .then(data => {
             setLine(data)
         })
+        //fetch news
+        fetch(`https://newsapi.org/v2/everything?q=poultry&from=${(new Date().getFullYear)}-${new Date().getMonth()}-01&sortBy=publishedAt&apiKey=066e3e6cde1c47f3b7ae852685fcd128`)
+        .then(response => response.json())
+        .then(data => {
+            setArticle(data.articles)
+            //setArticleIndex(newsKeyGen())
+        })
     },[])
+	
+	//Generate Random newsItem array
+	//const newsKeyGen = () => Array.from({length:3}).map(x => Math.floor(Math.random() * 19))
 
     //deduce line chart coordinates
     const getLine = (x) => {
@@ -78,7 +90,6 @@ function Home({ income, expense, bar }) {
         total[month] += (item.big + item.small)
             return total
         }, {})
-
         const sortedKey = Object.keys(dLineObj).sort();
         const chartData = sortedKey.map((x)  => {
         return dLineObj[x]
@@ -150,9 +161,9 @@ function Home({ income, expense, bar }) {
                         style={{ width: '30rem', height: '20rem', border: '1px solid purple' }}
                         className="mb-2 shadow"
                     >
-                        <Card.Header className='card_header1 fw-bold'>Egg Laying Activity</Card.Header>
+                        <Card.Header className='card_header1 fw-bold'>Egg Laying Activity - Yearly Overview</Card.Header>
                         <Card.Body>
-                        <Card.Title>{'Current Week'} </Card.Title>
+                        <Card.Title>{''} </Card.Title>
                             <Bar options={{barOptions}} data={barData} /> 
                         </Card.Body>
                     </Card>
@@ -161,9 +172,9 @@ function Home({ income, expense, bar }) {
                         style={{ width: '30rem', height: '20rem', border: '1px solid purple' }}
                         className="mb-2 shadow"
                     >
-                        <Card.Header className='card_header1 fw-bold'>Monthly Income</Card.Header>
+                        <Card.Header className='card_header1 fw-bold'>Income - Yearly Overview</Card.Header>
                         <Card.Body>
-                        <Card.Title>{'Current Month'} </Card.Title>
+                        <Card.Title>{''} </Card.Title>
                             <Line options={lineOptions} data={lineData}/>
                         </Card.Body>
                     </Card>
@@ -187,9 +198,9 @@ function Home({ income, expense, bar }) {
                         style={{ width: '25rem', border: '1px solid orange' }}
                         className="mb-2 shadow"
                     >
-                        <Card.Header className='card_header2 fw-bold'>News</Card.Header>
+                        <Card.Header className='card_header2 fw-bold'>Weather</Card.Header>
                         <Card.Body>
-                        <Card.Title>{'success'} Card Title </Card.Title>
+                        <Card.Title>{''}</Card.Title>
                         <Card.Text>
                             
                         </Card.Text>
@@ -200,12 +211,27 @@ function Home({ income, expense, bar }) {
                         style={{ width: '28rem', border: '1px solid orange' }}
                         className="mb-2 shadow"
                     >
-                        <Card.Header className='card_header2 fw-bold'>Events (Todo)</Card.Header>
+                        <Card.Header className='card_header2 fw-bold'>News</Card.Header>
                         <Card.Body>
-                        <Card.Title>{'success'} Card Title </Card.Title>
-                        <Card.Text>
-                           
-                        </Card.Text>
+                            <Carousel variant="light">
+							{articleIndex.map((x, i) => !article ? <Carousel.Item key={i}>
+                                    <h2>Loading...</h2>
+                                </Carousel.Item> :
+                                <Carousel.Item key={x}>
+                                    <a href={`${article[x].url}`}>
+                                        <div className='carousel-news' style={{
+                                                backgroundImage:`url(${article[x].urlToImage})`,
+                                                backgroundSize: "cover"
+                                            }}>
+                                            <div className='carousel-news-caption'>
+                                                <p>{`${article[x].source.name.toUpperCase()} - ${article[x].publishedAt.slice(5,10)}`}</p>
+                                                <p><strong>{`${article[x].title.toUpperCase()}`}</strong></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </Carousel.Item>
+							)}
+                            </Carousel>
                         </Card.Body>
                     </Card>
                     <Card

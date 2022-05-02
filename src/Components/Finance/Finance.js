@@ -6,6 +6,7 @@ import Menu from '../Menu/Menu';
 const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
     const [rate, setRate] = useState([]);
     const [debt, setDebt] = useState(0);
+    const [listener, setListener] = useState(0);
 
     useEffect(() => {
         //fetch rate
@@ -15,7 +16,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
             big: rate[0].big,
             small: rate[0].small
         }))
-    },[])
+    },[listener])
 
     useEffect(() => {
         //Fetch debt
@@ -23,7 +24,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
         .then(data => data.json())
         .then(debit => setDebt(Number(debit[0].sum)))
         .catch(() => console.log('unable to complete request'))
-    },[])
+    },[listener])
 
 
     //Set rate
@@ -43,6 +44,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
             body: JSON.stringify(rateInput)
         })
         .catch(() => console.log('unable to complete request'));
+        setListener(listener + 1)
         e.target.reset();
     }
     //Submit the sales request
@@ -50,6 +52,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
         e.preventDefault();
         const { forBig, forSmall} = e.target.elements;
         const salesInput = {
+                date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`,
                 big: (forBig.value * rate.big),
                 small: (forSmall.value * rate.small)
         }
@@ -62,6 +65,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
             body: JSON.stringify(salesInput)
         })
         .catch(() => console.log('unable to complete request'));
+        setListener(listener + 1)
         e.target.reset();
     }
     return (

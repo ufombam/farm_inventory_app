@@ -63,6 +63,23 @@ const Summary = ({ egg, msc, customer }) => {
         return object
     },{})
 
+    const myMsc = misce.reduce((object, item) => {
+        const keys = ['medication', 'salaries', 'electricity', 'diesel', 'maintenance', 'miscellaneous'];
+        keys.map(x => {
+            if (!object[x]) {
+            object[x] = 0
+            }
+        return true;
+        })
+        keys.map((x) => {
+            if (x === (item.purpose).toLowerCase()) {
+            object[x] = object[x] =+item.expense
+            } 
+        return true;
+        })
+        return object
+        },{})
+
     const cards = {
         egg: {
             id: 1,
@@ -179,12 +196,12 @@ const Summary = ({ egg, msc, customer }) => {
                             />
                         </div>
                         <div className='sum_figure_except'>
-                            <p>{`Salaries: ₦ ${Number(cards.compost.figure2).toLocaleString()} |`}</p>
-                            <p>{`Medication: ₦ ${Number(cards.compost.figure2).toLocaleString()}  |`}</p>
-                            <p>{`ELectricity: ₦ ${Number(cards.compost.figure2).toLocaleString()}  |`}</p>
-                            <p>{`Diesel: ₦ ${Number(cards.compost.figure2).toLocaleString()}  |`}</p>
-                            <p>{`Maintenance: ₦ ${Number(cards.compost.figure2).toLocaleString()}  |`}</p>
-                            <p>{`Miscellaneous: ₦ ${Number(cards.compost.figure2).toLocaleString()}`}</p>
+                            <p>{`Salaries: ₦ ${Number(myMsc.salaries).toLocaleString()} |`}</p>
+                            <p>{`Medication: ₦ ${Number(myMsc.medication).toLocaleString()}  |`}</p>
+                            <p>{`ELectricity: ₦ ${Number(myMsc.electricity).toLocaleString()}  |`}</p>
+                            <p>{`Diesel: ₦ ${Number(myMsc.diesel).toLocaleString()}  |`}</p>
+                            <p>{`Maintenance: ₦ ${Number(myMsc.maintenance).toLocaleString()}  |`}</p>
+                            <p>{`Miscellaneous: ₦ ${Number(myMsc.miscellaneous).toLocaleString()}`}</p>
                         </div>
                 </div>
                 <div className="sum d-flex shadow text-center">

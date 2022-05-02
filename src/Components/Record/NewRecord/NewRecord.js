@@ -5,6 +5,7 @@ import './newRecord.scss';
 
 const NewRecord = () => {
     const [customers, setCustomers] = useState(["Select name","Add new customer"]);
+    const [listener, setListener] = useState(0);
 
     
 
@@ -19,7 +20,7 @@ const NewRecord = () => {
             setCustomers(["select name", ...names, "Add new customer"])
         })
         .catch(() => console.log('invalid request'))
-    },[])
+    },[listener])
 
     //Submit daily inventory/egg sizes field values to DB - 1
     const handleSubmit1 = (e) => {
@@ -49,6 +50,7 @@ const NewRecord = () => {
             body: JSON.stringify(record_input_1)
         })
         .catch(err => console.log('unable to complete request'))
+        setListener(listener + 1)
         e.target.reset();
     }
 
@@ -56,7 +58,9 @@ const NewRecord = () => {
     const handleFeed = (e) => {
         e.preventDefault();
         const { feed, feed_store, feed_expense } = e.target.elements;
+        const time = new Date();
         const feed_input = {
+            date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             qty: feed.value,
             store: feed_store.value,
             expense: feed_expense.value,
@@ -70,13 +74,16 @@ const NewRecord = () => {
         body: JSON.stringify(feed_input)
         })
         .catch(() => console.log('unable to complete request'))
+        setListener(listener + 1)
         e.target.reset();
     }
     //Submit birds input  to DB
     const handleBirds = (e) => {
         e.preventDefault();
         const { bird, bird_store, bird_expense, dead_bird } = e.target.elements;
+        const time = new Date();
         const bird_input = {
+            date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             bird: bird.value,
             store: bird_store.value,
             investment: bird_expense.value,
@@ -91,6 +98,7 @@ const NewRecord = () => {
             body: JSON.stringify(bird_input)
         })
         .catch(() => console.log('unable to complete request'))
+        setListener(listener + 1)
         e.target.reset();
     }
 
@@ -112,6 +120,7 @@ const NewRecord = () => {
             body: JSON.stringify(customer_input)
         })
         .catch(() => console.log('unable to complete request'))
+        setListener(listener + 1)
         e.target.reset()
     }
 
@@ -130,7 +139,11 @@ const NewRecord = () => {
     const registerNewCustomer = (e) => {
         e.preventDefault();
         const customer_input = document.getElementById('new_customer');
-        const new_name = {name: customer_input.value};
+        const time = new Date();
+        const new_name = {
+            date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
+            name: customer_input.value
+        };
         fetch('http://localhost:5000/record/customers', {
             method: 'POST',
             headers: {
@@ -140,6 +153,7 @@ const NewRecord = () => {
             body: JSON.stringify(new_name)
         })
         .catch(() => console.log('customer already exists'))
+        setListener(listener + 1)
         customer_input.value = '';
     }
 
@@ -147,7 +161,9 @@ const NewRecord = () => {
     const handleCompost = (e) => {
         e.preventDefault();
         const { compost, compost_profit } = e.target.elements;
+        const time = new Date();
         const compost_input = {
+            date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             compost: compost.value,
             profit: compost_profit.value
         }
@@ -160,6 +176,7 @@ const NewRecord = () => {
             body: JSON.stringify(compost_input)
         })
         .catch(() => console.log('unable to complete request'))
+        setListener(listener + 1)
         e.target.reset()
     }
 
@@ -188,14 +205,16 @@ const NewRecord = () => {
         },
         {
             id: 8,
-            item: 'Miscellaneous'
+            item: 'Miscellaneous'  
         }
     ];
     //submit msc inputs to DB
     const handleMsc = (e) => {
         e.preventDefault();
         const { expense, purpose } = e.target.elements;
+        const time = new Date();
         const msc_input = {
+            date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             expense: expense.value,
             purpose: purpose.value
         }
@@ -208,6 +227,7 @@ const NewRecord = () => {
             body: JSON.stringify(msc_input)
         })
         .catch(() => console.log('unable to complete request'))
+        setListener(listener + 1)
         e.target.reset()
     }
     return (
