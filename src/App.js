@@ -1,9 +1,9 @@
-import Home from './Components/Home/Home.js';
-import Menu from './Components/Menu/Menu.js';
-import Record from './Components/Record/Record.js';
-import Finance from './Components/Finance/Finance.js';
+import Home from './Components/Home/Home';
+import SignIn from './Components/SignIn/SignIn';
+import Record from './Components/Record/Record';
+import Finance from './Components/Finance/Finance';
 import './App.scss';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     const [feed, setFeed] = useState(0);
     const [msc, setMsc] = useState(0);
     const [egg, setEgg] = useState([]);
+    const [user, setUser] = useState(null);
 
     const salesSum = sales.big + sales.small;
     let income = salesSum + compost;
@@ -52,13 +53,50 @@ function App() {
         .then(misc => setMsc(Number(misc[0].sum)))
         .catch(() => console.log('unable to complete request'))
     },[])
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const { email, pwd } = e.target.elements;
+        const login = {
+            email: email.value,
+            pwd: pwd.value
+        }
+        setTimeout(() => setUser(login), 10000)
+        
+        //console.log(login)
+        // fetch('http://localhost:5000/signin', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(login)
+        // })
+        // .then(res => res.json())
+        // .then(data => console.log(data))
+        // .catch(() => console.log('unable to authenticate user'))
+        // e.target.reset();
+    }
+
+    const handleSignOut = () => setUser(null);
+
+    const ProtectedRoute = ({ user, children, redirectPath = '/'}) => {
+        if (!user) {
+            return <Navigate to={redirectPath} replace />
+        }
+        return children ? children : <Outlet />
+    }
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route key={22} path="/" element={<Home income={income} expense={expense} bar={egg}/>} />
-                <Route key={11} path="/menu" element={<Menu />} />
-                <Route key={33} path="/record" element={<Record eggData={egg} compostData={compost} mscData={msc}/>} />
-                <Route key={44} path="/finance" element={<Finance feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
+                <Route key={11} index element={<SignIn user={user} handleSignIn={handleSignIn}/>} />
+                <Route element={<ProtectedRoute user={user} />}>
+                    <Route key={22} path="home" element={<Home handleSignOut={handleSignOut} user={user} income={income} expense={expense} bar={egg}/>} />
+                    <Route key={33} path="record" element={<Record user={user} eggData={egg} compostData={compost}/>} />
+                    <Route key={44} path="finance" element={<Finance user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
+                </Route>
+                <Route key={55} path="*" element={<h1>Wetin carry me come here??</h1>} />
             </Routes>
         </BrowserRouter>
     );

@@ -5,7 +5,7 @@ import './Menu.scss';
 import home from './home.png';
 import user from './user.jpg';
 
-function Menu() {
+function Menu({ handleSignOut }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -33,13 +33,13 @@ function Menu() {
                     </div>
                     <hr />
                     <nav>
-                        <NavLink to="/" className="sum_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Home</NavLink>
-                        <NavLink to="/finance" className="sum_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}
+                        <NavLink to="/home" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Home</NavLink>
+                        <NavLink to="/finance" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}
                             Finance</NavLink>
-                        <NavLink to="/record" className="sum_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Record</NavLink>
-                        <NavLink to="/help" className="sum_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Help</NavLink>
-                        <NavLink to="/settings" className="sum_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Settings</NavLink>
-                        <NavLink to="/logout" className="sum_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Logout</NavLink>
+                        <NavLink to="/record" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Record</NavLink>
+                        <NavLink to="/help" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Help</NavLink>
+                        <NavLink to="/settings" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Settings</NavLink>
+                        <div onClick={handleSignOut} className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Logout</div>
                     </nav>
                 </Offcanvas.Body>
             </Offcanvas>

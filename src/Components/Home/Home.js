@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../Menu/Menu';
+import { Navigate } from 'react-router-dom';
 import './Home.scss';
 import { Card, Carousel } from 'react-bootstrap';
 import { Bar, Line, Doughnut } from 'react-chartjs-2';
+import Clock from 'react-live-clock';
 import 'chart.js/auto';
+import weatherImage from './wBackground.jpg';
 
 
 // (async ()  => {
@@ -54,27 +57,37 @@ export const getBars = (x) => {
     return chartData;
 }
 
-function Home({ income, expense, bar }) {
+function Home({ income, expense, bar, user, handleSignOut }) {
     const [line, setLine] = useState([]);     
     const [article, setArticle] = useState();    
-    const [articleIndex] = useState(Array.from({length:5}).map(x => Math.floor(Math.random() * 19)));    
-
+    const [articleIndex] = useState(Array.from({length:5}).map(x => Math.floor(Math.random() * 19)));
+    const [weather, setWeather] = useState();    
+    
+    
     useEffect(() => {
+        //fetch weather report
+        fetch('http://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
+        .then(response => response.json())
+        .then(data => setWeather(data))
+        .catch((err) => console.log(err))
         //fetch line chart coordinates
         fetch('http://localhost:5000/record/sales')
         .then(response => response.json())
         .then(data => {
             setLine(data)
-        })
+        }).catch(err => console.log(err))
         //fetch news
         fetch(`https://newsapi.org/v2/everything?q=poultry&from=${(new Date().getFullYear)}-${new Date().getMonth()}-01&sortBy=publishedAt&apiKey=066e3e6cde1c47f3b7ae852685fcd128`)
         .then(response => response.json())
         .then(data => {
             setArticle(data.articles)
             //setArticleIndex(newsKeyGen())
-        })
+        }).catch(err => console.log(err))
     },[])
-	
+
+    // if (!user) {
+    //     return <Navigate to={"/"} replace />
+    // }
 	//Generate Random newsItem array
 	//const newsKeyGen = () => Array.from({length:3}).map(x => Math.floor(Math.random() * 19))
 
@@ -150,9 +163,11 @@ function Home({ income, expense, bar }) {
         ],
     };
 
+    const keyGenerator = () => parseFloat(Number(Math.random() * 3000).toFixed(2));
+
     return (
         <div className="home_app">
-            <Menu />
+            <Menu handleSignOut={handleSignOut}/>
             <h1>Overview</h1>
             <div className='my_card_container'>
                 <div className='my_card_container1'>
@@ -200,10 +215,21 @@ function Home({ income, expense, bar }) {
                     >
                         <Card.Header className='card_header2 fw-bold'>Weather</Card.Header>
                         <Card.Body>
-                        <Card.Title>{''}</Card.Title>
-                        <Card.Text>
-                            
-                        </Card.Text>
+                            <div className='card-weather' style={{
+                                    backgroundImage: `url(${weatherImage})`,
+                                    backgroundSize: "cover"
+                                }}>
+                                    <div className='card-weather_temp'>
+                                        <p>{`${!weather ? 0 : weather.main.temp}°C`}</p>
+                                        <span>{`${!weather ? 'fetching weather info' : weather.weather[0].description}`}</span>
+                                    </div>
+                                    <div className='card-weather_others'>
+                                        <span>{`${!weather ? 'xxx' : weather.name},${!weather ? 'xx' : weather.sys.country}`}</span>
+                                        <p>{`Pressure: ${!weather ? 0 : weather.main.pressure} hPa`}</p>
+                                        <p>{`Humidty: ${!weather ? 0 : weather.main.humidity} %`}</p>
+                                        <p>{`Wind Speed: ${!weather ? 0 : weather.wind.speed}m/s`}</p>
+                                    </div>
+                            </div>
                         </Card.Body>
                     </Card>
                     <Card
@@ -217,8 +243,8 @@ function Home({ income, expense, bar }) {
 							{articleIndex.map((x, i) => !article ? <Carousel.Item key={i}>
                                     <h2>Loading...</h2>
                                 </Carousel.Item> :
-                                <Carousel.Item key={x}>
-                                    <a href={`${article[x].url}`}>
+                                <Carousel.Item key={keyGenerator()}>
+                                    <a href={`${article[x].url}`} target='_blank' rel='noreferrer'>
                                         <div className='carousel-news' style={{
                                                 backgroundImage:`url(${article[x].urlToImage})`,
                                                 backgroundSize: "cover"
@@ -239,12 +265,19 @@ function Home({ income, expense, bar }) {
                         style={{ width: '25rem', border: '1px solid orange' }}
                         className="mb-2 shadow"
                     >
-                        <Card.Header className='card_header2 fw-bold'>Events (Todo)</Card.Header>
+                        <Card.Header className='card_header2 fw-bold'>Clock</Card.Header>
                         <Card.Body>
-                        <Card.Title>{'success'} Card Title </Card.Title>
-                        <Card.Text>
-                           
-                        </Card.Text>
+                            <Clock 
+                                className='myClock'
+                                format='HH:mm:ss' 
+                                interval={1000} 
+                                ticking={true} />
+                            <div className='clock-info'>
+                                <h3>{`${new Date().toDateString()}`}</h3>
+                                <em>
+                                    <p>{`"Hey, I wait for no one..."  - Time`}</p>
+                                </em>
+                            </div>
                         </Card.Body>
                     </Card>
                 </div>

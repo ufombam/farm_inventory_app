@@ -3,7 +3,7 @@ import './Summary.scss';
 import AnimatedNumber from "animated-number-react";
 import { getBars } from '../../Home/Home';
 
-const Summary = ({ egg, msc, customer }) => {
+const Summary = ({ egg, customer }) => {
     const [feed, setFeed] = useState([]);
     const [compost, setCompost] = useState([]);
     const [eggs, setEggs] = useState([]);
@@ -15,7 +15,7 @@ const Summary = ({ egg, msc, customer }) => {
         .then(data => data.json())
         .then(feed => setFeed(feed))
         .catch(() => console.log('unable to complete request'))
-        //Fetch feed summary
+        //Fetch msc summary
         fetch('http://localhost:5000/record/msc')
         .then(data => data.json())
         .then(msc => setMisce(msc))
@@ -62,7 +62,7 @@ const Summary = ({ egg, msc, customer }) => {
         keys.map((x) => object[x] += item[x] )
         return object
     },{})
-
+    //compute individual expenses
     const myMsc = misce.reduce((object, item) => {
         const keys = ['medication', 'salaries', 'electricity', 'diesel', 'maintenance', 'miscellaneous'];
         keys.map(x => {
@@ -79,6 +79,13 @@ const Summary = ({ egg, msc, customer }) => {
         })
         return object
         },{})
+
+        //Compute total expenses
+        const mscTotal = [myMsc].reduce((x, item) => {
+            const items = Object.keys(item)
+            items.map(data => x += item[data])
+            return x;
+        },0)
 
     const cards = {
         egg: {
@@ -107,7 +114,7 @@ const Summary = ({ egg, msc, customer }) => {
             id: 4,
             title: 'Miscellaneous',
             body: 'Other expenses',
-            figure: msc,
+            figure: mscTotal,
             figure2: ''
         },
         customer: {

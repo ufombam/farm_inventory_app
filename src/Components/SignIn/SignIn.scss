@@ -1,0 +1,53 @@
+@use '../../color_theme';
+* {
+    box-sizing: border-box;
+}
+
+.signin_app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: none;
+    height: 100vh;
+    .signin_app_border {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        border: 0.005px solid rgba(172, 167, 167, 0.615);
+        text-align: center;
+        height: 60vh;
+        width: 40vw;
+        border-radius: 15px;
+        color: color_theme.$primary_color1;
+        input {
+            width: 30vw;
+            margin-bottom: 2%;
+            border-radius: 5px;
+            height: 7vh;
+            font-size: 1.2em;
+            padding: 5px;
+            border: 2px solid rgba(172, 167, 167, 0.615)
+        }
+        input:focus {
+            outline: none;
+        }
+        button {
+            height: 5vh;
+            width: 7vw;
+            font-size: 1.2vw;
+            border-radius: 5px;
+            background-color: color_theme.$primary_color1;
+            color: white;
+            border: none;
+            .sign_link {
+                text-decoration: none;
+                color: white;
+                font-size: 1.2vw;
+            }
+        }
+        button:focus, button:hover {
+            background-color: rgb(108, 39, 140);
+        }
+    }
+}

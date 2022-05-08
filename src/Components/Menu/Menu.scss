@@ -20,16 +20,17 @@ $font_color2: rgb(31, 29, 29);
 nav {
     display: flex;
     flex-direction: column;
-    .sum_link {
+    .menu_link {
         text-decoration: none;
         color: $font_color1;
         font-size: 2em;
         background-color: $tab_color;
         margin-bottom: 3px;
         border-radius: 4px;
+        cursor: pointer;
     }
 
-    .sum_link:hover {
+    .menu_link:hover {
         background-color: $color_hover ;
         color: $font_color1;
         border-left: 5px solid $font_color1;

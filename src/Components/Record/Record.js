@@ -8,7 +8,7 @@ import { Nav } from 'react-bootstrap';
 
 
 
-function Record({ eggData, feedData, compostData, mscData }) {
+function Record({ eggData, feedData, compostData }) {
     const [route, setRoute] = useState("");
     const [customerInput, setCustomerInput] = useState([]);
     const handleTabChange = e => setRoute(e);
@@ -38,7 +38,7 @@ function Record({ eggData, feedData, compostData, mscData }) {
                 </Nav.Item>
             </Nav>
             {
-                route === 'summary' ? <Summary egg={eggData} compost={compostData} msc={mscData} customer={customerInput}/> : route === 'viewrecord' ? <ViewRecord customerInput={customerInput}/> : <NewRecord />
+                route === 'summary' ? <Summary egg={eggData} compost={compostData} customer={customerInput}/> : route === 'viewrecord' ? <ViewRecord customerInput={customerInput}/> : <NewRecord />
             }
         </div>
     );
