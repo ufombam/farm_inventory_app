@@ -3,20 +3,20 @@ import './Finance.scss';
 import { Button } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 
-const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
+const Finance = ({ feed, msc, compost, salesSum, expense, income, handleSignOut }) => {
     const [rate, setRate] = useState([]);
     const [debt, setDebt] = useState(0);
     const [listener, setListener] = useState(0);
 
     useEffect(() => {
         //fetch rate
-        fetch('http://localhost:5000/finance/rate')
+        fetch('http://localhost:5000/finance/rate?user=user')
         .then(data => data.json())
         .then(rate => setRate({
             big: rate[0].big,
             small: rate[0].small
-        }))
-    },[listener])
+        })).catch(() => console.log('unable to complete request'))
+    },[])
 
     useEffect(() => {
         //Fetch debt
@@ -24,7 +24,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
         .then(data => data.json())
         .then(debit => setDebt(Number(debit[0].sum)))
         .catch(() => console.log('unable to complete request'))
-    },[listener])
+    },[])
 
 
     //Set rate
@@ -70,7 +70,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
     }
     return (
         <div className="fin">
-            <Menu />
+            <Menu handleSignOut={handleSignOut}/>
             <div className='fin_header'>
                 <div className='fin_header_rate'>
                     
@@ -89,12 +89,12 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income }) => {
                 </div>
                 <div className='fin_header_box'>
                     <div className='fin_header_box_items'>
-                        <h5>{`Big Price: ₦ ${Number(rate.big).toLocaleString()}`}</h5>
-                        <h5>{`small Price: ₦ ${Number(rate.small).toLocaleString()}`}</h5  >
+                        <h5>{`Big Price: ₦ ${rate ? Number(rate.big).toLocaleString() : 0} `}</h5>
+                        <h5>{`small Price: ₦ ${rate ? Number(rate.small).toLocaleString() : 0}`}</h5  >
                     </div>
                     <div className='fin_header_box_items'>
                         <p>{`Running Profit:`}</p>
-                        <h4 style={{color: "Green"}}>{`₦ ${((income - expense) + (debt)).toLocaleString()}`}</h4>
+                        <h4 style={{color: "Green"}}>{`₦ ${debt ? ((income - expense) + (debt)).toLocaleString() : 0}`}</h4>
                     </div>
                     <div className='fin_header_box_items'>
                     <p>{`Running Debt:`}</p>

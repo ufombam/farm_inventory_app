@@ -8,7 +8,7 @@ import { Nav } from 'react-bootstrap';
 
 
 
-function Record({ eggData, feedData, compostData }) {
+function Record({ eggData, feedData, compostData, user, handleSignOut }) {
     const [route, setRoute] = useState("");
     const [customerInput, setCustomerInput] = useState([]);
     const handleTabChange = e => setRoute(e);
@@ -19,11 +19,11 @@ function Record({ eggData, feedData, compostData }) {
     .then(response => response.json())
     .then(res => {
         setCustomerInput(res)
-    })
+    }).catch(() => 'unable to complete request')
     },[])
     return (
         <div className="record_app">
-            <Menu />
+            <Menu handleSignOut={handleSignOut}/>
             <Nav fill variant="tabs" defaultActiveKey="link-1">
                 <Nav.Item className="bx" onClick={() => handleTabChange('newrecord')}>
                     <Nav.Link className="rec_text" eventKey="link-1"><big>New Record</big></Nav.Link>

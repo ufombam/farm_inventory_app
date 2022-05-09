@@ -1,0 +1,47 @@
+@use '../../color_theme';
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    &_body {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: flex-start;
+        padding-left: 30px;
+        padding-top: 30px;
+        color: color_theme.$primary_color1;
+        border: 1px solid rgba(152, 144, 144, 0.596);
+        border-radius: 6px;
+        height: 80vh;
+        width: 75vw;
+        input {
+            width: 35vw;
+            height: 7vh;
+            margin-bottom: 20px;
+            margin-right:  10px;
+            padding: 4px;
+            font-size: 1.2em;
+            border-radius: 6px;
+            border:1px solid rgba(152, 144, 144, 0.596)
+        }
+        input:focus {
+            outline: none;
+        }
+        button {
+            width: 13vw;
+            height: 5vh;
+            border-radius: 6px;
+            background-color: color_theme.$primary_color1;
+            color: white;
+        }
+        button:focus {
+            outline: none;
+        }
+        p {
+            font-size: 1.2em;
+        }
+    }
+}

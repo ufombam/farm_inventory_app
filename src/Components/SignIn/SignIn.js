@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SignIn.scss';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 
-function SignIn({ handleSignIn, user}) {
-    const [updating, setUpdating] = useState(false);
-
-    const checkUpdate = (e) => {
-        e.preventDefault()
-        return setUpdating(true);
-    }
+function SignIn({ handleSignIn, user, loginErr, updating}) {
 
     if (user) {
         return <Navigate to={"/home"} replace/>
@@ -22,11 +16,13 @@ function SignIn({ handleSignIn, user}) {
                 <div className='signin_app_border shadow'>
                     <h1>Sign in</h1>
                     <p>with your email and password</p>
-                    <form action='#' onSubmit={handleSignIn} onSubmitCapture={checkUpdate}>
+                    <form action='#' onSubmit={handleSignIn}>
                         <input id='email' type={'email'} required={true} placeholder={'Email'}></input><br />
                         <input id='pwd' type={'password'} minLength={6} required={true} placeholder={'Password'}></input><br />
-                        <button type={'submit'}>{updating ? 'Wait...' : 'Submit'}</button>
+                        <p style={{color: 'red'}}>{loginErr ? loginErr : null}</p>
+                        <button type={'submit'}>{!loginErr && updating ? 'Wait...' : 'Submit'}</button>
                     </form >
+                    <p>New here? <Link style={{textDecoration: "none"}} to={"/register"}>Register</Link></p>
                 </div>
             </div>
         </>

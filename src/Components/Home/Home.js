@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../Menu/Menu';
-import { Navigate } from 'react-router-dom';
 import './Home.scss';
 import { Card, Carousel } from 'react-bootstrap';
 import { Bar, Line, Doughnut } from 'react-chartjs-2';
@@ -60,8 +59,8 @@ export const getBars = (x) => {
 function Home({ income, expense, bar, user, handleSignOut }) {
     const [line, setLine] = useState([]);     
     const [article, setArticle] = useState();    
-    const [articleIndex] = useState(Array.from({length:5}).map(x => Math.floor(Math.random() * 19)));
-    const [weather, setWeather] = useState();    
+    const [articleIndex] = useState(Array.from({length: 5}).map(x => Math.floor(Math.random() * 19)));
+    const [weather, setWeather] = useState();
     
     
     useEffect(() => {
@@ -81,15 +80,8 @@ function Home({ income, expense, bar, user, handleSignOut }) {
         .then(response => response.json())
         .then(data => {
             setArticle(data.articles)
-            //setArticleIndex(newsKeyGen())
         }).catch(err => console.log(err))
     },[])
-
-    // if (!user) {
-    //     return <Navigate to={"/"} replace />
-    // }
-	//Generate Random newsItem array
-	//const newsKeyGen = () => Array.from({length:3}).map(x => Math.floor(Math.random() * 19))
 
     //deduce line chart coordinates
     const getLine = (x) => {
@@ -167,7 +159,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
 
     return (
         <div className="home_app">
-            <Menu handleSignOut={handleSignOut}/>
+            <Menu />
             <h1>Overview</h1>
             <div className='my_card_container'>
                 <div className='my_card_container1'>
