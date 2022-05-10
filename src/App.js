@@ -22,15 +22,17 @@ function App() {
     let expense = feed + msc;
 
     //=========================Income=============================================
+    
     useEffect(() => {
         //fetch bar chart coordinates
-        fetch('http://localhost:5000/record/egg')
+        if (user) {
+        fetch(`http://localhost:5000/record/egg/${user.id}`)
         .then(response => response.json())
         .then(data => {
             setEgg(data)
         }).catch(() => console.log('unable to complete request'))
         //Fetch sales sum
-        fetch('http://localhost:5000/finance/sales')
+        fetch(`http://localhost:5000/finance/sales/${user.id}`)
         .then(data => data.json())
         .then(sale => setSales({
             big: Number(sale[0].big),
@@ -38,23 +40,34 @@ function App() {
         }))
         .catch(() => console.log('unable to complete request'))
         //Fetch Compost sum
-        fetch('http://localhost:5000/finance/compost')
+        fetch(`http://localhost:5000/finance/compost/${user.id}`)
         .then(data => data.json())
         .then(comp => setCompost(Number(comp[0].sum)))
         .catch(() => console.log('unable to complete request'))
-    },[])
+        }
+    },[user])
     //====================Expense====================================================
     useEffect(() => {
         //fetch feed
-        fetch('http://localhost:5000/finance/feed')
+        if (user) {
+        fetch(`http://localhost:5000/finance/feed/${user.id}`)
         .then(data => data.json())
         .then(myFeed => setFeed((Number(myFeed[0].sum))))
         .catch(() => console.log('unable to complete request'))
         //Fetch Compost
-        fetch('http://localhost:5000/finance/msc')
+        fetch(`http://localhost:5000/finance/msc/${user.id}`)
         .then(data => data.json())
         .then(misc => setMsc(Number(misc[0].sum)))
         .catch(() => console.log('unable to complete request'))
+        }
+    },[user])
+
+    useEffect(() => {
+        const userLoggedIn = sessionStorage.getItem('token');
+        if (userLoggedIn) {
+            const foundUser = JSON.parse(userLoggedIn);
+            setUser(foundUser)
+        }
     },[])
 
     //=====================sign in user================
@@ -75,7 +88,10 @@ function App() {
             body: JSON.stringify(login)
         })
         .then(res => res.json())
-        .then(data => setUser(data))
+        .then(data => {
+            setUser(data)
+            sessionStorage.setItem('token', JSON.stringify(data))
+        })
         .catch(() => {
             setLoginErr('Unable to authenticate user');
             setTimeout(() => {
@@ -105,7 +121,10 @@ function App() {
             body: JSON.stringify(user)
         })
         .then(res => res.json())
-        .then(data => setUser(data))
+        .then(data => {
+            setUser(data)
+            sessionStorage.setItem('token', JSON.stringify(data))
+        })
         .catch(() => {
             setLoginErr('Unable to register user');
             setTimeout(() => {
@@ -116,20 +135,30 @@ function App() {
         e.target.reset();
     }
 
-    const handleSignOut = () => setUser(null);
+    const handleSignOut = () => {
+        setUser(null)
+        sessionStorage.clear();
+        window.location.reload();
+    };
 
-    const ProtectedRoute = ({ user, children, redirectPath = '/'}) => {
-        if (!user) {
+    const ProtectedRoute = ({ user, children, redirectPath = '/signin'}) => {
+            if (user) {
+                return children ? children : <Outlet />
+            } else if (!user) {
+                const isUser = sessionStorage.getItem('token')
+                if (isUser) {
+                    const foundUser = JSON.parse(isUser);
+                    setUser(foundUser)
+                }
+            }
             return <Navigate to={redirectPath} replace />
-        }
-        return children ? children : <Outlet />
     }
 
     return (
         <BrowserRouter>
             <Routes>
                 <Route key={11} path="signin" element={<SignIn user={user} updating={updating} loginErr={loginErr} handleSignIn={handleSignIn}/>} />
-                <Route key={66} path="register" index element={<Register user={user} updating={updating} regErr={loginErr} handleRegister={handleRegister}/>} />
+                <Route key={66} path="register" element={<Register user={user} updating={updating} regErr={loginErr} handleRegister={handleRegister}/>} />
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route key={22} path="dashboard" element={<Home handleSignOut={handleSignOut} user={user} income={income} expense={expense} bar={egg}/>} />
                     <Route key={33} path="record" element={<Record handleSignOut={handleSignOut} user={user} eggData={egg} compostData={compost}/>} />

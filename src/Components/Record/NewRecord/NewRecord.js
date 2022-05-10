@@ -3,15 +3,16 @@ import { Button, Accordion } from 'react-bootstrap';
 import './newRecord.scss';
 
 
-const NewRecord = () => {
+const NewRecord = ({ user }) => {
     const [customers, setCustomers] = useState(["Select name","Add new customer"]);
     const [listener, setListener] = useState(0);
 
     
 
     useEffect(() => {
+        if (user) {
         let names = [];
-        fetch('http://localhost:5000/record/names')
+        fetch(`http://localhost:5000/record/names/${user.id}`)
         .then(res => res.json())
         .then(res => {
             res.forEach(x => {
@@ -19,8 +20,8 @@ const NewRecord = () => {
             })
             setCustomers(["select name", ...names, "Add new customer"])
         })
-        .catch(() => console.log('invalid request'))
-    },[listener])
+        .catch(() => console.log('invalid request')) }
+    },[listener, user])
 
     //Submit daily inventory/egg sizes field values to DB - 1
     const handleSubmit1 = (e) => {
@@ -39,9 +40,10 @@ const NewRecord = () => {
                     unit: egg_count_2.value,
                     quantity: size2.value
                 }
-            }
+            },
+            userid: user.id
         };
-        fetch('http://localhost:5000/record/egg', {
+        fetch(`http://localhost:5000/record/egg/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -64,8 +66,9 @@ const NewRecord = () => {
             qty: feed.value,
             store: feed_store.value,
             expense: feed_expense.value,
+            userid: user.id
         }
-        fetch('http://localhost:5000/record/feed', {
+        fetch(`http://localhost:5000/record/feed/${user.id}`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -80,16 +83,16 @@ const NewRecord = () => {
     //Submit birds input  to DB
     const handleBirds = (e) => {
         e.preventDefault();
-        const { bird, bird_store, bird_expense, dead_bird } = e.target.elements;
+        const { bird, bird_store, dead_bird } = e.target.elements;
         const time = new Date();
         const bird_input = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             bird: bird.value,
             store: bird_store.value,
-            investment: bird_expense.value,
             dead: dead_bird.value,
+            userid: user.id
         }
-        fetch('http://localhost:5000/record/bird', {
+        fetch(`http://localhost:5000/record/bird/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -110,8 +113,9 @@ const NewRecord = () => {
             name: customers.value === "select name" ||customers.value === "Add new customer" ? alert("invalid input") : customers.value,
             qty: customer_qty.value,
             debt: customer_debt.value,
+            userid: user.id
         }
-        fetch('http://localhost:5000/record/customers', {
+        fetch(`http://localhost:5000/record/customers/${user.id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -142,9 +146,10 @@ const NewRecord = () => {
         const time = new Date();
         const new_name = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
-            name: customer_input.value
+            name: customer_input.value,
+            userid: user.id
         };
-        fetch('http://localhost:5000/record/customers', {
+        fetch(`http://localhost:5000/record/customers/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -165,9 +170,10 @@ const NewRecord = () => {
         const compost_input = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             compost: compost.value,
-            profit: compost_profit.value
+            profit: compost_profit.value,
+            userid: user.id
         }
-        fetch('http://localhost:5000/record/compost', {
+        fetch(`http://localhost:5000/record/compost/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -181,7 +187,7 @@ const NewRecord = () => {
     }
 
 
-    //For Miscellaneous
+    //Tags For Miscellaneous
     const purpose = [
         {
             id: 1,
@@ -216,9 +222,10 @@ const NewRecord = () => {
         const msc_input = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             expense: expense.value,
-            purpose: purpose.value
+            purpose: purpose.value,
+            userid: user.id
         }
-        fetch('http://localhost:5000/record/msc', {
+        fetch(`http://localhost:5000/record/msc/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -307,10 +314,6 @@ const NewRecord = () => {
                                 <label htmlFor='bird_store'>{'Store:  '}</label><br />
                                 <div className='input_with_select'>
                                     <input type="text" placeholder='store name' id='bird_store'/>
-                                </div>
-                                <label htmlFor='bird_expense'>{'Invested Amount:  '}</label><br />
-                                <div className='input_with_select'>
-                                    <input type="number" placeholder='#Invested Amount' id='bird_expense'/>
                                 </div>
                                 <label htmlFor='dead_bird'>{'Record Death:  '}</label><br />
                                 <div className='input_with_select'>

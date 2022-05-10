@@ -3,7 +3,7 @@ import { Accordion, Table, Badge } from 'react-bootstrap';
 import './ViewRecord.scss';
 
 
-const ViewRecord = ({ customerInput }) => {
+const ViewRecord = ({ customerInput, user }) => {
   const [eggInput, setEggInput] = useState([]);
   const [feedInput, setFeedInput] = useState([]);
   const [birdInput, setBirdInput] = useState([]);
@@ -12,43 +12,45 @@ const ViewRecord = ({ customerInput }) => {
   const [salesInput, setSalesInput] = useState([]);
 
   useEffect(() => {
+    if (user) {
     //fetch sales record
-    fetch('http://localhost:5000/record/sales')
+    fetch(`http://localhost:5000/record/sales/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setSalesInput(res)
     })
     //fetch egg record
-    fetch('http://localhost:5000/record/egg')
+    fetch(`http://localhost:5000/record/egg/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setEggInput(res)
     })
     //fetch feed record
-    fetch('http://localhost:5000/record/feed')
+    fetch(`http://localhost:5000/record/feed/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setFeedInput(res)
     })
     //fetch birds record
-    fetch('http://localhost:5000/record/bird')
+    fetch(`http://localhost:5000/record/bird/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setBirdInput(res)
     })
     //fetch compost record
-    fetch('http://localhost:5000/record/compost')
+    fetch(`http://localhost:5000/record/compost/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setCompostInput(res)
     })
     //fetch compost record
-    fetch('http://localhost:5000/record/msc')
+    fetch(`http://localhost:5000/record/msc/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setMscInput(res)
     })
-  },[]);
+    }
+  },[user]);
 
 
   const salesHeader = [

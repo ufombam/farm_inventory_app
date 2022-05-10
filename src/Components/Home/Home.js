@@ -64,24 +64,26 @@ function Home({ income, expense, bar, user, handleSignOut }) {
     
     
     useEffect(() => {
+        if (user) {
         //fetch weather report
         fetch('http://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
         .then(response => response.json())
         .then(data => setWeather(data))
-        .catch((err) => console.log(err))
+        .catch(() => console.log('Problem fetching weather info'))
         //fetch line chart coordinates
-        fetch('http://localhost:5000/record/sales')
+        fetch(`http://localhost:5000/record/sales/${user.id}`)
         .then(response => response.json())
         .then(data => {
             setLine(data)
-        }).catch(err => console.log(err))
+        }).catch(() => console.log('Unable to complete request'))
         //fetch news
         fetch(`https://newsapi.org/v2/everything?q=poultry&from=${(new Date().getFullYear)}-${new Date().getMonth()}-01&sortBy=publishedAt&apiKey=066e3e6cde1c47f3b7ae852685fcd128`)
         .then(response => response.json())
         .then(data => {
             setArticle(data.articles)
-        }).catch(err => console.log(err))
-    },[])
+        }).catch(() => console.log('server has encountered Problem fetching news'))
+        }
+    },[user])
 
     //deduce line chart coordinates
     const getLine = (x) => {
@@ -156,16 +158,16 @@ function Home({ income, expense, bar, user, handleSignOut }) {
     };
 
     const keyGenerator = () => parseFloat(Number(Math.random() * 3000).toFixed(2));
-
+    
     return (
         <div className="home_app">
-            <Menu />
+            <Menu handleSignOut={handleSignOut}/>
             <h1>Overview</h1>
             <div className='my_card_container'>
                 <div className='my_card_container1'>
                     <Card
                         text={'dark'}
-                        style={{ width: '30rem', height: '20rem', border: '1px solid purple' }}
+                        style={{ width: '30rem', height: '20rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Egg Laying Activity - Yearly Overview</Card.Header>
@@ -176,7 +178,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '30rem', height: '20rem', border: '1px solid purple' }}
+                        style={{ width: '30rem', height: '20rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Income - Yearly Overview</Card.Header>
@@ -187,7 +189,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '18rem', border: '1px solid purple' }}
+                        style={{ width: '18rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Monthly Cashflow</Card.Header>
@@ -202,7 +204,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                 <div className='my_card_container2'>
                     <Card
                         text={'dark'}
-                        style={{ width: '25rem', border: '1px solid orange' }}
+                        style={{ width: '25rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header2 fw-bold'>Weather</Card.Header>
@@ -226,7 +228,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '28rem', border: '1px solid orange' }}
+                        style={{ width: '28rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header2 fw-bold'>News</Card.Header>
@@ -254,7 +256,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '25rem', border: '1px solid orange' }}
+                        style={{ width: '25rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header2 fw-bold'>Clock</Card.Header>

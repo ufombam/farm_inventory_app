@@ -14,13 +14,15 @@ function Record({ eggData, feedData, compostData, user, handleSignOut }) {
     const handleTabChange = e => setRoute(e);
 
     useEffect(() => {
-    //fetch compost record
-    fetch('http://localhost:5000/record/customers')
-    .then(response => response.json())
-    .then(res => {
-        setCustomerInput(res)
-    }).catch(() => 'unable to complete request')
-    },[])
+        if (user) {
+        //fetch customer record
+        fetch(`http://localhost:5000/record/customers/${user.id}`)
+        .then(response => response.json())
+        .then(res => {
+            setCustomerInput(res)
+        }).catch(() => 'unable to complete request')
+    }
+    },[user])
     return (
         <div className="record_app">
             <Menu handleSignOut={handleSignOut}/>
@@ -38,7 +40,7 @@ function Record({ eggData, feedData, compostData, user, handleSignOut }) {
                 </Nav.Item>
             </Nav>
             {
-                route === 'summary' ? <Summary egg={eggData} compost={compostData} customer={customerInput}/> : route === 'viewrecord' ? <ViewRecord customerInput={customerInput}/> : <NewRecord />
+                route === 'summary' ? <Summary user={user} egg={eggData} compost={compostData} customer={customerInput}/> : route === 'viewrecord' ? <ViewRecord user={user} customerInput={customerInput}/> : <NewRecord user={user}/>
             }
         </div>
     );

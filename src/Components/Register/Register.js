@@ -15,7 +15,7 @@ const Register = ({ handleRegister, user, regErr, updating }) => {
     }
 
     if (user) {
-        return <Navigate to={"/home"} replace/>
+        return <Navigate to={"/dashboard"} replace/>
     }
 
     return (

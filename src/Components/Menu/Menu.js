@@ -33,7 +33,7 @@ function Menu({ handleSignOut }) {
                     </div>
                     <hr />
                     <nav>
-                        <NavLink to="/home" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Home</NavLink>
+                        <NavLink to="/dashboard" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Home</NavLink>
                         <NavLink to="/finance" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}
                             Finance</NavLink>
                         <NavLink to="/record" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Record</NavLink>

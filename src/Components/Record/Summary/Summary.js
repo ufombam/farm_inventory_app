@@ -3,34 +3,36 @@ import './Summary.scss';
 import AnimatedNumber from "animated-number-react";
 import { getBars } from '../../Home/Home';
 
-const Summary = ({ egg, customer }) => {
+const Summary = ({ egg, customer, user }) => {
     const [feed, setFeed] = useState([]);
     const [compost, setCompost] = useState([]);
     const [eggs, setEggs] = useState([]);
     const [misce, setMisce] = useState([]);
 
     useEffect(() => {
-        //Fetch feed summary
-        fetch('http://localhost:5000/record/feed')
-        .then(data => data.json())
-        .then(feed => setFeed(feed))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch msc summary
-        fetch('http://localhost:5000/record/msc')
-        .then(data => data.json())
-        .then(msc => setMisce(msc))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch compost summary
-        fetch('http://localhost:5000/record/compost')
-        .then(data => data.json())
-        .then(compost => setCompost(compost))
-        .catch(() => console.log('unable to complete request'))
-        //Fetch egg summary
-        fetch('http://localhost:5000/record/egg')
-        .then(data => data.json())
-        .then(eggs => setEggs(eggs))
-        .catch(() => console.log('unable to complete request'))
-        },[])
+        if (user) {
+            //Fetch feed summary
+            fetch(`http://localhost:5000/record/feed/${user.id}`)
+            .then(data => data.json())
+            .then(feed => setFeed(feed))
+            .catch(() => console.log('unable to complete request'))
+            //Fetch msc summary
+            fetch(`http://localhost:5000/record/msc/${user.id}`)
+            .then(data => data.json())
+            .then(msc => setMisce(msc))
+            .catch(() => console.log('unable to complete request'))
+            //Fetch compost summary
+            fetch(`http://localhost:5000/record/compost/${user.id}`)
+            .then(data => data.json())
+            .then(compost => setCompost(compost))
+            .catch(() => console.log('unable to complete request'))
+            //Fetch egg summary
+            fetch(`http://localhost:5000/record/egg/${user.id}`)
+            .then(data => data.json())
+            .then(eggs => setEggs(eggs))
+            .catch(() => console.log(`unable to complete request/${user.id}`))
+        }
+    },[user])
     //compute feed data
     const feedData = (x) => x.reduce((object, item) => {
         const keys = ['qty', 'expense'];
@@ -145,7 +147,7 @@ const Summary = ({ egg, customer }) => {
                         />
                     </div>
                     <div className='sum_figure2'>
-                        <p>{`Big Eggs: ${Number(cards.egg.figure1).toLocaleString()} crates`}</p>
+                        <p>{`Big Eggs: ${NaN ? 0 : Number(cards.egg.figure1).toLocaleString()} crates`}</p>
                         <p>{`Small Eggs: ${Number(cards.egg.figure2).toLocaleString()} crates`}</p>
                     </div>
                 </div>

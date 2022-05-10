@@ -6,7 +6,7 @@ import { Navigate, Link } from 'react-router-dom';
 function SignIn({ handleSignIn, user, loginErr, updating}) {
 
     if (user) {
-        return <Navigate to={"/home"} replace/>
+        return <Navigate to={"/dashboard"} replace/>
     }
 
 
