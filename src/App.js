@@ -1,8 +1,11 @@
+import Landing from './Components/Landing/Landing';
 import Home from './Components/Home/Home';
 import SignIn from './Components/SignIn/SignIn';
 import Record from './Components/Record/Record';
 import Finance from './Components/Finance/Finance';
 import Register from './Components/Register/Register';
+import Settings from './Components/Settings/Settings';
+import Help from './Components/Help/Help';
 import './App.scss';
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -16,13 +19,24 @@ function App() {
     const [user, setUser] = useState(null);
     const [loginErr, setLoginErr] = useState('');
     const [updating, setUpdating] = useState(false);
+    const [rate, setRate] = useState([]);
 
     const salesSum = sales.big + sales.small;
     let income = salesSum + compost;
     let expense = feed + msc;
 
     //=========================Income=============================================
-    
+    useEffect(() => {
+        if (user)
+        //fetch rate
+        fetch(`http://localhost:5000/finance/rate/${user.id}`)
+        .then(data => data.json())
+        .then(rate => setRate({
+            big: rate[0].big,
+            small: rate[0].small
+        })).catch(() => console.log('unable to complete request'))
+    },[user])
+
     useEffect(() => {
         //fetch bar chart coordinates
         if (user) {
@@ -157,14 +171,17 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route key={11} path="signin" element={<SignIn user={user} updating={updating} loginErr={loginErr} handleSignIn={handleSignIn}/>} />
-                <Route key={66} path="register" element={<Register user={user} updating={updating} regErr={loginErr} handleRegister={handleRegister}/>} />
+                <Route key={11} index element={<Landing />} />
+                <Route key={22} path="signin" element={<SignIn user={user} updating={updating} loginErr={loginErr} handleSignIn={handleSignIn}/>} />
+                <Route key={33} path="register" element={<Register user={user} updating={updating} regErr={loginErr} handleRegister={handleRegister}/>} />
                 <Route element={<ProtectedRoute user={user} />}>
-                    <Route key={22} path="dashboard" element={<Home handleSignOut={handleSignOut} user={user} income={income} expense={expense} bar={egg}/>} />
-                    <Route key={33} path="record" element={<Record handleSignOut={handleSignOut} user={user} eggData={egg} compostData={compost}/>} />
-                    <Route key={44} path="finance" element={<Finance handleSignOut={handleSignOut} user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
+                    <Route key={44} path="dashboard" element={<Home handleSignOut={handleSignOut} user={user} income={income} expense={expense} bar={egg}/>} />
+                    <Route key={55} path="record" element={<Record handleSignOut={handleSignOut} user={user} eggData={egg} compostData={compost}/>} />
+                    <Route key={66} path="finance" element={<Finance handleSignOut={handleSignOut} rate={rate} user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
                 </Route>
-                <Route key={55} path="*" element={<h1>Wetin carry me come here??</h1>} />
+                <Route key={77} path="settings" element={<Settings handleSignOut={handleSignOut} user={user}/>} />
+                <Route key={88} path="help" element={<Help handleSignOut={handleSignOut} />} />
+                <Route key={99} path="*" element={<h1>Wetin carry me come here??</h1>} />
             </Routes>
         </BrowserRouter>
     );

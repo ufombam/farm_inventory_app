@@ -2,23 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './Finance.scss';
 import { Button } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
-import { Navigate } from 'react-router-dom';
 
-const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSignOut }) => {
-    const [rate, setRate] = useState([]);
+const Finance = ({ rate, feed, msc, compost, salesSum, expense, income, user, handleSignOut }) => {
     const [debt, setDebt] = useState(0);
     const [listener, setListener] = useState(0);
-    
-    useEffect(() => {
-        if (user)
-        //fetch rate
-        fetch(`http://localhost:5000/finance/rate/${user.id}`)
-        .then(data => data.json())
-        .then(rate => setRate({
-            big: rate[0].big,
-            small: rate[0].small
-        })).catch(() => console.log('unable to complete request'))
-    },[user])
 
     useEffect(() => {
         if (user)
@@ -30,27 +17,6 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
     },[user])
 
 
-    //Set rate
-    const handleRate = (e) => {
-        e.preventDefault();
-        const { rate1, rate2 } = e.target.elements;
-        const rateInput = {
-            big: rate1.value,
-            small: rate2.value,
-            userid: user.id
-        }
-        fetch(`http://localhost:5000/finance/rate/${user.id}`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(rateInput)
-        })
-        .catch(() => console.log('unable to complete request'));
-        setListener(listener + 1)
-        e.target.reset();
-    }
     //Submit the sales request
     const handleSales = (e) => {
         e.preventDefault();
@@ -77,21 +43,6 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
         <div className="fin">
             <Menu handleSignOut={handleSignOut}/>
             <div className='fin_header'>
-                <div className='fin_header_rate'>
-                    
-                        <form action="#" className='sing' onSubmit={handleRate}>
-                            <div>
-                                <input type={"number"} placeholder={"Big eggs"} id="rate1"></input>
-                            </div>
-                            <div>
-                                <input type={"number"} placeholder={"small eggs"} id="rate2"></input>
-                            </div>
-                            <button className="fin_btn" type="submit">
-                                Set Rate
-                            </button>
-                        </form>
-                    
-                </div>
                 <div className='fin_header_box'>
                     <div className='fin_header_box_items'>
                         <h5>{`Big Price: ₦ ${!rate ? 0 : Number(rate.big).toLocaleString()} `}</h5>

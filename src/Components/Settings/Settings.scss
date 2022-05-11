@@ -1,0 +1,52 @@
+@use '../../color_theme';
+
+.settings_container {
+    padding: 20px;
+    height: 100vh;
+    .form1 {
+        input {
+            width: 15vw;
+            margin-bottom: 2%;
+            border-radius: 5px;
+            height: 7vh;
+            font-size: 1.2em;
+            padding: 5px;
+            border: 2px solid rgba(172, 167, 167, 0.615)
+        }
+        input:focus {
+            outline: none;
+        }
+        hr {
+            width: 50vw;
+        }
+    }
+
+    .form2 {
+        input, select {
+            width: 30vw;
+            margin-bottom: 2%;
+            border-radius: 5px;
+            height: 7vh;
+            font-size: 1.2em;
+            padding: 5px;
+            border: 2px solid rgba(172, 167, 167, 0.615)
+        }
+        input:focus {
+            outline: none;
+        }
+    }
+
+    button {
+            height: 5vh;
+            width: 7vw;
+            font-size: 1.2vw;
+            border-radius: 5px;
+            background-color: color_theme.$primary_color1;
+            color: white;
+            border: none;
+        }
+        button:focus, button:hover {
+            background-color: rgb(108, 39, 140);
+        }
+
+}

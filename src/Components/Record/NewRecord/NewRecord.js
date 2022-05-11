@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Button, Accordion } from 'react-bootstrap';
 import './newRecord.scss';
 
-
 const NewRecord = ({ user }) => {
     const [customers, setCustomers] = useState(["Select name","Add new customer"]);
     const [listener, setListener] = useState(0);
