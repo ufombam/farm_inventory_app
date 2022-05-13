@@ -4,6 +4,7 @@
     height: 100vh;
     background-image: linear-gradient(to right,  color_theme.$primary_color1, color_theme.$primary_color2 );
     padding: 10px;
+    color: white;
     button {
         width: 13vw;
         height: 5vh;
@@ -13,5 +14,34 @@
     }
     button:focus {
         outline: none;
+    }
+    .logo {
+        border: 1px solid white;
+        height: 10vh;
+    }
+
+    .description {
+        border: 1px solid white;
+        height: 50vh;
+        &_item {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid yellow;
+            width: 30%;
+            height: inherit;
+            &_header {
+                border: 2px solid salmon;
+                height: 70%;
+            }
+            &_footer {
+                border: 2px solid salmon;
+                height: 30%;
+            }
+        }
+    }
+
+    .button_container {
+        border: 1px solid white;
+        height: 30vh;
     }
 }

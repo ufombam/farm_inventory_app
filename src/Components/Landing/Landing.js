@@ -17,9 +17,18 @@ const Landing = () => {
 
     return( 
     <div className='landing_container'>
-        <h2>All your needs in one place</h2>
-        <button onClick={() => routing('register')}>Register</button>
-        <button onClick={() => routing('signin')}>Login</button>
+        <div className='logo'>logo</div>
+        <div className='description'>
+            <div className='description_item'>
+                <div className='description_item_header'></div>
+                <div className='description_item_footer'></div>
+            </div>
+            
+        </div>
+        <div className='button_container'>
+            <button onClick={() => routing('register')}>Register</button>
+            <button onClick={() => routing('signin')}>Login</button>
+        </div>
     </div>
     );
 }
