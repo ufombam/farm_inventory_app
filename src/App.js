@@ -19,23 +19,12 @@ function App() {
     const [user, setUser] = useState(null);
     const [loginErr, setLoginErr] = useState('');
     const [updating, setUpdating] = useState(false);
-    const [rate, setRate] = useState([]);
 
     const salesSum = sales.big + sales.small;
     let income = salesSum + compost;
     let expense = feed + msc;
 
     //=========================Income=============================================
-    useEffect(() => {
-        if (user)
-        //fetch rate
-        fetch(`http://localhost:5000/finance/rate/${user.id}`)
-        .then(data => data.json())
-        .then(rate => setRate({
-            big: rate[0].big,
-            small: rate[0].small
-        })).catch(() => console.log('unable to complete request'))
-    },[user])
 
     useEffect(() => {
         //fetch bar chart coordinates
@@ -177,9 +166,9 @@ function App() {
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route key={44} path="dashboard" element={<Home handleSignOut={handleSignOut} user={user} income={income} expense={expense} bar={egg}/>} />
                     <Route key={55} path="record" element={<Record handleSignOut={handleSignOut} user={user} eggData={egg} compostData={compost}/>} />
-                    <Route key={66} path="finance" element={<Finance handleSignOut={handleSignOut} rate={rate} user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
+                    <Route key={66} path="finance" element={<Finance handleSignOut={handleSignOut} user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
                 </Route>
-                <Route key={77} path="settings" element={<Settings handleSignOut={handleSignOut} user={user}/>} />
+                <Route key={77} path="jsdream345" element={<Settings handleSignOut={handleSignOut} user={user}/>} />
                 <Route key={88} path="help" element={<Help handleSignOut={handleSignOut} />} />
                 <Route key={99} path="*" element={<h1>Wetin carry me come here??</h1>} />
             </Routes>

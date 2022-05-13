@@ -1,1 +1,17 @@
 @use '../../color_theme';
+
+.landing_container {
+    height: 100vh;
+    background-image: linear-gradient(to right,  color_theme.$primary_color1, color_theme.$primary_color2 );
+    padding: 10px;
+    button {
+        width: 13vw;
+        height: 5vh;
+        border-radius: 6px;
+        background-color: color_theme.$primary_color1;  
+        color: white;
+    }
+    button:focus {
+        outline: none;
+    }
+}

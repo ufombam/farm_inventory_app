@@ -1,12 +1,19 @@
 @use '../../color_theme';
 
 .settings_container {
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 20px;
     height: 100vh;
+    width: auto;
+    background-image: url('./setting_wheel1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center right;
     .form1 {
         input {
             width: 15vw;
-            margin-bottom: 2%;
+            margin-bottom: 10px;
             border-radius: 5px;
             height: 7vh;
             font-size: 1.2em;
@@ -22,9 +29,14 @@
     }
 
     .form2 {
+        border: 1px solid rgba(255, 99, 132, 1);
+        background-color: rgba(255, 99, 132, 0.2);
+        height: 40vh;
+        padding: 10px;
+        border-radius: 10px;
         input, select {
             width: 30vw;
-            margin-bottom: 2%;
+            margin-bottom: 10px;
             border-radius: 5px;
             height: 7vh;
             font-size: 1.2em;

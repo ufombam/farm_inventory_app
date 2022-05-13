@@ -3,9 +3,21 @@ import './Finance.scss';
 import { Button } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 
-const Finance = ({ rate, feed, msc, compost, salesSum, expense, income, user, handleSignOut }) => {
+const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSignOut }) => {
     const [debt, setDebt] = useState(0);
     const [listener, setListener] = useState(0);
+    const [rate, setRate] = useState([]);
+
+    useEffect(() => {
+        if (user)
+        //fetch rate
+        fetch(`http://localhost:5000/finance/rate/${user.id}`)
+        .then(data => data.json())
+        .then(rate => setRate({
+            big: rate[0].big,
+            small: rate[0].small
+        })).catch(() => console.log('unable to complete request'))
+    },[user])
 
     useEffect(() => {
         if (user)

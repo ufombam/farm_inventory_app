@@ -1,8 +1,9 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Settings.scss';
 
 const Settings = ({ user }) => {
-    const [customers, setCustomers] = useState([]);
+    const [customers, setCustomers] = useState(["Select name"]);
 
     useEffect(() => {
         if (user) {
@@ -13,9 +14,10 @@ const Settings = ({ user }) => {
             res.forEach(x => {
                 names.push(x.name)
             })
-            setCustomers(["select name", ...names, "Add new customer"])
+            setCustomers(["select name", ...names])
         })
-        .catch(() => console.log('invalid request')) }
+        .catch(() => console.log('invalid request')) 
+        }
     },[user])
 
 
@@ -39,38 +41,38 @@ const Settings = ({ user }) => {
             .catch(() => console.log('unable to complete request'));
             e.target.reset();
         }
+
         //submit settings
-        const handleSettings = (e) => {
+        const handleDelete = (e) => {
             e.preventDefault();
-            const {customer_del, file} = e.target.elements;
+            const {customer_del} = e.target.elements;
             const delete_customer = {
-                customer: customer_del.value,
+                name: customer_del.value,
             }
-            const uploadImage = {
-                image: file.value
-            }
+            axios.delete(`http://localhost:5000/record/customers/${user.id}`, delete_customer)
         }
+
     return( 
     <div className='settings_container'>
         <div className='form1'>
             <form action="" onSubmit={handleRate}>
-                <h3>Set Rate</h3>
+                <h5>Set Rate</h5>
                 <input type={'number'} id='rate1' placeholder={'Big Egg'}></input><br />
                 <input type={'number'} id='rate2' placeholder={'Small Egg'}></input><br />
                 <button type={'submit'}>Set Rate</button><br />
             </form><hr />
         </div>
         <div className='form2'>
-            <form>
-                <label htmlFor='customer_del'>{'Delete Customer for Database'}</label><br />
+            <form onSubmit={handleDelete}>
+                <label htmlFor='customer_del'>{'Delete Customer'}</label><br />
                 <select id='customer_del'>
                     {
                         customers.map((x, i) => <option key={i}>{x}</option>)
                     }
                 </select><br />
-                <label>{'Upload Profile Image'}</label><br />
-                <input type={'file'} id='file'></input><br />
-                <button type={'submit'}>Submit</button>
+                <button type={'submit'}>Submit</button><br />
+
+                <h6 style={{color: 'red'}}><em>Actions taken here cannot be undone, Please take care</em></h6>
             </form>
         </div>
     </div>
