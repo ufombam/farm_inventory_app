@@ -144,7 +144,7 @@ function App() {
         window.location.reload();
     };
 
-    const ProtectedRoute = ({ user, children, redirectPath = '/signin'}) => {
+    const ProtectedRoute = ({ user, children, redirectPath = '/'}) => {
             if (user) {
                 return children ? children : <Outlet />
             } else if (!user) {

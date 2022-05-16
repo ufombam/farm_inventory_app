@@ -38,7 +38,7 @@ function Menu({ handleSignOut }) {
                             Finance</NavLink>
                         <NavLink to="/record" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Record</NavLink>
                         <NavLink to="/help" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Help</NavLink>
-                        <NavLink to="/settings" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Settings</NavLink>
+                        <NavLink to="/jsdream345" className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Settings</NavLink>
                         <div onClick={handleSignOut} className="menu_link"><img className="icon" alt="home" src={`${home}`}/>{"  "}Logout</div>
                     </nav>
                 </Offcanvas.Body>
