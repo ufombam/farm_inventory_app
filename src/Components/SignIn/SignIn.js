@@ -1,6 +1,7 @@
 import React from 'react';
 import './SignIn.scss';
 import { Navigate, Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 
 function SignIn({ handleSignIn, user, loginErr, updating}) {
@@ -14,6 +15,9 @@ function SignIn({ handleSignIn, user, loginErr, updating}) {
         <>
             <div className='signin_app'>
                 <div className='signin_app_border shadow'>
+                <div>
+                    <Logo height={90} variant='dark' />
+                </div>
                     <h1>Sign in</h1>
                     <p>with your email and password</p>
                     <form action='#' onSubmit={handleSignIn}>

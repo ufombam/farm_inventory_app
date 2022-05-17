@@ -31,25 +31,26 @@
         flex-direction: row;
         justify-content: space-between;
         padding: 10px;
-        border: 1px solid white;
+        //border: 1px solid white;
         height: 10vh;
     }
 
     .description {
         display: flex;
         flex-direction: row;
-        border: 1px solid white;
+        //border: 1px solid white;
         height: 50vh;
         width: 98.8vw;
         &_item {
             display: flex;
             flex-direction: column;
-            border: 1px solid yellow;
+            border: 1px solid color_theme.$border_1;
+            border-radius: 10px;
             width: 70vw;
             height: inherit;
             margin-right: 5px;
             &_header {
-                border: 2px solid salmon;
+                //border: 2px solid salmon;
                 height: 70%;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -62,9 +63,14 @@
                     font-size: 1.3rem;
                     text-shadow: 1px 2px rgba(39, 37, 37, 0.342);
                 }
-                border: 2px solid salmon;
+                //border: 2px solid salmon;
                 height: 30%;
             }
+        }
+
+        &_item:hover {
+            transform: scale(1.02);
+            transition: 0.5s;
         }
     }
 
@@ -72,16 +78,24 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border: 1px solid white;
+        margin-top: 6px;
         height: 30vh;
-        button {
+        button, .landing_link {
             height: inherit;
             width: 100%;
-            border-radius: none;
+            border-radius: 0px;
+            text-shadow: 1px 2px rgba(39, 37, 37, 0.342);
+            border-radius: 6px;
         }
     }
 
-    .footer {
-        border: 1px solid coral;
+    .landing_footer {
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: flex-start;
+        height: 8vh;
+        p {
+            text-align: center;
+        }
     }
 }
