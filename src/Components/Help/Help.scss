@@ -1,1 +1,54 @@
 @use '../../color_theme';
+
+.help_body {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    font-family:  Helvetica, sans-serif;
+    a {text-decoration: none;}
+    p {
+        font-size: 1.3rem;
+    }
+    button {
+        width: 13vw;
+        height: 5vh;
+        border-radius: 6px;
+        background-color: white;  
+        color: color_theme.$primary_color1;
+        font-weight: 700;
+        font-size: 1.1vw;
+        border: none;
+        margin-top: 10vh;
+        box-shadow: 2px 2px rgba(12, 11, 11, 0.448);
+    }
+    button:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    button:hover {
+        background-color: color_theme.$primary_color2;
+        color: white;
+        transition: 0.4s;
+    }
+    .sidebar{
+        a {
+            text-decoration: none;
+            color: white;
+            
+        }
+        padding: 10px;
+        width: 40vw;
+        //border: 1px solid black;
+        background-color: color_theme.$primary_color1;
+    }
+    .content {
+        padding-top: 10px;
+        padding-left: 50px;
+        padding-right: 30px;
+        padding-bottom: 10px;
+        //border: 1px solid black;
+        background-color: color_theme.$primary_color1_feint;
+        height: 100vh;
+        overflow-x: hidden;
+    }
+}

@@ -53,20 +53,22 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
     }
     return (
         <div className="fin">
-            <Menu handleSignOut={handleSignOut}/>
-            <div className='fin_header'>
-                <div className='fin_header_box'>
-                    <div className='fin_header_box_items'>
-                        <h5>{`Big Price: ₦ ${!rate ? 0 : Number(rate.big).toLocaleString()} `}</h5>
-                        <h5>{`small Price: ₦ ${!rate ? 0 : Number(rate.small).toLocaleString()}`}</h5  >
-                    </div>
-                    <div className='fin_header_box_items'>
-                        <p>{`Running Profit:`}</p>
-                        <h4 style={{color: "Green"}}>{`₦ ${(((income - expense) + (debt)).toLocaleString()) || 0}`}</h4>
-                    </div>
-                    <div className='fin_header_box_items'>
-                    <p>{`Running Debt:`}</p>
-                        <h4 style={{color: "red"}}>{`₦ ${debt.toLocaleString()}`}</h4>
+            <div className='header_color'>
+                <Menu handleSignOut={handleSignOut} user={user}/>
+                <div className='fin_header'>
+                    <div className='fin_header_box'>
+                        <div className='fin_header_box_items'>
+                            <p style={{fontSize: '1.2vw'}}><strong>{`Big: ₦ ${!rate ? 0 : Number(rate.big).toLocaleString()} `}</strong></p>
+                            <p style={{fontSize: '1.2vw'}}><strong>{`Small: ₦ ${!rate ? 0 : Number(rate.small).toLocaleString()}`}</strong></p  >
+                        </div>
+                        <div className='fin_header_box_items'>
+                            <p>{`Running Profit:`}</p>
+                            <h4 style={{color: "Green", fontSize: '1.7vw'}}>{`₦ ${(((income - expense) + (debt)).toLocaleString()) || 0}`}</h4>
+                        </div>
+                        <div className='fin_header_box_items'>
+                            <p>{`Running Debt:`}</p>
+                            <h4 style={{color: "red", fontSize: '1.7vw'}}>{`₦ ${debt.toLocaleString()}`}</h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,41 +103,36 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     <h6>Current Month</h6>
                     <h6>Income</h6>
                     <div className='fin_body_items_1'>
-                        <div className='items_0'>
-                            <p>Egg Sales</p>
-                            <p>Compost</p>
-                        </div>
-                        <div className='items_1'>
-                            <p>{`₦ `}{salesSum.toLocaleString()}</p>
-                            <p>{`₦ `}{compost.toLocaleString()}</p>
-                        </div>
+                        <p >Egg Sales</p>
+                        <p className='profit_indicator'>{`₦ `}{salesSum.toLocaleString()}</p>
                     </div>
                     <div className='fin_body_items_1'>
-                        <h5 className='items_0'>Total</h5>
-                        <h5 className='items_1'>{`₦ ${income.toLocaleString()}`}</h5>
+                        <p>Compost</p>
+                        <p className='profit_indicator'>{`₦ `}{compost.toLocaleString()}</p>
+                    </div>
+                    <div className='fin_body_items_1'>
+                        <h5>Total</h5>
+                        <h5 className='profit_indicator'>{`₦ ${income.toLocaleString()}`}</h5>
                     </div>
                     <hr />
                     <h6>Expenses</h6>
                     <div className='fin_body_items_1'>
-                        <div className='items_0'>
-                            <p>Feed</p>
-                            <p>miscellaneous</p>
-                        </div>
-                        <div className='items_1'>
-                            <p>{`₦ ${feed.toLocaleString()}`}</p>
-                            <p>{`₦ ${msc.toLocaleString()}`}</p>
-                        </div>
+                        <p>Feed</p>
+                        <p className='loss_indicator'>{`₦ ${feed.toLocaleString()}`}</p>
                     </div>
                     <div className='fin_body_items_1'>
-                        <h5 className='items_0'>Total</h5>
-                        <h5 className='items_1'>{`₦ ${expense.toLocaleString()}`}</h5>
+                        <p>miscellaneous</p>
+                        <p className='loss_indicator'>{`₦ ${msc.toLocaleString()}`}</p>
+                    </div>
+                    <div className='fin_body_items_1'>
+                        <h5>Total</h5>
+                        <h5 className='loss_indicator'>{`₦ ${expense.toLocaleString()}`}</h5>
                     </div>
                     <hr />
                     <div className='fin_body_items_1'>
-                        <h5 className='items_0'>Net</h5>
-                        <h5 className='items_1'>{`₦ ${(income - expense).toLocaleString()}`}</h5>
+                        <h5>Net</h5>
+                        <h5 className={`${(income-expense > 0 ? 'profit_indicator' : 'loss_indicator')}`}>{`₦ ${(income - expense).toLocaleString()}`}</h5>
                     </div>
-                    <hr />
                 </div>
             </div>
             <div className='fin_footer'>

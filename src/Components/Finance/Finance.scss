@@ -4,10 +4,14 @@
     background-color: color_theme.$primary_color1_feint;
     height: 100vh;
     font-size: 1.2rem;
+    font-family:  Helvetica, sans-serif;
+    .header_color {
+        background-color: rgb(138, 43, 226, 0.2);
+    }
     &_header {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         height: 10vh;
         margin-right: 5px;
         margin-top: 5px;
@@ -15,40 +19,22 @@
         &_box {
             display: flex;
             flex-direction: row;
-            width: 50%;
+            justify-content: flex-end;
+            width: 80%;
             margin-right: 6px;
             &_items {
                 border: none;
-                width: 50%;
-                margin-right: 2px;
-                margin-top: 2px;
-                margin-bottom: 2px;
+                width: 15%;
+                border-radius: 10px;
+                padding: 10px;
+                margin-right: 5px;
+                line-height: 10px;
                 height:9vh;
-                box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+                //box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+                font-size: 1rem;
                 background-color: white;
                 text-align: center;
-            }
-        }
-        &_rate {
-            display: flex;
-            flex-direction: row;
-            width: 50%;
-            input {
-                border: 1px solid color_theme.$border_1;
-            }
-            input:focus {
-                outline: none;
-            }
-            .fin_btn {
-                color: white;
-                background-color: color_theme.$primary_color1;
-                outline: none;
-                border: none;
-                height: 33px;
-            }
-            .sing {
-                display: flex;
-                flex-direction: row;
+                color: black;
             }
         }
     }
@@ -68,9 +54,8 @@
             margin-top: 20px;
             margin-bottom: 5px;
             margin-left: 5px;
-            box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+            //box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23) ;
             text-align: left;
-            overflow-x: auto;
             height: 80vh;
             h3 {
                 text-align: center;
@@ -79,15 +64,7 @@
             &_1 {
                 display: flex;
                 flex-direction: row;
-                .items_0 {
-                    width: 50%;
-                    padding: 10px;
-                }
-                .items_1 {
-                    text-align: right;
-                    width: 50%;
-                    padding: 10px;
-                }
+                justify-content: space-between;
             }
         }
         .fin_input {
@@ -116,3 +93,22 @@
     }
 }
 
+.loss_indicator {
+    //border: 1px solid rgba(255, 99, 132, 1);
+    background-color: rgba(255, 99, 132, 0.2);
+    color: red;
+    width: fit-content;
+    text-align: center;
+    height: 3.5vh;
+    border-radius: 6px;
+}
+
+.profit_indicator {
+    //border: 1px solid rgba(2, 63, 36, 1);
+    background-color: rgba(99, 255, 185, 0.3) ;
+    color: green;
+    border-radius: 6px;
+    width: fit-content;
+    text-align: center;
+    height: 3.5vh;
+}

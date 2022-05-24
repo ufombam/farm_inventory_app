@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Settings.scss';
+import Menu from '../Menu/Menu';
 
-const Settings = ({ user }) => {
+const Settings = ({ user, handleSignOut }) => {
     const [customers, setCustomers] = useState(["Select name"]);
 
     useEffect(() => {
@@ -49,11 +50,12 @@ const Settings = ({ user }) => {
             const delete_customer = {
                 name: customer_del.value,
             }
-            axios.delete(`http://localhost:5000/record/customers/${user.id}`, delete_customer)
+            axios.delete(`http://localhost:5000/record/customers/${user.id}`, {data: delete_customer})
         }
 
     return( 
     <div className='settings_container'>
+        <Menu handleSignOut={handleSignOut} user={user}/>
         <div className='form1'>
             <form action="" onSubmit={handleRate}>
                 <h5>Set Rate</h5>

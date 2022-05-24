@@ -6,11 +6,15 @@ $font_color1: white;
 $font_color2: rgb(31, 29, 29);
 
 
+
+.menu_container {
+    font-family:  Helvetica, sans-serif;
+}
 .canvas_header {
-    background-color: $primary_color2;
+    background-image: white;
 }
 .canvas_body {
-    background-color: $primary_color1;
+    background-image: linear-gradient($primary_color2,$primary_color1);
     padding: 0px;
     hr {
         color: $font_color1;
@@ -24,9 +28,10 @@ nav {
         text-decoration: none;
         color: $font_color1;
         font-size: 2em;
-        background-color: $tab_color;
+        background-color: rgba(102, 5, 135, 0.507);
         margin-bottom: 3px;
         border-radius: 4px;
+        padding-left: 5px;
         cursor: pointer;
     }
 
@@ -41,8 +46,9 @@ nav {
         position: relative;
         left: 2px;
         bottom: 4px;
-        width: 6%;
+        width: 6.5%;
         height: 3vh;
+        margin-right: 5px;
     }
 
 }
@@ -50,10 +56,16 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    &_icon {
-        height: 50%;
-        width: 50%;
+    .avater {
+        height: 30vh;
+        width: 30vh;
         border-radius: 100%;
+        background-color: white;
+        img {
+            height: inherit;
+            width: inherit;
+            border-radius: 100%;
+        }
     }
 }
 

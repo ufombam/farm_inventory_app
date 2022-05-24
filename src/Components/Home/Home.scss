@@ -10,6 +10,7 @@
 .home_app {
     background-color: color_theme.$primary_color1_feint;
     height: 100vh;
+    font-family:  Helvetica, sans-serif;
     .my_card_container {
         display: flex;
         flex-direction: column;
@@ -27,6 +28,9 @@
             .card_header1 {
                 background-color: color_theme.$card_header1;
                 text-align: center;
+            }
+            .card-body {
+                padding: 0px;
             }
         }
         &2 {

@@ -8,6 +8,7 @@ const Summary = ({ egg, customer, user }) => {
     const [compost, setCompost] = useState([]);
     const [eggs, setEggs] = useState([]);
     const [misce, setMisce] = useState([]);
+    const [bird, setBird] = useState();
 
     useEffect(() => {
         if (user) {
@@ -31,6 +32,12 @@ const Summary = ({ egg, customer, user }) => {
             .then(data => data.json())
             .then(eggs => setEggs(eggs))
             .catch(() => console.log(`unable to complete request/${user.id}`))
+            //Fetch bird summary
+            fetch(`http://localhost:5000/record/bird/${user.id}`)
+            .then(data => data.json())
+            .then(bird => setBird(bird[bird.length-1]))
+            .catch(() => console.log(`unable to complete request/${user.id}`))
+            console.log(bird)
         }
     },[user])
     //compute feed data
@@ -125,6 +132,14 @@ const Summary = ({ egg, customer, user }) => {
             body: 'Total number of Customers',
             figure: customer.length,
             figure2: ''
+        },
+        bird: {
+            id: 6,
+            title: 'Bird Record Summary',
+            body: 'Total number Birds in stock',
+            figure: bird?.stock,
+            figure1: bird?.dead_birds,
+            figure2: bird?.culled
         }
 }
 
@@ -230,6 +245,26 @@ const Summary = ({ egg, customer, user }) => {
                     </div>
                     <div className='sum_figure2'>
                         <p>{cards.customer.figure2}</p>
+                    </div>
+                </div>
+                <div className="sum d-flex shadow text-center">
+                    <div className='sum_header'>{cards.bird.title}</div>
+                    <div className='sum_body'>{cards.bird.body}</div>
+                    <div className='sum_figure1'>
+                        <AnimatedNumber  value={cards.bird.figure}
+                            style={{
+                                transition: '0.8s ease-out',
+                                fontSize: '500',
+                                transitionProperty:
+                                    'background-color, color, opacity'
+                            }}
+                            formatValue={n => Math.round(n)}
+                            duration={500}
+                        />
+                    </div>
+                    <div className='sum_figure2'>
+                        <p>{`Total Deaths: ${(cards.bird.figure1)} birds`}</p>
+                        <p>{`Total Culled: ${(cards.bird.figure2)} birds`}</p>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ function Record({ eggData, feedData, compostData, user, handleSignOut }) {
     },[user])
     return (
         <div className="record_app">
-            <Menu handleSignOut={handleSignOut}/>
+            <Menu handleSignOut={handleSignOut} user={user}/>
             <Nav fill variant="tabs" defaultActiveKey="link-1">
                 <Nav.Item className="bx" onClick={() => handleTabChange('newrecord')}>
                     <Nav.Link className="rec_text" eventKey="link-1"><big>New Record</big></Nav.Link>

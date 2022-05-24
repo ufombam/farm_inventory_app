@@ -11,9 +11,11 @@
 
     &_header {
         height: 30px;
-        background-color: color_theme.$primary_color1;
-        color: white;
+        //background-color: rgba(0, 0, 0, 0.23);
+        color: black;
         font-weight: bold;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+        margin-bottom: 5px;
     }
 
     &_figure1 {

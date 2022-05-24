@@ -58,14 +58,15 @@ const NewRecord = ({ user }) => {
     //Submit feed input  to DB
     const handleFeed = (e) => {
         e.preventDefault();
-        const { feed, feed_store, feed_expense } = e.target.elements;
+        const { feed, feed_store, feed_expense, feed_used } = e.target.elements;
         const time = new Date();
         const feed_input = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             qty: feed.value,
             store: feed_store.value,
             expense: feed_expense.value,
-            userid: user.id
+            userid: user.id,
+            used: feed_used.value
         }
         fetch(`http://localhost:5000/record/feed/${user.id}`, {
         method: 'POST',
@@ -82,13 +83,14 @@ const NewRecord = ({ user }) => {
     //Submit birds input  to DB
     const handleBirds = (e) => {
         e.preventDefault();
-        const { bird, bird_store, dead_bird } = e.target.elements;
+        const { bird, bird_store, dead_bird, culled } = e.target.elements;
         const time = new Date();
         const bird_input = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             bird: bird.value,
             store: bird_store.value,
             dead: dead_bird.value,
+            culled: culled.value,
             userid: user.id
         }
         fetch(`http://localhost:5000/record/bird/${user.id}`, {
@@ -101,7 +103,7 @@ const NewRecord = ({ user }) => {
         })
         .catch(() => console.log('unable to complete request'))
         setListener(listener + 1)
-        e.target.reset();
+        // e.target.reset();
     }
 
     //Submit customer input  to DB
@@ -186,7 +188,7 @@ const NewRecord = ({ user }) => {
     }
 
 
-    //Tags For Miscellaneous
+    //Options For Miscellaneous
     const purpose = [
         {
             id: 1,
@@ -216,12 +218,13 @@ const NewRecord = ({ user }) => {
     //submit msc inputs to DB
     const handleMsc = (e) => {
         e.preventDefault();
-        const { expense, purpose } = e.target.elements;
+        const { expense, purpose, description } = e.target.elements;
         const time = new Date();
         const msc_input = {
             date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${(time.toLocaleTimeString())}`,
             expense: expense.value,
             purpose: purpose.value,
+            description: description.value,
             userid: user.id
         }
         fetch(`http://localhost:5000/record/msc/${user.id}`, {
@@ -294,6 +297,10 @@ const NewRecord = ({ user }) => {
                             <div className='input_with_select'>
                                 <input type="number" placeholder='# Expenditure' id='feed_expense'/>
                             </div>
+                            <label htmlFor='feed_used'>{'Qty used:  '}</label><br />
+                            <div className='input_with_select'>
+                                <input type="number" placeholder='used' id='feed_used'/>
+                            </div>
                             <br />
                             <Button className="my_btn" type="submit">
                             Submit
@@ -313,6 +320,10 @@ const NewRecord = ({ user }) => {
                                 <label htmlFor='bird_store'>{'Store:  '}</label><br />
                                 <div className='input_with_select'>
                                     <input type="text" placeholder='store name' id='bird_store'/>
+                                </div>
+                                <label htmlFor='culled'>{'Record Culled:  '}</label><br />
+                                <div className='input_with_select'>
+                                    <input type="number" placeholder='# culled' id='culled'/>
                                 </div>
                                 <label htmlFor='dead_bird'>{'Record Death:  '}</label><br />
                                 <div className='input_with_select'>
@@ -390,7 +401,9 @@ const NewRecord = ({ user }) => {
                                 </select>
                             </div>
                             <label htmlFor='purpose'>{'Input Expenditure:  '}</label><br />
-                            <div ><input className='input_with_select' type="number" placeholder='#Expenditure' id='expense'/></div><br />
+                            <div ><input className='input_with_select' type="number" placeholder='#Expenditure' id='expense'/></div>
+                            <label htmlFor='description'>{'Description:  '}</label><br />
+                            <div ><input className='input_with_select' type="text" placeholder='Description' id='description'/></div><br />
                             <Button className="my_btn" type="submit">
                             Submit
                             </Button>

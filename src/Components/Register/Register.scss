@@ -5,13 +5,14 @@
     flex-direction: column;
     justify-content: center;
     height: 100vh;
+    font-family:  Helvetica, sans-serif;
     &_body {
         display: flex;
         flex-direction: column;
         align-self: center;
         justify-content: flex-start;
         padding-left: 30px;
-        padding-top: 30px;
+        padding-top: 5px;
         color: color_theme.$primary_color1;
         border: 1px solid rgba(152, 144, 144, 0.596);
         border-radius: 6px;

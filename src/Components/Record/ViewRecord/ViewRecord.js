@@ -61,11 +61,11 @@ const ViewRecord = ({ customerInput, user }) => {
   ];
 
   const feedHeader = [
-    "#", "Date", "Qty", "Store of Purchase", "Expense"
+    "#", "Date", "Qty", "Store of Purchase", "Expense", "In Stock"
   ];
 
   const birdHeader = [
-    "#", "Date", "# of Birds", "Store", "Dead Birds", "Total"
+    "#", "Date", "# of Birds", "Store", "Culled", "Dead Birds", "Total"
   ];
 
   const customerHeader =     [
@@ -77,7 +77,7 @@ const compostHeader =     [
 ];
 
 const mscHeader =     [
-  "#", "Date", "Purpose", "Expenditure"
+  "#", "Date", "Purpose", "Expenditure", "Description"
 ];
 
     return (
@@ -157,6 +157,7 @@ const mscHeader =     [
                               <td>{input.qty}</td>
                               <td>{input.store}</td>
                               <td>{Number(input.expense).toLocaleString()}</td>
+                              <td>{input.stock}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -181,8 +182,9 @@ const mscHeader =     [
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.birds}</td>
                               <td>{input.store}</td>
+                              <td>{input.culled}</td>
                               <td>{input.dead_birds}</td>
-                              <td>{input.birds - input.dead_birds}</td>
+                              <td>{input.stock}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -260,6 +262,7 @@ const mscHeader =     [
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.purpose}</td>
                               <td>{Number(input.expense).toLocaleString()}</td>
+                              <td>{input.description}</td>
                             </tr>
                           ))}
                       </tbody>

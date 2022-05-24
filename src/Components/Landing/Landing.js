@@ -6,7 +6,7 @@ import record from './record.png';
 import book from './book-keep.png';
 import Logo from '../Logo/Logo';
 
-const Landing = () => {
+const Landing = ({user}) => {
 
     return( 
     <div className='landing_container'>
@@ -14,7 +14,7 @@ const Landing = () => {
             <div>
                 <Logo height={65}/>
             </div>
-            <Link to={'/register'}><button>Sign Up</button></Link>
+            <Link to={'/register'}>{!user ? <button>Sign Up</button> : null}</Link>
         </div>
         <div className='description'>
             <div className='description_item shadow'>
@@ -40,7 +40,7 @@ const Landing = () => {
             </div>
         </div>
         <div className='button_container'>
-            <Link className='landing_link' to={'/signin'}><button><h2>GO TO DASHBOARD</h2></button></Link>
+            <Link className='landing_link' to={'/signin'}><button><h2>{`${!user ? 'GO' : 'RETURN'} TO DASHBOARD`}</h2></button></Link>
         </div>
         <div className='landing_footer'>
             <p>uBird 2021 - {new Date().getFullYear()} &copy;</p>

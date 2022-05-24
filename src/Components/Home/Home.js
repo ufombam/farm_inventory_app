@@ -56,8 +56,7 @@ export const getBars = (x) => {
     return chartData;
 }
 
-function Home({ income, expense, bar, user, handleSignOut }) {
-    const [line, setLine] = useState([]);     
+function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {   
     const [article, setArticle] = useState();    
     const [articleIndex] = useState(Array.from({length: 5}).map(x => Math.floor(Math.random() * 19)));
     const [weather, setWeather] = useState();
@@ -65,60 +64,89 @@ function Home({ income, expense, bar, user, handleSignOut }) {
     
     useEffect(() => {
         if (user) {
-        //fetch weather report
-        fetch('http://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
-        .then(response => response.json())
-        .then(data => setWeather(data))
-        .catch(() => console.log('Problem fetching weather info'))
-        //fetch line chart coordinates
-        fetch(`http://localhost:5000/record/sales/${user.id}`)
-        .then(response => response.json())
-        .then(data => {
-            setLine(data)
-        }).catch(() => console.log('Unable to complete request'))
-        //fetch news
-        fetch(`https://newsapi.org/v2/everything?q=poultry&from=${(new Date().getFullYear)}-${new Date().getMonth()}-01&sortBy=publishedAt&apiKey=066e3e6cde1c47f3b7ae852685fcd128`)
-        .then(response => response.json())
-        .then(data => {
-            setArticle(data.articles)
-        }).catch(() => console.log('server has encountered Problem fetching news'))
+            //fetch weather report
+            fetch('http://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
+            .then(response => response.json())
+            .then(data => setWeather(data))
+            .catch(() => console.log('Problem fetching weather info'))
+            //fetch news
+            fetch(`https://newsapi.org/v2/everything?q=poultry&from=${(new Date().getFullYear)}-${new Date().getMonth()}-01&sortBy=publishedAt&apiKey=066e3e6cde1c47f3b7ae852685fcd128`)
+            .then(response => response.json())
+            .then(data => {
+                setArticle(data.articles)
+            }).catch(() => console.log('server has encountered Problem fetching news'))
         }
     },[user])
 
-    //deduce line chart coordinates
-    const getLine = (x) => {
+    //deduce line(egg sales) chart coordinates
+    const getLine1 = (x) => {
         const dLineObj = x.reduce((total, item) => {
-        const month = item.date.slice(5,7);
-        const month2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]
-        month2.forEach(x => {
-            if (!total[x]) total[x] = 0;
-        })
-        //if (!total[month]) total[month] = 0
-        total[month] += (item.big + item.small)
-            return total
+            const month = item.date.slice(5,7);
+            const month2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]
+            month2.forEach(x => {
+                if (!total[x]) total[x] = 0;
+            })
+            //if (!total[month]) total[month] = 0
+            total[month] += (item.big + item.small)
+                return total
         }, {})
         const sortedKey = Object.keys(dLineObj).sort();
         const chartData = sortedKey.map((x)  => {
         return dLineObj[x]
-        },{})
+        })
+        return chartData;
+    }
+
+     //deduce line(compost sales) chart coordinates
+    const getLine2 = (x) => {
+        const dLineObj = x.reduce((total, item) => {
+            const month = item.date.slice(5,7);
+            const month2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]
+            month2.forEach(x => {
+                if (!total[x]) total[x] = 0;
+            })
+            //if (!total[month]) total[month] = 0
+            total[month] += item?.profit
+                return total
+        }, {})
+        const sortedKey = Object.keys(dLineObj).sort();
+        const chartData = sortedKey.map((x)  => {
+        return dLineObj[x]
+        })
         return chartData;
     }
     
     const lineData =  {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-            label: 'Amount in Naira',
-            fill: false,
-            lineTension: 0.5,
-            data: getLine(line),
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
+        datasets: [
+            {
+                label: 'Egg sales',
+                fill: false,
+                lineTension: 0.5,
+                data: getLine1(line1),
+                backgroundColor: [
+                    'rgba(255, 50, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 50, 132, 1)'
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Compost sales',
+                fill: false,
+                lineTension: 0.5,
+                data: getLine2(line2),
+                backgroundColor: [
+                    'rgb(75, 62, 252, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(75, 62, 252, 1)'
+                ],
+                borderWidth: 1
+                }
+
+        ]
     }
 
     const barData =  {
@@ -161,13 +189,13 @@ function Home({ income, expense, bar, user, handleSignOut }) {
     
     return (
         <div className="home_app">
-            <Menu handleSignOut={handleSignOut}/>
+            <Menu handleSignOut={handleSignOut} user={user}/>
             <h1>Overview</h1>
             <div className='my_card_container'>
                 <div className='my_card_container1'>
                     <Card
                         text={'dark'}
-                        style={{ width: '30rem', height: '20rem' }}
+                        style={{ width: '35rem', height: '21rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Egg Laying Activity - Yearly Overview</Card.Header>
@@ -178,7 +206,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '30rem', height: '20rem' }}
+                        style={{ width: '35rem', height: '21rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Income - Yearly Overview</Card.Header>
@@ -189,7 +217,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '18rem' }}
+                        style={{ width: '15rem', height: '21rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header1 fw-bold'>Monthly Cashflow</Card.Header>
@@ -204,7 +232,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                 <div className='my_card_container2'>
                     <Card
                         text={'dark'}
-                        style={{ width: '25rem' }}
+                        style={{ width: '29rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header2 fw-bold'>Weather</Card.Header>
@@ -228,7 +256,7 @@ function Home({ income, expense, bar, user, handleSignOut }) {
                     </Card>
                     <Card
                         text={'dark'}
-                        style={{ width: '28rem' }}
+                        style={{ width: '31rem' }}
                         className="mb-2 shadow"
                     >
                         <Card.Header className='card_header2 fw-bold'>News</Card.Header>
