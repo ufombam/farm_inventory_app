@@ -14,37 +14,37 @@ const ViewRecord = ({ customerInput, user }) => {
   useEffect(() => {
     if (user) {
     //fetch sales record
-    fetch(`http://localhost:5000/record/sales/${user.id}`)
+    fetch(`https://fast-scrubland-53064.herokuapp.com/record/sales/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setSalesInput(res)
     })
     //fetch egg record
-    fetch(`http://localhost:5000/record/egg/${user.id}`)
+    fetch(`https://fast-scrubland-53064.herokuapp.com/record/egg/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setEggInput(res)
     })
     //fetch feed record
-    fetch(`http://localhost:5000/record/feed/${user.id}`)
+    fetch(`https://fast-scrubland-53064.herokuapp.com/record/feed/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setFeedInput(res)
     })
     //fetch birds record
-    fetch(`http://localhost:5000/record/bird/${user.id}`)
+    fetch(`https://fast-scrubland-53064.herokuapp.com/record/bird/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setBirdInput(res)
     })
     //fetch compost record
-    fetch(`http://localhost:5000/record/compost/${user.id}`)
+    fetch(`https://fast-scrubland-53064.herokuapp.com/record/compost/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setCompostInput(res)
     })
     //fetch compost record
-    fetch(`http://localhost:5000/record/msc/${user.id}`)
+    fetch(`https://fast-scrubland-53064.herokuapp.com/record/msc/${user.id}`)
     .then(response => response.json())
     .then(res => {
       setMscInput(res)

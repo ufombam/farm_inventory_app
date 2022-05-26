@@ -11,7 +11,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
     useEffect(() => {
         if (user)
         //fetch rate
-        fetch(`http://localhost:5000/finance/rate/${user.id}`)
+        fetch(`https://fast-scrubland-53064.herokuapp.com/finance/rate/${user.id}`)
         .then(data => data.json())
         .then(rate => setRate({
             big: rate[0].big,
@@ -22,7 +22,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
     useEffect(() => {
         if (user)
         //Fetch debt
-        fetch(`http://localhost:5000/finance/debt/${user.id}`)
+        fetch(`https://fast-scrubland-53064.herokuapp.com/finance/debt/${user.id}`)
         .then(data => data.json())
         .then(debit => setDebt(Number(debit[0].sum)))
         .catch(() => console.log('unable to complete request'))
@@ -39,7 +39,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                 small: (forSmall.value * rate.small),
                 userid: user.id
         }
-        fetch(`http://localhost:5000/record/sales/${user.id}`, {
+        fetch(`https://fast-scrubland-53064.herokuapp.com/record/sales/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
