@@ -8,7 +8,6 @@ import money from './money_img.png';
 import record from './record_img.png';
 import settings from './settings_img.png';
 import help from './help_img.png';
-import user_img from './user.jpg';
 import logout from './logout_img.png';
 
 function Menu({ handleSignOut, user }) {
