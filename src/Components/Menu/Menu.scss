@@ -1,11 +1,5 @@
-$color_hover: rgba(82, 69, 83, 0.2);
-$tab_color: rgba(201, 168, 207, 0.1);
-$primary_color1: rgb(177, 66, 177);
-$primary_color2: rgb(252, 185, 62);
-$font_color1: white;
-$font_color2: rgb(31, 29, 29);
-
-
+@use '../../color_theme';
+@use '../../screen.scss';
 
 .menu_container {
     font-family:  Helvetica, sans-serif;
@@ -14,10 +8,10 @@ $font_color2: rgb(31, 29, 29);
     background-image: white;
 }
 .canvas_body {
-    background-image: linear-gradient($primary_color2,$primary_color1);
+    background-image: linear-gradient(color_theme.$primary_color2, color_theme.$primary_color1);
     padding: 0px;
     hr {
-        color: $font_color1;
+        color: color_theme.$font_color1;
     }
 }
 
@@ -26,7 +20,7 @@ nav {
     flex-direction: column;
     .menu_link {
         text-decoration: none;
-        color: $font_color1;
+        color: color_theme.$font_color1;
         font-size: 2em;
         background-color: rgba(102, 5, 135, 0.507);
         margin-bottom: 3px;
@@ -36,9 +30,9 @@ nav {
     }
 
     .menu_link:hover {
-        background-color: $color_hover ;
-        color: $font_color1;
-        border-left: 5px solid $font_color1;
+        background-color: color_theme.$color_hover ;
+        color: color_theme.$font_color1;
+        border-left: 5px solid color_theme.$font_color1;
         transition: 0.5s;
     }
 
@@ -74,10 +68,26 @@ nav {
     flex-direction: row;
     &_1 {
         border-radius: 10%;
-        color: $font_color1;
+        color: color_theme.$font_color1;
         height: 10%;
         margin-bottom:  10px;
         margin-right: 5px;
         font-size: auto;
+    }
+}
+
+@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+    nav {
+        .menu_link {
+            font-size: 1.2em;
+        }
+    }
+}
+
+@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+    nav {
+        .menu_link {
+            font-size: 1.5em;
+        }
     }
 }

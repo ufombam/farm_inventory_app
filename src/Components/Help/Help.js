@@ -7,12 +7,12 @@ const Help = () => {
     return( 
         <div className='help_body'>
             <div className='sidebar'>
-                <Logo height={60} />
+                <Logo className='help_logo' />
                 <a href="#Dashboard">Dashboard</a><br />
                 <a href='#finance'>Finance</a><br />
                 <a href='#record'>Record</a><br />
                 <a href='#settings'>Settings</a><br />
-                <Link to={'/dashboard'}><button>Go back to the app</button></Link>
+                <Link to={'/dashboard'}><button>Go back</button></Link>
             </div>
             <div className='content'>
                 <h2>USER'S GUIDE</h2>

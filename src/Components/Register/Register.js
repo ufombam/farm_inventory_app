@@ -32,7 +32,7 @@ const Register = ({ handleRegister, user, regErr, updating }) => {
                     <input type={'password'} placeholder='Password' id='pwd' minLength={6} onChange={checkPwd} required={true}></input><br />
                     <input type={'password'} placeholder='Confirm Password' id='repeat_password' minLength={6} onChange={checkPwd} required={true}></input><br />
                     <p style={{color: 'red'}}>{regErr ? regErr : null}</p>
-                    <button type={'submit'} >{!regErr && updating ? <Spinner animation='border' variant='light' /> : 'Register'}</button>
+                    <button type={'submit'} >{!regErr && updating ? <Spinner animation='border' variant='light' size='sm'/> : 'Register'}</button>
                 </form><br />
                 <h4>Already have an account? <Link style={{textDecoration: "none"}} to={'/signin'}>Sign in</Link></h4>
             </div>

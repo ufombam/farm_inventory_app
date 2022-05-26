@@ -1,4 +1,6 @@
 @use '../../color_theme';
+@use '../../screen.scss';
+
 * {
     box-sizing: border-box;
 }
@@ -26,7 +28,7 @@
             margin-bottom: 2%;
             border-radius: 5px;
             height: 7vh;
-            font-size: 1.2em;
+            font-size: 1.1em;
             padding: 5px;
             border: 2px solid rgba(172, 167, 167, 0.615)
         }
@@ -36,7 +38,7 @@
         button {
             height: 5vh;
             width: 7vw;
-            font-size: 1.2vw;
+            font-size: 1.1em;
             border-radius: 5px;
             background-color: color_theme.$primary_color1;
             color: white;
@@ -44,14 +46,72 @@
             .sign_link {
                 text-decoration: none;
                 color: white;
-                font-size: 1.2vw;
+                font-size: 1.1em;
             }
         }
         button:focus, button:hover {
             background-color: rgb(108, 39, 140);
         }
         p {
-            font-size: 1.2em;
+            font-size: 1.1em;
+        }
+    }
+}
+
+
+@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+    .signin_app {
+        .signin_app_border {
+            height: 60vh;
+            width: 90vw;
+            border-radius: 15px;
+            color: color_theme.$primary_color1;
+            img {
+                height: 10vh;
+            }
+            input {
+                width: 75vw;
+                font-size: 14px;
+            }
+
+            button {
+                height: 5vh;
+                width: fit-content;
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+    .signin_app {
+        .signin_app_border {
+            height: 70vh;
+            width: 80vw;
+            border-radius: 15px;
+            color: color_theme.$primary_color1;
+            img {
+                height: 12vh;
+            }
+            input {
+                width: 65vw;
+                font-size: 16px;
+            }
+
+            button {
+                height: 5vh;
+                width: fit-content;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+
+            p {
+                font-size: 14px;
+            }
         }
     }
 }

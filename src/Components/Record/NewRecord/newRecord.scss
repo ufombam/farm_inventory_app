@@ -1,4 +1,5 @@
 @use '../../../color_theme';
+@use '../../../screen.scss';
 
 *{
     box-sizing: border-box;
@@ -7,17 +8,27 @@
 .rec_body {
     display: flex;
     flex-direction: row;
-    padding: 50px;
-    width: 100vw;
     justify-content: center;
-    .form0 {
+    padding: 40px;
+    width: 100vw;
+    height: 80vh;
+    background-color: color_theme.$primary_color1_feint;
+    .record-container {
+        display: flex;
+        flex-direction: row;
+        height: 70vh;
+        //overflow: auto;
+        .form0 {
         width: 40vw;
         border-right: 2px solid color_theme.$border_1;
-    }
+        }
 
-    .form1 {
-        width: 40vw;
-        margin-left: 15px;
+        .form1 {
+            width: 40vw;
+            margin-left: 10px;
+            height: 70vh;
+            overflow: auto;
+        }
     }
 }
 
@@ -63,3 +74,32 @@ form {
         background-color: color_theme.$primary_color1;
     }
 }
+
+@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+    .rec_body {
+        padding: 10px;
+        width: 100vw;
+        font-size: 14px;
+        height: 70vh;
+        overflow: auto;
+        .record-container {
+            flex-wrap: wrap;
+            h2 {
+            font-size: 20px;
+            }
+            .form0 {
+                //height: fit-content;
+                width: 95vw;
+                border-right: 0px solid color_theme.$border_1;
+            }
+        
+            .form1 {
+                //height: fit-content;
+                //overflow: auto;
+                width: 95vw;
+                margin: 0px;
+            }
+        }
+    }
+}
+

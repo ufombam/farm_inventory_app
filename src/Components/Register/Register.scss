@@ -1,4 +1,5 @@
 @use '../../color_theme';
+@use '../../screen.scss';
 
 .register {
     display: flex;
@@ -14,17 +15,20 @@
         padding-left: 30px;
         padding-top: 5px;
         color: color_theme.$primary_color1;
-        border: 1px solid rgba(152, 144, 144, 0.596);
-        border-radius: 6px;
-        height: 80vh;
+        border-right: 1px solid rgba(152, 144, 144, 0.596);
+        border-left: 1px solid rgba(152, 144, 144, 0.596);
+        height: fit-content;
         width: 75vw;
+        img {
+            height: 10vh;
+        }
         input {
             width: 35vw;
             height: 7vh;
             margin-bottom: 20px;
             margin-right:  10px;
             padding: 4px;
-            font-size: 1.2em;
+            font-size: 1.1em;
             border-radius: 6px;
             border:1px solid rgba(152, 144, 144, 0.596)
         }
@@ -42,7 +46,77 @@
             outline: none;
         }
         p {
+            font-size: 1em;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+        h4 {
             font-size: 1.2em;
+        }
+    }
+}
+
+@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+    .register {
+        overflow: auto;
+        &_body {
+            padding: 8px;
+            width: 90vw;
+            margin-top: 10px;
+            img {
+                height: 7vh;
+            }
+            input {
+                width: 80vw;
+                padding: 4px;
+                font-size: 14px;
+            }
+            button {
+                width: fit-content;
+            }
+            p {
+                font-size: 14px;
+            }
+            h2 {
+                font-size: 18px;
+                font-weight: 600;
+            }
+            h4 {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+    .register {
+        overflow: auto;
+        &_body {
+            padding: 8px;
+            width: 75vw;
+            margin-top: 10px;
+            img {
+                height: 8vh;
+            }
+            input {
+                width: 65vw;
+                padding: 4px;
+                font-size: 16px;
+            }
+            button {
+                width: fit-content;
+            }
+            p {
+                font-size: 16px;
+            }
+            h2 {
+                font-size: 20px;
+                font-weight: 600;
+            }
+            h4 {
+                font-size: 18px;
+            }
         }
     }
 }

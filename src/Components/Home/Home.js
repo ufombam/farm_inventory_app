@@ -3,7 +3,6 @@ import Menu from '../Menu/Menu';
 import './Home.scss';
 import { Card, Carousel } from 'react-bootstrap';
 import { Bar, Line, Doughnut } from 'react-chartjs-2';
-import Clock from 'react-live-clock';
 import 'chart.js/auto';
 import weatherImage from './wBackground.jpg';
 
@@ -17,6 +16,18 @@ const barOptions = {
     title:{
         display:true,
         text:'Daily Eggs count',
+        fontSize:20
+    },
+    legend:{
+        display:true,
+        position:'right'
+    }
+}
+
+const doughOptions = {
+    title:{
+        display:true,
+        text:'Cashflow',
         fontSize:20
     },
     legend:{
@@ -190,119 +201,88 @@ function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {
     return (
         <div className="home_app">
             <Menu handleSignOut={handleSignOut} user={user}/>
-            <h1>Overview</h1>
+            <h2>Overview</h2>
             <div className='my_card_container'>
-                <div className='my_card_container1'>
-                    <Card
-                        text={'dark'}
-                        style={{ width: '35rem', height: '21rem' }}
-                        className="mb-2 shadow"
-                    >
-                        <Card.Header className='card_header1 fw-bold'>Egg Laying Activity - Yearly Overview</Card.Header>
-                        <Card.Body>
-                        <Card.Title>{''} </Card.Title>
-                            <Bar options={{barOptions}} data={barData} /> 
-                        </Card.Body>
-                    </Card>
-                    <Card
-                        text={'dark'}
-                        style={{ width: '35rem', height: '21rem' }}
-                        className="mb-2 shadow"
-                    >
-                        <Card.Header className='card_header1 fw-bold'>Income - Yearly Overview</Card.Header>
-                        <Card.Body>
-                        <Card.Title>{''} </Card.Title>
-                            <Line options={lineOptions} data={lineData}/>
-                        </Card.Body>
-                    </Card>
-                    <Card
-                        text={'dark'}
-                        style={{ width: '15rem', height: '21rem' }}
-                        className="mb-2 shadow"
-                    >
-                        <Card.Header className='card_header1 fw-bold'>Monthly Cashflow</Card.Header>
-                        <Card.Body>
-                        <Card.Title> </Card.Title>
-                        <Card.Text>
-                            <Doughnut data={doughData}></Doughnut>
-                        </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
-                <div className='my_card_container2'>
-                    <Card
-                        text={'dark'}
-                        style={{ width: '29rem' }}
-                        className="mb-2 shadow"
-                    >
-                        <Card.Header className='card_header2 fw-bold'>Weather</Card.Header>
-                        <Card.Body>
-                            <div className='card-weather' style={{
-                                    backgroundImage: `url(${weatherImage})`,
-                                    backgroundSize: "cover"
-                                }}>
-                                    <div className='card-weather_temp'>
-                                        <p>{`${!weather ? 0 : weather.main.temp}°C`}</p>
-                                        <span>{`${!weather ? 'fetching weather info' : weather.weather[0].description}`}</span>
-                                    </div>
-                                    <div className='card-weather_others'>
-                                        <span>{`${!weather ? 'xxx' : weather.name},${!weather ? 'xx' : weather.sys.country}`}</span>
-                                        <p>{`Pressure: ${!weather ? 0 : weather.main.pressure} hPa`}</p>
-                                        <p>{`Humidty: ${!weather ? 0 : weather.main.humidity} %`}</p>
-                                        <p>{`Wind Speed: ${!weather ? 0 : weather.wind.speed}m/s`}</p>
-                                    </div>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                    <Card
-                        text={'dark'}
-                        style={{ width: '31rem' }}
-                        className="mb-2 shadow"
-                    >
-                        <Card.Header className='card_header2 fw-bold'>News</Card.Header>
-                        <Card.Body>
-                            <Carousel variant="light">
-							{articleIndex.map((x, i) => !article ? <Carousel.Item key={i}>
-                                    <h2>Loading...</h2>
-                                </Carousel.Item> :
-                                <Carousel.Item key={keyGenerator()}>
-                                    <a href={`${article[x].url}`} target='_blank' rel='noreferrer'>
-                                        <div className='carousel-news' style={{
-                                                backgroundImage:`url(${article[x].urlToImage})`,
-                                                backgroundSize: "cover"
-                                            }}>
-                                            <div className='carousel-news-caption'>
-                                                <p>{`${article[x].source.name.toUpperCase()} - ${article[x].publishedAt.slice(5,10)}`}</p>
-                                                <p><strong>{`${article[x].title.toUpperCase()}`}</strong></p>
-                                            </div>
+                <Card
+                    text={'dark'}
+                    className="mb-2"
+                >
+                    <Card.Header className='card_header fw-bold'>Egg Laying Activity - Yearly Overview</Card.Header>
+                    <Card.Body>
+                    <Card.Title>{''} </Card.Title>
+                        <Bar options={{barOptions}} data={barData} /> 
+                    </Card.Body>
+                </Card>
+                <Card
+                    text={'dark'}
+                    className="mb-2"
+                >
+                    <Card.Header className='card_header fw-bold'>Income - Yearly Overview</Card.Header>
+                    <Card.Body>
+                    <Card.Title>{''} </Card.Title>
+                        <Line options={lineOptions} data={lineData}/>
+                    </Card.Body>
+                </Card>
+                <Card
+                    text={'dark'}
+                    className="mb-2 dough"
+                >
+                    <Card.Header className='card_header fw-bold'>Monthly Cashflow</Card.Header>
+                    <Card.Body>
+                    <Card.Title>{''}</Card.Title>
+                        <Doughnut option={doughOptions} data={doughData}></Doughnut>
+                    </Card.Body>
+                </Card>
+                <Card
+                    text={'dark'}
+                    className="mb-2"
+                >
+                    <Card.Header className='card_header fw-bold'>Weather</Card.Header>
+                    <Card.Body>
+                        <div className='card-weather' style={{
+                                backgroundImage: `url(${weatherImage})`,
+                                backgroundSize: "cover"
+                            }}>
+                                <div className='card-weather_temp'>
+                                    <p>{`${!weather ? 0 : weather.main.temp}°C`}</p>
+                                    <span>{`${!weather ? 'fetching weather info' : weather.weather[0].description}`}</span>
+                                </div>
+                                <div className='card-weather_others'>
+                                    <span>{`${!weather ? 'xxx' : weather.name},${!weather ? 'xx' : weather.sys.country}`}</span>
+                                    <p>{`Pressure: ${!weather ? 0 : weather.main.pressure} hPa`}</p>
+                                    <p>{`Humidty: ${!weather ? 0 : weather.main.humidity} %`}</p>
+                                    <p>{`Wind Speed: ${!weather ? 0 : weather.wind.speed}m/s`}</p>
+                                </div>
+                        </div>
+                    </Card.Body>
+                </Card>
+                <Card
+                    text={'dark'}
+                    className="mb-2"
+                >
+                    <Card.Header className='card_header fw-bold'>News</Card.Header>
+                    <Card.Body>
+                        <Carousel variant="light">
+                        {articleIndex.map((x, i) => !article ? <Carousel.Item key={i}>
+                                <h2>Loading...</h2>
+                            </Carousel.Item> :
+                            <Carousel.Item key={keyGenerator()}>
+                                <a href={`${article[x].url}`} target='_blank' rel='noreferrer'>
+                                    <div className='carousel-news' style={{
+                                            backgroundImage:`url(${article[x].urlToImage})`,
+                                            backgroundSize: "cover"
+                                        }}>
+                                        <div className='carousel-news-caption'>
+                                            <p><strong>{`${article[x].source.name.toUpperCase()}`}</strong> - {`${article[x].publishedAt.slice(5,10)}`}</p>
+                                            <p>{`${article[x].title}`}</p>
                                         </div>
-                                    </a>
-                                </Carousel.Item>
-							)}
-                            </Carousel>
-                        </Card.Body>
-                    </Card>
-                    <Card
-                        text={'dark'}
-                        style={{ width: '25rem' }}
-                        className="mb-2 shadow"
-                    >
-                        <Card.Header className='card_header2 fw-bold'>Clock</Card.Header>
-                        <Card.Body>
-                            <Clock 
-                                className='myClock'
-                                format='HH:mm:ss' 
-                                interval={1000} 
-                                ticking={true} />
-                            <div className='clock-info'>
-                                <h3>{`${new Date().toDateString()}`}</h3>
-                                <em>
-                                    <p>{`"Hey, I wait for no one..."  - Time`}</p>
-                                </em>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                </div>
+                                    </div>
+                                </a>
+                            </Carousel.Item>
+                        )}
+                        </Carousel>
+                    </Card.Body>
+                </Card>
             </div>
         </div>
     );

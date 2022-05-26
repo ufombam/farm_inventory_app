@@ -11,9 +11,7 @@ const Landing = ({user}) => {
     return( 
     <div className='landing_container'>
         <div className='logo'>
-            <div>
-                <Logo height={65}/>
-            </div>
+                <Logo/>
             <Link to={'/register'}>{!user ? <button>Sign Up</button> : null}</Link>
         </div>
         <div className='description'>
@@ -21,7 +19,8 @@ const Landing = ({user}) => {
                 <div style={{
                     backgroundImage: `url(${analytics})`,
                     backgroundSize: '30%'
-                    }} className='description_item_header'></div>
+                    }} className='description_item_header'>
+                </div>
                 <div className='description_item_footer'>
                     <p>Detailed chart representation of yearly performance. Includes income, expenditure, egg-laying ...</p>
                 </div>

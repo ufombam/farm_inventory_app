@@ -241,176 +241,178 @@ const NewRecord = ({ user }) => {
     }
     return (
         <div className='rec_body'>
-            <div className='form0'>
-                <form onSubmit={handleSubmit1} action="#">
-                        <h2>Daily Egg Inventory</h2>
-                        <div className='input_with_select' >
-                            <input id="date" type={'date'} />
-                        </div>
-                        <label htmlFor='broken-eggs'>{'Damaged eggs:  '}</label><br />
-                        <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='broken_eggs'/>
-                            <select name="eggs0" id='egg_count_0'>
-                                <option value="eggs">Eggs</option>
-                                <option value="crates">Crates</option>
-                            </select>
-                        </div>
-                        <hr />
-                        <h2>Egg count by Size</h2>
-                        <label htmlFor='size1'>{'Total egg count for today (big):  '}</label><br />
-                        <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='size1'/>
-                            <select name="eggs1" id='egg_count_1'>
-                                <option value="eggs">Eggs</option>
-                                <option value="crates">Crates</option>
-                            </select>
-                        </div>
-                        <label htmlFor='size2'>{'Total egg count for today (small):  '}</label><br />
-                        <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='size2'/>
-                            <select name="eggs2" id='egg_count_2'>
-                                <option value="eggs">Eggs</option>
-                                <option value="crates">Crates</option>
-                            </select>
-                        </div><br />
-                    <Button className="my_btn" type="submit">
-                        Submit
-                    </Button>
-                </form>
-            </div>
-            <div className='form1'>
-            <Accordion defaultActiveKey="0" flush>
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>FEED INPUT</Accordion.Header>
-                    <Accordion.Body>
-                        <form  action="#" onSubmit={handleFeed}>
-                            <h2>Feed Data</h2>
-                            <label htmlFor='feed'>{'Feed Purchased this week:  '}</label><br />
-                            <div className='input_with_select'>
-                                <input type="number" placeholder='# of bags' id='feed'/>
+            <div className='record-container'>
+                <div className='form0'>
+                    <form onSubmit={handleSubmit1} action="#">
+                            <h2>Daily Egg Inventory</h2>
+                            <div className='input_with_select' >
+                                <input id="date" type={'date'} />
                             </div>
-                            <label htmlFor='feed_store'>{'Store:  '}</label><br />
+                            <label htmlFor='broken-eggs'>{'Damaged eggs:  '}</label><br />
                             <div className='input_with_select'>
-                                <input type="text" placeholder='store name' id='feed_store'/>
-                            </div>
-                            <label htmlFor='feed_expense'>{'Expenditure:  '}</label><br />
-                            <div className='input_with_select'>
-                                <input type="number" placeholder='# Expenditure' id='feed_expense'/>
-                            </div>
-                            <label htmlFor='feed_used'>{'Qty used:  '}</label><br />
-                            <div className='input_with_select'>
-                                <input type="number" placeholder='used' id='feed_used'/>
-                            </div>
-                            <br />
-                            <Button className="my_btn" type="submit">
-                            Submit
-                            </Button>
-                        </form>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>BIRD INPUT</Accordion.Header>
-                    <Accordion.Body>
-                        <form  action="#" onSubmit={handleBirds}>
-                                <h3>Birds Data</h3>
-                                <label htmlFor='bird'>{'New Birds Purchased:  '}</label><br />
-                                <div className='input_with_select'>
-                                    <input type="number" placeholder='# of birds' id='bird'/>
-                                </div>
-                                <label htmlFor='bird_store'>{'Store:  '}</label><br />
-                                <div className='input_with_select'>
-                                    <input type="text" placeholder='store name' id='bird_store'/>
-                                </div>
-                                <label htmlFor='culled'>{'Record Culled:  '}</label><br />
-                                <div className='input_with_select'>
-                                    <input type="number" placeholder='# culled' id='culled'/>
-                                </div>
-                                <label htmlFor='dead_bird'>{'Record Death:  '}</label><br />
-                                <div className='input_with_select'>
-                                    <input type="number" placeholder='# of Deaths' id='dead_bird'/>
-                                </div>
-                                <br />
-                                <Button className="my_btn" type="submit">
-                                Submit
-                                </Button>
-                            </form>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>CUSTOMER INPUT</Accordion.Header>
-                    <Accordion.Body>
-                        <form  action="#" onSubmit={handleCustomer}>
-                                <h3>Customer Data</h3>
-                                <label htmlFor='customer'>{'Customer records:  '}</label><br />
-                                <div className='input_with_select'>
-                                <select name="customers" id="customers" onChange={displayNewInput}>
-                                    {customers.map((customer, i) => <option key={i} value={customer}>{customer}</option>
-                                    )}
+                                <input type="number" placeholder='input egg number' id='broken_eggs'/>
+                                <select name="eggs0" id='egg_count_0'>
+                                    <option value="eggs">Eggs</option>
+                                    <option value="crates">Crates</option>
                                 </select>
-                                <input type="number" placeholder='# of crates' id='customer_qty'/>
-                                </div>
-                                <label htmlFor='customer_debt'>{'Record Debt:  '}</label><br />
-                                <div className='input_with_select'>
-                                    <input type="number" placeholder='#Debt' id='customer_debt'/>
-                                </div><br />
-                            <Button className="my_btn" type="submit">
-                            Submit
-                            </Button>
-                        </form>
-                        <form action='' onSubmit={registerNewCustomer}>
-                            <div id='new_container' style={{display: 'none'}} >
-                                <label htmlFor='new_customer'>{'Register new customer:  '}</label><br />
-                                <div className="input_with_select">
-                                    <input type="text" placeholder='Register new customer' id='new_customer' required aria-required/>
-                                    <Button onClick={registerNewCustomer} className="my_btn" type="submit" aria-required>Add</Button>
-                                </div>
                             </div>
-                        </form>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="3">
-                    <Accordion.Header>COMPOST</Accordion.Header>
-                    <Accordion.Body>
-                        <form  action="#" onSubmit={handleCompost}>
-                            <h3>Compost Data</h3>
-                            <label htmlFor='compost'>{'Compost:  '}</label><br />
+                            <hr />
+                            <h2>Egg count by Size</h2>
+                            <label htmlFor='size1'>{'Total egg count for today (big):  '}</label><br />
                             <div className='input_with_select'>
-                                <input type="number" placeholder='# of bags' id='compost'/>
+                                <input type="number" placeholder='input egg number' id='size1'/>
+                                <select name="eggs1" id='egg_count_1'>
+                                    <option value="eggs">Eggs</option>
+                                    <option value="crates">Crates</option>
+                                </select>
                             </div>
-                            <label htmlFor='compost_profit'>{'Input Profit:  '}</label><br />
+                            <label htmlFor='size2'>{'Total egg count for today (small):  '}</label><br />
                             <div className='input_with_select'>
-                                <input type="number" placeholder='#Profit' id='compost_profit'/>
+                                <input type="number" placeholder='input egg number' id='size2'/>
+                                <select name="eggs2" id='egg_count_2'>
+                                    <option value="eggs">Eggs</option>
+                                    <option value="crates">Crates</option>
+                                </select>
                             </div><br />
-                            <Button className="my_btn" type="submit">
+                        <Button className="my_btn" type="submit">
                             Submit
-                            </Button>
-                        </form>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="4">
-                    <Accordion.Header>MISCELLANEOUS</Accordion.Header>
-                    <Accordion.Body>
-                        <form  action="#" onSubmit={handleMsc}>
-                            <h3>Additional Records</h3>
-                            <label htmlFor='expense'>{'Purpose:  '}</label><br />
-                            <div >
-                                <select className='input_with_select' type="number" id='purpose'>
-                                    {purpose.map(purpose => {
-                                        return <option key={purpose.id}>{purpose.item}</option>
-                                    })}
-                                </select>
-                            </div>
-                            <label htmlFor='purpose'>{'Input Expenditure:  '}</label><br />
-                            <div ><input className='input_with_select' type="number" placeholder='#Expenditure' id='expense'/></div>
-                            <label htmlFor='description'>{'Description:  '}</label><br />
-                            <div ><input className='input_with_select' type="text" placeholder='Description' id='description'/></div><br />
-                            <Button className="my_btn" type="submit">
-                            Submit
-                            </Button>
-                        </form>
-                    </Accordion.Body>
-                </Accordion.Item>
-            </Accordion>
+                        </Button>
+                    </form>
+                </div>
+                <div className='form1'>
+                    <Accordion defaultActiveKey="0" flush>
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header>FEED INPUT</Accordion.Header>
+                            <Accordion.Body>
+                                <form  action="#" onSubmit={handleFeed}>
+                                    <h2>Feed Data</h2>
+                                    <label htmlFor='feed'>{'Feed Purchased this week:  '}</label><br />
+                                    <div className='input_with_select'>
+                                        <input type="number" placeholder='# of bags' id='feed'/>
+                                    </div>
+                                    <label htmlFor='feed_store'>{'Store:  '}</label><br />
+                                    <div className='input_with_select'>
+                                        <input type="text" placeholder='store name' id='feed_store'/>
+                                    </div>
+                                    <label htmlFor='feed_expense'>{'Expenditure:  '}</label><br />
+                                    <div className='input_with_select'>
+                                        <input type="number" placeholder='# Expenditure' id='feed_expense'/>
+                                    </div>
+                                    <label htmlFor='feed_used'>{'Qty used:  '}</label><br />
+                                    <div className='input_with_select'>
+                                        <input type="number" placeholder='used' id='feed_used'/>
+                                    </div>
+                                    <br />
+                                    <Button className="my_btn" type="submit">
+                                    Submit
+                                    </Button>
+                                </form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="1">
+                            <Accordion.Header>BIRD INPUT</Accordion.Header>
+                            <Accordion.Body>
+                                <form  action="#" onSubmit={handleBirds}>
+                                        <h3>Birds Data</h3>
+                                        <label htmlFor='bird'>{'New Birds Purchased:  '}</label><br />
+                                        <div className='input_with_select'>
+                                            <input type="number" placeholder='# of birds' id='bird'/>
+                                        </div>
+                                        <label htmlFor='bird_store'>{'Store:  '}</label><br />
+                                        <div className='input_with_select'>
+                                            <input type="text" placeholder='store name' id='bird_store'/>
+                                        </div>
+                                        <label htmlFor='culled'>{'Record Culled:  '}</label><br />
+                                        <div className='input_with_select'>
+                                            <input type="number" placeholder='# culled' id='culled'/>
+                                        </div>
+                                        <label htmlFor='dead_bird'>{'Record Death:  '}</label><br />
+                                        <div className='input_with_select'>
+                                            <input type="number" placeholder='# of Deaths' id='dead_bird'/>
+                                        </div>
+                                        <br />
+                                        <Button className="my_btn" type="submit">
+                                        Submit
+                                        </Button>
+                                    </form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="2">
+                            <Accordion.Header>CUSTOMER INPUT</Accordion.Header>
+                            <Accordion.Body>
+                                <form  action="#" onSubmit={handleCustomer}>
+                                        <h3>Customer Data</h3>
+                                        <label htmlFor='customer'>{'Customer records:  '}</label><br />
+                                        <div className='input_with_select'>
+                                        <select name="customers" id="customers" onChange={displayNewInput}>
+                                            {customers.map((customer, i) => <option key={i} value={customer}>{customer}</option>
+                                            )}
+                                        </select>
+                                        <input type="number" placeholder='# of crates' id='customer_qty'/>
+                                        </div>
+                                        <label htmlFor='customer_debt'>{'Record Debt:  '}</label><br />
+                                        <div className='input_with_select'>
+                                            <input type="number" placeholder='#Debt' id='customer_debt'/>
+                                        </div><br />
+                                    <Button className="my_btn" type="submit">
+                                    Submit
+                                    </Button>
+                                </form>
+                                <form action='' onSubmit={registerNewCustomer}>
+                                    <div id='new_container' style={{display: 'none'}} >
+                                        <label htmlFor='new_customer'>{'Register new customer:  '}</label><br />
+                                        <div className="input_with_select">
+                                            <input type="text" placeholder='Register new customer' id='new_customer' required aria-required/>
+                                            <Button onClick={registerNewCustomer} className="my_btn" type="submit" aria-required>Add</Button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="3">
+                            <Accordion.Header>COMPOST</Accordion.Header>
+                            <Accordion.Body>
+                                <form  action="#" onSubmit={handleCompost}>
+                                    <h3>Compost Data</h3>
+                                    <label htmlFor='compost'>{'Compost:  '}</label><br />
+                                    <div className='input_with_select'>
+                                        <input type="number" placeholder='# of bags' id='compost'/>
+                                    </div>
+                                    <label htmlFor='compost_profit'>{'Input Profit:  '}</label><br />
+                                    <div className='input_with_select'>
+                                        <input type="number" placeholder='#Profit' id='compost_profit'/>
+                                    </div><br />
+                                    <Button className="my_btn" type="submit">
+                                    Submit
+                                    </Button>
+                                </form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="4">
+                            <Accordion.Header>MISCELLANEOUS</Accordion.Header>
+                            <Accordion.Body>
+                                <form  action="#" onSubmit={handleMsc}>
+                                    <h3>Additional Records</h3>
+                                    <label htmlFor='expense'>{'Purpose:  '}</label><br />
+                                    <div >
+                                        <select className='input_with_select' type="number" id='purpose'>
+                                            {purpose.map(purpose => {
+                                                return <option key={purpose.id}>{purpose.item}</option>
+                                            })}
+                                        </select>
+                                    </div>
+                                    <label htmlFor='purpose'>{'Input Expenditure:  '}</label><br />
+                                    <div ><input className='input_with_select' type="number" placeholder='#Expenditure' id='expense'/></div>
+                                    <label htmlFor='description'>{'Description:  '}</label><br />
+                                    <div ><input className='input_with_select' type="text" placeholder='Description' id='description'/></div><br />
+                                    <Button className="my_btn" type="submit">
+                                    Submit
+                                    </Button>
+                                </form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
+                </div>
             </div>
         </div>
     )

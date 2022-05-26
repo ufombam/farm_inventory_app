@@ -56,25 +56,23 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
             <div className='header_color'>
                 <Menu handleSignOut={handleSignOut} user={user}/>
                 <div className='fin_header'>
-                    <div className='fin_header_box'>
-                        <div className='fin_header_box_items'>
-                            <p style={{fontSize: '1.2vw'}}><strong>{`Big: ₦ ${!rate ? 0 : Number(rate.big).toLocaleString()} `}</strong></p>
-                            <p style={{fontSize: '1.2vw'}}><strong>{`Small: ₦ ${!rate ? 0 : Number(rate.small).toLocaleString()}`}</strong></p  >
+                        <div className='fin_header_items'>
+                            <p>{`Big: ₦ ${!rate ? 0 : Number(rate.big).toLocaleString()} `}</p>
+                            <p>{`Small: ₦ ${!rate ? 0 : Number(rate.small).toLocaleString()}`}</p  >
                         </div>
-                        <div className='fin_header_box_items'>
+                        <div className='fin_header_items'>
                             <p>{`Running Profit:`}</p>
-                            <h4 style={{color: "Green", fontSize: '1.7vw'}}>{`₦ ${(((income - expense) + (debt)).toLocaleString()) || 0}`}</h4>
+                            <p style={{color: "Green"}}>{`₦ ${(((income - expense) + (debt)).toLocaleString()) || 0}`}</p>
                         </div>
-                        <div className='fin_header_box_items'>
+                        <div className='fin_header_items'>
                             <p>{`Running Debt:`}</p>
-                            <h4 style={{color: "red", fontSize: '1.7vw'}}>{`₦ ${debt.toLocaleString()}`}</h4>
+                            <p style={{color: "red"}}>{`₦ ${debt.toLocaleString()}`}</p>
                         </div>
-                    </div>
                 </div>
             </div>
             <div className='fin_body'>
                 <div className='fin_body_items'> 
-                    <h3>Record Sales</h3><hr />
+                    <h3 style={{color: 'purple'}}>Record Sales</h3><hr />
                     <form  action="#" onSubmit={handleSales}>
                         <label htmlFor='forBig'>{"Total # of crates sold today (Big) :"}</label>
                         <div className='input_with_select'>
@@ -99,9 +97,8 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     </form>
                 </div>
                 <div className='fin_body_items'> 
-                    <h3>Transactions</h3><hr />
-                    <h6>Current Month</h6>
-                    <h6>Income</h6>
+                    <h3 style={{color: 'purple'}}>Monthly Transactions</h3><hr />
+                    <h6><strong>Income</strong></h6>
                     <div className='fin_body_items_1'>
                         <p >Egg Sales</p>
                         <p className='profit_indicator'>{`₦ `}{salesSum.toLocaleString()}</p>
@@ -115,7 +112,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                         <h5 className='profit_indicator'>{`₦ ${income.toLocaleString()}`}</h5>
                     </div>
                     <hr />
-                    <h6>Expenses</h6>
+                    <h6><strong>Expenses</strong></h6>
                     <div className='fin_body_items_1'>
                         <p>Feed</p>
                         <p className='loss_indicator'>{`₦ ${feed.toLocaleString()}`}</p>
@@ -130,7 +127,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     </div>
                     <hr />
                     <div className='fin_body_items_1'>
-                        <h5>Net</h5>
+                        <h5><strong>Net</strong></h5>
                         <h5 className={`${(income-expense > 0 ? 'profit_indicator' : 'loss_indicator')}`}>{`₦ ${(income - expense).toLocaleString()}`}</h5>
                     </div>
                 </div>

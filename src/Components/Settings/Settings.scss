@@ -1,4 +1,5 @@
 @use '../../color_theme';
+@use '../../screen.scss';
 
 .settings_container {
     margin-left: 5px;
@@ -6,6 +7,7 @@
     padding: 5px;
     height: 100vh;
     width: auto;
+    padding: 6px;
     font-family:  Helvetica, sans-serif;
     background-image: url('./setting_wheel1.png');
     background-repeat: no-repeat;
@@ -36,6 +38,7 @@
         height: 40vh;
         padding: 10px;
         border-radius: 10px;
+        width: auto;
         input, select {
             width: 30vw;
             margin-bottom: 10px;
@@ -52,8 +55,8 @@
 
     button {
             height: 5vh;
-            width: 7vw;
-            font-size: 1.2vw;
+            width: fit-content;
+            font-size: 18px;
             border-radius: 5px;
             background-color: color_theme.$primary_color1;
             color: white;
@@ -62,5 +65,60 @@
         button:focus, button:hover {
             background-color: rgb(108, 39, 140);
         }
+}
 
+@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+    .settings_container {
+        background-size: 30%;
+        .form1 {
+            input {
+                width: 30vw;
+                height: 5vh;
+                font-size: 14px;
+            }
+        }
+    
+        .form2 {
+            height: 40vh;
+            input, select {
+                width: 60vw;
+                height: 7vh;
+                font-size: 14px;
+            }
+        }
+    
+        button {
+                height: 5vh;
+                width: fit-content;
+                font-size: 14px;
+            }
+    }
+}
+
+@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+    .settings_container {
+        background-size: 40%;
+        .form1 {
+            input {
+                width: 30vw;
+                height: 5vh;
+                font-size: 16px;
+            }
+        }
+    
+        .form2 {
+            height: 40vh;
+            input, select {
+                width: 60vw;
+                height: 7vh;
+                font-size: 16px;
+            }
+        }
+    
+        button {
+                height: 5vh;
+                width: fit-content;
+                font-size: 14px;
+            }
+    }
 }
