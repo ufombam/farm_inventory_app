@@ -76,7 +76,7 @@ nav {
     }
 }
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     nav {
         .menu_link {
             font-size: 1.2em;
@@ -84,7 +84,7 @@ nav {
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+@media screen and (max-width: screen.$ipads-tablets-max) {
     nav {
         .menu_link {
             font-size: 1.5em;

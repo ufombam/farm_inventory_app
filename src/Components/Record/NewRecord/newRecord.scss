@@ -75,7 +75,7 @@ form {
     }
 }
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     .rec_body {
         padding: 10px;
         width: 100vw;

@@ -59,7 +59,7 @@
     }
 }
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     .help_body {
         img {
             height: 30px;

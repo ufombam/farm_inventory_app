@@ -112,7 +112,7 @@
     }
 }
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     .home_app{
         .my_card_container{
             .card {
@@ -161,7 +161,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+@media screen and (max-width: screen.$ipads-tablets-max) {
     .home_app{
         .my_card_container{
             .card {

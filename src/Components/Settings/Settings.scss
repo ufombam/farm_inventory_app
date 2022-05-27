@@ -67,7 +67,7 @@
         }
 }
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     .settings_container {
         background-size: 30%;
         .form1 {
@@ -95,7 +95,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+@media screen and (max-width: screen.$ipads-tablets-max) {
     .settings_container {
         background-size: 40%;
         .form1 {

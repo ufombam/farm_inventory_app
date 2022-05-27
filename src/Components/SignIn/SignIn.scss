@@ -59,7 +59,7 @@
 }
 
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     .signin_app {
         .signin_app_border {
             height: 60vh;
@@ -87,7 +87,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+@media screen and (max-width: screen.$ipads-tablets-max) {
     .signin_app {
         .signin_app_border {
             height: 70vh;
