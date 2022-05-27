@@ -106,8 +106,12 @@ function App() {
         })
         .then(res => res.json())
         .then(data => {
-            setUser(data)
-            sessionStorage.setItem('token', JSON.stringify(data))
+            if (!data.id) {
+                throw new Error()
+            } else {
+                setUser(data)
+                sessionStorage.setItem('token', JSON.stringify(data))
+            }
         })
         .catch(() => {
             setLoginErr('Unable to authenticate user');
@@ -139,8 +143,12 @@ function App() {
         })
         .then(res => res.json())
         .then(data => {
-            setUser(data)
-            sessionStorage.setItem('token', JSON.stringify(data))
+            if (!data.id) {
+                throw new Error()
+            } else {
+                setUser(data)
+                sessionStorage.setItem('token', JSON.stringify(data))
+            }
         })
         .catch(() => {
             setLoginErr('Unable to register user');
