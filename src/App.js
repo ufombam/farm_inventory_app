@@ -169,7 +169,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route key={11} index element={<Landing user={user}/>} />
+                <Route key={11} index element={<Landing handleSingOut={handleSignOut} user={user}/>} />
                 <Route key={22} path="signin" element={<SignIn user={user} updating={updating} loginErr={loginErr} handleSignIn={handleSignIn}/>} />
                 <Route key={33} path="register" element={<Register user={user} updating={updating} regErr={loginErr} handleRegister={handleRegister}/>} />
                 <Route element={<ProtectedRoute user={user} />}>

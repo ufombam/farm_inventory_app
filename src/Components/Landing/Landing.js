@@ -6,13 +6,17 @@ import record from './record.png';
 import book from './book-keep.png';
 import Logo from '../Logo/Logo';
 
-const Landing = ({user}) => {
+const Landing = ({user, handleSingOut}) => {
 
     return( 
     <div className='landing_container'>
         <div className='logo'>
                 <Logo/>
-            <Link to={'/register'}>{!user ? <button>Sign Up</button> : null}</Link>
+            {
+                user ? 
+                <button onClick={handleSingOut}>Logout</button> :
+                <Link to={'/register'}>{!user ? <button>Sign Up</button> : null}</Link>
+            }
         </div>
         <div className='description'>
             <div className='description_item shadow'>
