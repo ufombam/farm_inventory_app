@@ -76,7 +76,7 @@ function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {
     useEffect(() => {
         if (user) {
             //fetch weather report
-            fetch('http://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
+            fetch('https://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
             .then(response => response.json())
             .then(data => setWeather(data))
             .catch(() => console.log('Problem fetching weather info'))
