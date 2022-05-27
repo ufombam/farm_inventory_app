@@ -110,7 +110,7 @@
     }
 }
 
-@media screen and (max-width: screen.$mobile-devices-max) and (min-width: screen.$mobile-devices-min) {
+@media screen and (max-width: screen.$mobile-devices-max) {
     .landing_container {
         height: 100%;
         button {
@@ -174,7 +174,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) and (min-width: screen.$ipads-tablets-min) {
+@media screen and (max-width: screen.$ipads-tablets-max) {
     .landing_container {
         height: 100vh;
         width: 100vw;
