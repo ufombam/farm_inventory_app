@@ -127,8 +127,8 @@
     
         .description {
             display: flex;
-            flex-direction: column;
-            //flex-wrap: wrap;
+            flex-direction: row;
+            flex-wrap: wrap;
             justify-content: center;
             //border: 1px solid white;
             height: 70vh;
