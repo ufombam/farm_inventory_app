@@ -86,6 +86,11 @@ nav {
             height: 2vh;
         }
     }
+
+    .user {
+        height: 20vh;
+        width: 20vh;
+    }
 }
 
 @media screen and (min-width: screen.$ipads-tablets-min) and (max-width: screen.$ipads-tablets-max) {
