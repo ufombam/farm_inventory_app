@@ -174,7 +174,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) {
+@media screen and (min-width: screen.$ipads-tablets-min) and (max-width: screen.$ipads-tablets-max) {
     .landing_container {
         height: 100vh;
         width: 100vw;

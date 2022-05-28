@@ -161,7 +161,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) {
+@media screen and (min-width: screen.$ipads-tablets-min) and (max-width: screen.$ipads-tablets-max) {
     .home_app{
         .my_card_container{
             .card {

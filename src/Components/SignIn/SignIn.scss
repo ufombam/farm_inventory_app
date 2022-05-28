@@ -87,7 +87,7 @@
     }
 }
 
-@media screen and (max-width: screen.$ipads-tablets-max) {
+@media screen and (min-width: screen.$ipads-tablets-min) and (max-width: screen.$ipads-tablets-max) {
     .signin_app {
         .signin_app_border {
             height: 70vh;

@@ -1,5 +1,10 @@
 $mobile-devices-max: 576px;
-$ipads-tablets-max: 768px; 
-$laptops-max: 1024px; 
-$desktop-max: 1200px;
-$XL-screen:1201;
+
+$ipads-tablets-min: 577px; 
+$ipads-tablets-max: 768px;
+
+$laptops-min: 769px; 
+$laptops-max: 1024px;
+
+$desktop-min: 1200px;
+//$XL-screen:1201;
