@@ -114,7 +114,7 @@
     .landing_container {
         height: 100%;
         button {
-            width: 50px;
+            width: fit-content;
         }
     
         .logo {
@@ -128,7 +128,7 @@
         .description {
             display: flex;
             flex-direction: column;
-            flex-wrap: wrap;
+            //flex-wrap: wrap;
             justify-content: center;
             //border: 1px solid white;
             height: 70vh;
