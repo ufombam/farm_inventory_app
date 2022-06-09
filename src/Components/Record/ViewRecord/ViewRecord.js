@@ -43,7 +43,7 @@ const ViewRecord = ({ customerInput, user }) => {
     .then(res => {
       setCompostInput(res)
     })
-    //fetch compost record
+    //fetch msc record
     fetch(`https://fast-scrubland-53064.herokuapp.com/record/msc/${user.id}`)
     .then(response => response.json())
     .then(res => {
@@ -97,12 +97,12 @@ const mscHeader =     [
                       </thead>
                       <tbody>
                           {salesInput.map((input, i) => (
-                            <tr key={input.id}>
-                              <td >{input.id}</td>
-                              <td >{input.date.slice(0,10)}</td>
-                              <td>{input.big.toLocaleString()}</td>
-                              <td>{input.small.toLocaleString()}</td>
-                              <td>{(input.big + input.small).toLocaleString()}</td>
+                            <tr key={input?.id}>
+                              <td >{input?.id}</td>
+                              <td >{input?.date.slice(0,10)}</td>
+                              <td>{input?.big.toLocaleString()}</td>
+                              <td>{input?.small.toLocaleString()}</td>
+                              <td>{(input?.big + input?.small).toLocaleString()}</td>
                             </tr>
                           ))}
                       </tbody>
