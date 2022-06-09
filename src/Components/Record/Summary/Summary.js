@@ -180,7 +180,7 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Amount Spent: ₦ ${Number(cards.feed.figure2).toLocaleString() || 0 }`}</p>
+                            <p>{`Amount Spent: ₦ ${isNaN(cards.feed.figure2) ? 0 : Number(cards.feed.figure2).toLocaleString()}`}</p>
                         </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
@@ -198,7 +198,7 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Profit Realized: ₦ ${Number(cards.compost.figure2).toLocaleString() || 0 }`}</p>
+                            <p>{`Profit Realized: ₦ ${isNaN(cards.compost.figure2) ? 0 : Number(cards.compost.figure2).toLocaleString()}`}</p>
                         </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
@@ -216,12 +216,12 @@ const Summary = ({ egg, customer, user }) => {
                                 />
                             </div>
                             <div className='sum_figure_except'>
-                                <p>{`Salaries: ₦ ${Number(myMsc.salaries).toLocaleString() || 0 } |`}</p>
-                                <p>{`Medication: ₦ ${Number(myMsc.medication).toLocaleString() || 0 }  |`}</p>
-                                <p>{`ELectricity: ₦ ${Number(myMsc.electricity).toLocaleString() || 0 }  |`}</p>
-                                <p>{`Diesel: ₦ ${Number(myMsc.diesel).toLocaleString() || 0 }  |`}</p>
-                                <p>{`Maintenance: ₦ ${Number(myMsc.maintenance).toLocaleString() || 0 }  |`}</p>
-                                <p>{`Miscellaneous: ₦ ${Number(myMsc.miscellaneous).toLocaleString() || 0 }`}</p>
+                                <p>{`Salaries: ₦ ${isNaN(myMsc.salaries) ? 0 : Number(myMsc.salaries).toLocaleString()} |`}</p>
+                                <p>{`Medication: ₦ ${isNaN(myMsc.medication) ? 0 : Number(myMsc.medication).toLocaleString()}  |`}</p>
+                                <p>{`ELectricity: ₦ ${isNaN(myMsc.electricity) ? 0 : Number(myMsc.electricity).toLocaleString()}  |`}</p>
+                                <p>{`Diesel: ₦ ${isNaN(myMsc.diesel) ? 0 : Number(myMsc.diesel).toLocaleString()}  |`}</p>
+                                <p>{`Maintenance: ₦ ${isNaN(myMsc.maintenance) ? 0 : Number(myMsc.maintenance).toLocaleString()}  |`}</p>
+                                <p>{`Miscellaneous: ₦ ${isNaN(myMsc.miscellaneous) ? 0 : Number(myMsc.miscellaneous).toLocaleString()}`}</p>
                             </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
