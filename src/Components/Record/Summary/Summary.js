@@ -161,8 +161,8 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Big Eggs: ${0 || Number(cards.egg.figure1).toLocaleString()} crates`}</p>
-                            <p>{`Small Eggs: ${0 || Number(cards.egg.figure2).toLocaleString()} crates`}</p>
+                            <p>{`Big Eggs: ${ Number(cards.egg.figure1).toLocaleString() || 0 } crates`}</p>
+                            <p>{`Small Eggs: ${Number(cards.egg.figure2).toLocaleString() || 0} crates`}</p>
                         </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
@@ -180,7 +180,7 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Amount Spent: ₦ ${0 || Number(cards.feed.figure2).toLocaleString()}`}</p>
+                            <p>{`Amount Spent: ₦ ${Number(cards.feed.figure2).toLocaleString() || 0 }`}</p>
                         </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
@@ -198,7 +198,7 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Profit Realized: ₦ ${0 || Number(cards.compost.figure2).toLocaleString()}`}</p>
+                            <p>{`Profit Realized: ₦ ${Number(cards.compost.figure2).toLocaleString() || 0 }`}</p>
                         </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
@@ -216,12 +216,12 @@ const Summary = ({ egg, customer, user }) => {
                                 />
                             </div>
                             <div className='sum_figure_except'>
-                                <p>{`Salaries: ₦ ${0 || Number(myMsc.salaries).toLocaleString()} |`}</p>
-                                <p>{`Medication: ₦ ${0 || Number(myMsc.medication).toLocaleString()}  |`}</p>
-                                <p>{`ELectricity: ₦ ${0 || Number(myMsc.electricity).toLocaleString()}  |`}</p>
-                                <p>{`Diesel: ₦ ${0 || Number(myMsc.diesel).toLocaleString()}  |`}</p>
-                                <p>{`Maintenance: ₦ ${0 || Number(myMsc.maintenance).toLocaleString()}  |`}</p>
-                                <p>{`Miscellaneous: ₦ ${0 || Number(myMsc.miscellaneous).toLocaleString()}`}</p>
+                                <p>{`Salaries: ₦ ${Number(myMsc.salaries).toLocaleString() || 0 } |`}</p>
+                                <p>{`Medication: ₦ ${Number(myMsc.medication).toLocaleString() || 0 }  |`}</p>
+                                <p>{`ELectricity: ₦ ${Number(myMsc.electricity).toLocaleString() || 0 }  |`}</p>
+                                <p>{`Diesel: ₦ ${Number(myMsc.diesel).toLocaleString() || 0 }  |`}</p>
+                                <p>{`Maintenance: ₦ ${Number(myMsc.maintenance).toLocaleString() || 0 }  |`}</p>
+                                <p>{`Miscellaneous: ₦ ${Number(myMsc.miscellaneous).toLocaleString() || 0 }`}</p>
                             </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
@@ -257,8 +257,8 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Total Deaths: ${(0 || cards.bird.figure1)} birds`}</p>
-                            <p>{`Total Culled: ${(0 || cards.bird.figure2)} birds`}</p>
+                            <p>{`Total Deaths: ${(cards.bird.figure1) || 0 } birds`}</p>
+                            <p>{`Total Culled: ${(cards.bird.figure2) || 0 } birds`}</p>
                         </div>
                     </div>
                 </div>
