@@ -100,9 +100,9 @@ const mscHeader =     [
                             <tr key={input?.id}>
                               <td >{input?.id}</td>
                               <td >{input?.date.slice(0,10)}</td>
-                              <td>{input?.big.toLocaleString()}</td>
-                              <td>{input?.small.toLocaleString()}</td>
-                              <td>{(input?.big + input?.small).toLocaleString()}</td>
+                              <td>{0 || input?.big.toLocaleString()}</td>
+                              <td>{0 || input?.small.toLocaleString()}</td>
+                              <td>{(0 || input?.big + input?.small).toLocaleString()}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -156,7 +156,7 @@ const mscHeader =     [
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.qty}</td>
                               <td>{input.store}</td>
-                              <td>{Number(input.expense).toLocaleString()}</td>
+                              <td>{0 || Number(input.expense).toLocaleString()}</td>
                               <td>{input.stock}</td>
                             </tr>
                           ))}
@@ -209,7 +209,7 @@ const mscHeader =     [
                               <td>{input.name}</td>
                               <td>{input.registration.slice(0,10)}</td>
                               <td>{input.purchases}</td>
-                              <td>{Number(input.debt).toLocaleString()}</td>
+                              <td>{0 || Number(input.debt).toLocaleString()}</td>
                               <td><Badge pill bg={input.purchases <= 50 ? "danger" : input.purchases <= 200 ? "success" : "dark"}>
                                   {input.purchases <= 50 ? "new" : input.purchases <= 200 ? "old" : "veteran"}
                                 </Badge>{' '}</td>
@@ -236,7 +236,7 @@ const mscHeader =     [
                               <td>{input.id}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.qty}</td>
-                              <td>{input.profit.toLocaleString()}</td>
+                              <td>{0 || input.profit.toLocaleString()}</td>
                               <td>{input.debt}</td>
                             </tr>
                           ))}
@@ -261,7 +261,7 @@ const mscHeader =     [
                               <td>{input.id}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.purpose}</td>
-                              <td>{Number(input.expense).toLocaleString()}</td>
+                              <td>{0 || Number(input.expense).toLocaleString()}</td>
                               <td>{input.description}</td>
                             </tr>
                           ))}
