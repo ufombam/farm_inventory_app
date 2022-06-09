@@ -161,8 +161,8 @@ const Summary = ({ egg, customer, user }) => {
                             />
                         </div>
                         <div className='sum_figure2'>
-                            <p>{`Big Eggs: ${ Number(cards.egg.figure1).toLocaleString() || 0 } crates`}</p>
-                            <p>{`Small Eggs: ${Number(cards.egg.figure2).toLocaleString() || 0} crates`}</p>
+                            <p>{`Big Eggs: ${isNaN(cards.egg.figure1) ? 0 : Number(cards.egg.figure1).toLocaleString()} crates`}</p>
+                            <p>{`Small Eggs: ${isNaN(cards.egg.figure2) ? 0 : Number(cards.egg.figure2).toLocaleString()} crates`}</p>
                         </div>
                     </div>
                     <div className="sum d-flex shadow text-center">
