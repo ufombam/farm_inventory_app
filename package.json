@@ -1,10 +1,6 @@
 {
   "name": "farm_inventory",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.x",
-    "npm": "8.x"
-  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
@@ -24,6 +20,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "sass": "^1.49.9",
+    "serve": "^13.0.2",
     "server": "^1.0.37",
     "web-vitals": "^2.1.4"
   },
