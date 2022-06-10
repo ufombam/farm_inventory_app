@@ -57,8 +57,8 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                 <Menu handleSignOut={handleSignOut} user={user}/>
                 <div className='fin_header'>
                         <div className='fin_header_items'>
-                            <p>{`Big: ₦ ${!rate ? 0 : Number(rate.big).toLocaleString()} `}</p>
-                            <p>{`Small: ₦ ${!rate ? 0 : Number(rate.small).toLocaleString()}`}</p  >
+                            <p>{`Big: ₦ ${isNaN(rate.big) ? 0 : Number(rate.big).toLocaleString()} `}</p>
+                            <p>{`Small: ₦ ${isNaN(rate.big) ? 0 : Number(rate.small).toLocaleString()}`}</p  >
                         </div>
                         <div className='fin_header_items'>
                             <p>{`Running Profit:`}</p>
