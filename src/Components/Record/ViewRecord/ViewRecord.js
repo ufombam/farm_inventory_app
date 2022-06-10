@@ -100,9 +100,9 @@ const mscHeader =     [
                             <tr key={input?.id}>
                               <td >{input?.id}</td>
                               <td >{input?.date.slice(0,10)}</td>
-                              <td>{isNaN(input?.big) ? 0 : input?.big.toLocaleString()}</td>
-                              <td>{isNaN(input?.small) ? 0 : input?.small.toLocaleString()}</td>
-                              <td>{isNaN(input?.big) ? 0 : (input?.big + input?.small).toLocaleString()}</td>
+                              <td>{input?.big === null ? 0 : input?.big.toLocaleString()}</td>
+                              <td>{input?.small === null ? 0 : input?.small.toLocaleString()}</td>
+                              <td>{input?.big === null ? 0 : (input?.big + input?.small).toLocaleString()}</td>
                             </tr>
                           ))}
                       </tbody>
