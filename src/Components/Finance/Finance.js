@@ -5,7 +5,6 @@ import Menu from '../Menu/Menu';
 
 const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSignOut }) => {
     const [debt, setDebt] = useState(0);
-    const [listener, setListener] = useState(0);
     const [rate, setRate] = useState([]);
     const [show, setShow] = useState(true);
 
@@ -49,9 +48,10 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
             },
             body: JSON.stringify(salesInput)
         })
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(() => console.log('unable to complete request'));
-        setListener(listener + 1)
-        e.target.reset();
     }
 
     const alertRateError = () => {

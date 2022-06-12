@@ -39,8 +39,10 @@ const Settings = ({ user, handleSignOut }) => {
                 },
                 body: JSON.stringify(rateInput)
             })
+            .then(response => {
+                if (response.ok) e.target.reset();
+            })
             .catch(() => console.log('unable to complete request'));
-            e.target.reset();
         }
 
         //submit settings

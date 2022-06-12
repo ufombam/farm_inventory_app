@@ -49,9 +49,11 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(record_input_1)
         })
-        .then(console.log)
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(err => console.log('unable to complete request'))
-        e.target.reset();
+        
     }
 
     //Submit feed input  to DB
@@ -75,8 +77,10 @@ const NewRecord = ({ user }) => {
         },
         body: JSON.stringify(feed_input)
         })
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(() => console.log('unable to complete request'))
-        e.target.reset();
     }
     //Submit birds input  to DB
     const handleBirds = (e) => {
@@ -99,8 +103,10 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(bird_input)
         })
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(() => console.log('unable to complete request'))
-        // e.target.reset();
     }
 
     //Submit customer input  to DB
@@ -121,8 +127,10 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(customer_input)
         })
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(() => console.log('unable to complete request'))
-        e.target.reset()
     }
 
     //Display new input to register customer
@@ -154,8 +162,10 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(new_name)
         })
+        .then(response => {
+            if (response.ok) customer_input.value = '';
+        })
         .catch(() => console.log('customer already exists'))
-        customer_input.value = '';
     }
 
     //Submit compost input values to DB
@@ -177,8 +187,10 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(compost_input)
         })
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(() => console.log('unable to complete request'))
-        e.target.reset()
     }
 
 
@@ -229,8 +241,10 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(msc_input)
         })
+        .then(response => {
+            if (response.ok) e.target.reset();
+        })
         .catch(() => console.log('unable to complete request'))
-        e.target.reset()
     }
     return (
         <div className='rec_body'>
