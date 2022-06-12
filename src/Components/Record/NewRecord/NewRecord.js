@@ -3,8 +3,7 @@ import { Button, Accordion } from 'react-bootstrap';
 import './newRecord.scss';
 
 const NewRecord = ({ user }) => {
-    const [customers, setCustomers] = useState(["Select name","Add new customer"]);
-    const [listener, setListener] = useState(0);
+    const [customers, setCustomers] = useState(["Select name","Add new customer"])
 
     
 
@@ -20,7 +19,7 @@ const NewRecord = ({ user }) => {
             setCustomers(["select name", ...names, "Add new customer"])
         })
         .catch(() => console.log('invalid request')) }
-    },[listener, user])
+    },[user])
 
     //Submit daily inventory/egg sizes field values to DB - 1
     const handleSubmit1 = (e) => {
@@ -50,8 +49,8 @@ const NewRecord = ({ user }) => {
             },
             body: JSON.stringify(record_input_1)
         })
+        .then(console.log)
         .catch(err => console.log('unable to complete request'))
-        setListener(listener + 1)
         e.target.reset();
     }
 
@@ -77,7 +76,6 @@ const NewRecord = ({ user }) => {
         body: JSON.stringify(feed_input)
         })
         .catch(() => console.log('unable to complete request'))
-        setListener(listener + 1)
         e.target.reset();
     }
     //Submit birds input  to DB
@@ -102,7 +100,6 @@ const NewRecord = ({ user }) => {
             body: JSON.stringify(bird_input)
         })
         .catch(() => console.log('unable to complete request'))
-        setListener(listener + 1)
         // e.target.reset();
     }
 
@@ -125,7 +122,6 @@ const NewRecord = ({ user }) => {
             body: JSON.stringify(customer_input)
         })
         .catch(() => console.log('unable to complete request'))
-        setListener(listener + 1)
         e.target.reset()
     }
 
@@ -159,7 +155,6 @@ const NewRecord = ({ user }) => {
             body: JSON.stringify(new_name)
         })
         .catch(() => console.log('customer already exists'))
-        setListener(listener + 1)
         customer_input.value = '';
     }
 
@@ -183,7 +178,6 @@ const NewRecord = ({ user }) => {
             body: JSON.stringify(compost_input)
         })
         .catch(() => console.log('unable to complete request'))
-        setListener(listener + 1)
         e.target.reset()
     }
 
@@ -236,7 +230,6 @@ const NewRecord = ({ user }) => {
             body: JSON.stringify(msc_input)
         })
         .catch(() => console.log('unable to complete request'))
-        setListener(listener + 1)
         e.target.reset()
     }
     return (
