@@ -2,6 +2,9 @@
   "name": "farm_inventory",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+  "autoprefixer": "10.4.5"
+  },
   "dependencies": {
     "@csstools/normalize.css": "github:csstools/normalize.css",
     "@testing-library/jest-dom": "^5.16.2",
