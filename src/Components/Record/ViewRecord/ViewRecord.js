@@ -98,7 +98,7 @@ const mscHeader =     [
                       <tbody>
                           {salesInput.map((input, i) => (
                             <tr key={input?.id}>
-                              <td >{Array.from({length: salesInput.length}, (x, i) => i + 1)}</td>
+                              <td >{i + 1}</td>
                               <td >{input?.date.slice(0,10)}</td>
                               <td>{input?.big === null ? 0 : input?.big.toLocaleString()}</td>
                               <td>{input?.small === null ? 0 : input?.small.toLocaleString()}</td>
@@ -124,7 +124,7 @@ const mscHeader =     [
                     <tbody>
                         {eggInput.map((input, i) => (
                           <tr key={input.id}>
-                            <td >{Array.from({length: eggInput.length}, (x, i) => i + 1)}</td>
+                            <td >{i + 1}</td>
                             <td>{input.date.slice(0,10)}</td>
                             <td>{input.big}</td>
                             <td>{input.bunit}</td>
@@ -152,7 +152,7 @@ const mscHeader =     [
                       <tbody>
                           {feedInput.map((input, i) => (
                             <tr key={input.id}>
-                              <td>{Array.from({length: feedInput.length}, (x, i) => i + 1)}</td>
+                              <td>{i + 1}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.qty}</td>
                               <td>{input.store}</td>
@@ -178,7 +178,7 @@ const mscHeader =     [
                       <tbody>
                           {birdInput.map((input, i) => (
                             <tr key={input.id}>
-                              <td>{Array.from({length: birdInput.length}, (x, i) => i + 1)}</td>
+                              <td>{i + 1}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.birds}</td>
                               <td>{input.store}</td>
@@ -205,7 +205,7 @@ const mscHeader =     [
                       <tbody>
                           {customerInput.map((input, i) => (
                             <tr key={input.id}>
-                              <td>{Array.from({length: customerInput.length}, (x, i) => i + 1)}</td>
+                              <td>{i + 1}</td>
                               <td>{input.name}</td>
                               <td>{input.registration.slice(0,10)}</td>
                               <td>{input.purchases}</td>
@@ -232,8 +232,8 @@ const mscHeader =     [
                       </thead>
                       <tbody>
                           {compostInput.map((input, i) => (
-                            <tr key={input.id}>
-                              <td>{Array.from({length: compostInput.length}, (x, i) => i + 1)}</td>
+                            <tr key={i + 1}>
+                              <td>{input.id}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.qty}</td>
                               <td>{input.profit ? input.profit.toLocaleString() : 0}</td>
@@ -258,7 +258,7 @@ const mscHeader =     [
                       <tbody>
                           {mscInput.map((input, i) => (
                             <tr key={input.id}>
-                              <td>{Array.from({length: mscInput.length}, (x, i) => i + 1)}</td>
+                              <td>{i + 1}</td>
                               <td>{input.date.slice(0,10)}</td>
                               <td>{input.purpose}</td>
                               <td>{input.expense ? Number(input.expense).toLocaleString() : 0}</td>
