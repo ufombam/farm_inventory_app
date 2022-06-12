@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Finance.scss';
-import { Button } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 
 const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSignOut }) => {
     const [debt, setDebt] = useState(0);
     const [listener, setListener] = useState(0);
     const [rate, setRate] = useState([]);
+    const [show, setShow] = useState(true);
+
 
     useEffect(() => {
         if (user)
@@ -51,9 +53,37 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
         setListener(listener + 1)
         e.target.reset();
     }
+
+    const alertRateError = () => {
+        const myAlert = document.getElementById('alert');
+        if (!rate.length && myAlert.style.display === 'none') {
+            myAlert.style.display = 'block'
+        }
+    }
+    const revertRateAlert = () => {
+        setShow(false)
+        const myAlert = document.getElementById('alert');
+        myAlert.style.display = 'none'
+    }
     return (
         <div className="fin">
             <div className='header_color'>
+            <div style={{display: 'none'}} id="alert">
+                <Alert show={show} variant="danger" fade>
+                    <Alert.Heading>Alert!</Alert.Heading>
+                    <p>
+                        Please set the price of various crates sizes from the <Alert.Link href="settings">Settings</Alert.Link> page first, before you proceed. 
+                        If you have done this previously, then you should wait until the price is updated on the display.
+                        Refer to the <Alert.Link href="help">help</Alert.Link> menu for further help.
+                    </p>
+                    <hr />
+                    <div className="d-flex justify-content-end">
+                        <Button onClick={revertRateAlert} variant="outline-danger">
+                            Close
+                        </Button>
+                    </div>
+                </Alert>
+            </div>
                 <Menu handleSignOut={handleSignOut} user={user}/>
                 <div className='fin_header'>
                         <div className='fin_header_items'>
@@ -76,7 +106,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     <form  action="#" onSubmit={handleSales}>
                         <label htmlFor='forBig'>{"Total # of crates sold today (Big) :"}</label>
                         <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='forBig'/>
+                            <input type="number" placeholder='input egg number' id='forBig' onChange={alertRateError}/>
                             <select name="eggsUnit1" id='eggsUnit_1' >
                                 <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
@@ -84,7 +114,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                         </div>
                         <label htmlFor='forSmall'>{"Total # of crates sold today (small) :"}</label>
                         <div className='input_with_select'>
-                            <input type="number" placeholder='input egg number' id='forSmall'/>
+                            <input type="number" placeholder='input egg number' id='forSmall' onChange={alertRateError}/>
                             <select name="eggs2" id='eggsUnit_2' >
                                 <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
