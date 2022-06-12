@@ -2,15 +2,13 @@
   "name": "farm_inventory",
   "version": "0.1.0",
   "private": true,
-  "overrides": {
-  "autoprefixer": "10.4.5"
-  },
   "dependencies": {
     "@csstools/normalize.css": "github:csstools/normalize.css",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "animated-number-react": "^0.1.2",
+    "autoprefixer": "10.4.5",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "chart.js": "^3.7.1",
