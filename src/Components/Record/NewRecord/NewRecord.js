@@ -259,8 +259,8 @@ const NewRecord = ({ user }) => {
                             <div className='input_with_select'>
                                 <input type="number" placeholder='input egg number' id='broken_eggs'/>
                                 <select name="eggs0" id='egg_count_0'>
-                                    <option value="eggs">Eggs</option>
                                     <option value="crates">Crates</option>
+                                    <option value="eggs">Eggs</option>
                                 </select>
                             </div>
                             <hr />
@@ -269,16 +269,16 @@ const NewRecord = ({ user }) => {
                             <div className='input_with_select'>
                                 <input type="number" placeholder='input egg number' id='size1'/>
                                 <select name="eggs1" id='egg_count_1'>
-                                    <option value="eggs">Eggs</option>
                                     <option value="crates">Crates</option>
+                                    <option value="eggs">Eggs</option>
                                 </select>
                             </div>
                             <label htmlFor='size2'>{'Total egg count for today (small):  '}</label><br />
                             <div className='input_with_select'>
                                 <input type="number" placeholder='input egg number' id='size2'/>
                                 <select name="eggs2" id='egg_count_2'>
-                                    <option value="eggs">Eggs</option>
                                     <option value="crates">Crates</option>
+                                    <option value="eggs">Eggs</option>
                                 </select>
                             </div><br />
                         <Button className="my_btn" type="submit">

@@ -108,16 +108,16 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                         <div className='input_with_select'>
                             <input type="number" placeholder='input egg number' id='forBig' onChange={alertRateError}/>
                             <select name="eggsUnit1" id='eggsUnit_1' >
-                                <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
+                                <option value="eggs">Eggs</option>
                             </select>
                         </div>
                         <label htmlFor='forSmall'>{"Total # of crates sold today (small) :"}</label>
                         <div className='input_with_select'>
                             <input type="number" placeholder='input egg number' id='forSmall' onChange={alertRateError}/>
                             <select name="eggs2" id='eggsUnit_2' >
-                                <option value="eggs">Eggs</option>
                                 <option value="crates">Crates</option>
+                                <option value="eggs">Eggs</option>
                             </select>
                         </div>
                         <br />
