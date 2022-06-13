@@ -76,9 +76,15 @@ function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {
     useEffect(() => {
         if (user) {
             //fetch weather report
-            fetch('https://api.openweathermap.org/data/2.5/weather?q=Abuja,NG&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4')
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${user?.state},${user?.country}&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4`)
             .then(response => response.json())
-            .then(data => setWeather(data))
+            .then(data => {
+                if (Reflect.has(data, 'cod')) {
+                    throw new Error()
+                } else {
+                    setWeather(data)
+                }
+            })
             .catch(() => console.log('Problem fetching weather info'))
             //fetch news
             fetch(`https://newsapi.org/v2/everything?q=poultry&from=${(new Date().getFullYear)}-${new Date().getMonth()}-01&sortBy=publishedAt&apiKey=066e3e6cde1c47f3b7ae852685fcd128`)
@@ -248,7 +254,7 @@ function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {
                                     <span>{`${!weather ? 'fetching weather info' : weather.weather[0].description}`}</span>
                                 </div>
                                 <div className='card-weather_others'>
-                                    <span>{`${!weather ? 'xxx' : weather.name},${!weather ? 'xx' : weather.sys.country}`}</span>
+                                    <span>{`${!weather?.main ? 'xxx' : weather.name},${!weather ? 'xx' : weather.sys.country}`}</span>
                                     <p>{`Pressure: ${!weather ? 0 : weather.main.pressure} hPa`}</p>
                                     <p>{`Humidty: ${!weather ? 0 : weather.main.humidity} %`}</p>
                                     <p>{`Wind Speed: ${!weather ? 0 : weather.wind.speed}m/s`}</p>

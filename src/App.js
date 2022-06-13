@@ -126,11 +126,13 @@ function App() {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        const { f_name, l_name, email, pwd } = e.target.elements;
+        const { f_name, l_name, email, pwd, country, state } = e.target.elements;
         const user = {
             name: f_name.value +' '+ l_name.value,
             email: email.value,
-            pwd: pwd.value
+            pwd: pwd.value,
+            country: country.value,
+            state: state.value
         }
         setUpdating(true);
         fetch('https://fast-scrubland-53064.herokuapp.com/register', {

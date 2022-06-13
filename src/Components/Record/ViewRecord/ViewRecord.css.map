@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,IAAI,CAAJ,sBAAI;AAGJ,AAAA,eAAe,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;CACf",
+    "sources": [
+        "ViewRecord.scss"
+    ],
+    "names": [],
+    "file": "ViewRecord.css"
+}

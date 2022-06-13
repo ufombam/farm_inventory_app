@@ -110,6 +110,7 @@
 
 @media screen and (max-width: screen.$mobile-devices-max) {
     .fin{
+        height: 100%;
         font-size: 1rem;
         &_header {
             &_items {

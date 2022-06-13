@@ -22,7 +22,7 @@
         img {
             height: 10vh;
         }
-        input {
+        input, select {
             width: 35vw;
             height: 7vh;
             margin-bottom: 20px;
@@ -32,7 +32,7 @@
             border-radius: 6px;
             border:1px solid rgba(152, 144, 144, 0.596)
         }
-        input:focus {
+        input, select:focus {
             outline: none;
         }
         button {
@@ -67,7 +67,7 @@
             img {
                 height: 7vh;
             }
-            input {
+            input, select {
                 width: 80vw;
                 padding: 4px;
                 font-size: 14px;
@@ -99,7 +99,7 @@
             img {
                 height: 8vh;
             }
-            input {
+            input, select {
                 width: 65vw;
                 padding: 4px;
                 font-size: 16px;
