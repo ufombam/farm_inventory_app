@@ -79,7 +79,7 @@ function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {
             fetch(`https://api.openweathermap.org/data/2.5/weather?q=${user?.state},${user?.country}&units=metric&APPID=f3b00f22e3674c30ec27453c83be2da4`)
             .then(response => response.json())
             .then(data => {
-                if (Reflect.has(data, 'cod')) {
+                if (data?.cod === 400) {
                     throw new Error()
                 } else {
                     setWeather(data)
