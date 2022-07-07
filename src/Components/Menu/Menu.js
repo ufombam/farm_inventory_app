@@ -31,10 +31,10 @@ function Menu({ handleSignOut, user }) {
                         <div className="avater"><img alt="avater" title="user avater" src={`https://robohash.org/${user?.id}?size=200x200`} className="user_icon"/></div>
                         <div className="user_details">
                             <div className="user_details_1">
-                                <p>{`${user?.name}`}</p>
+                                <p>{`${!user ? 'user' : user?.name}`}</p>
                             </div>
                             <div className="user_details_1">
-                                <p>{`ID: ${user?.id + 22790}`} </p>
+                                <p>{`ID: ${!user ? '00000' : user?.id + 22790}`} </p>
                             </div>
                         </div>
                     </div>

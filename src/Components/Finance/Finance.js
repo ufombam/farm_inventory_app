@@ -67,7 +67,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
     }
     return (
         <div className="fin">
-            <div className='header_color'>
+            <div className=''>
             <div style={{display: 'none'}} id="alert">
                 <Alert show={show} variant="danger" fade>
                     <Alert.Heading>Alert!</Alert.Heading>
@@ -92,11 +92,11 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                         </div>
                         <div className='fin_header_items'>
                             <p>{`Running Profit:`}</p>
-                            <p style={{color: "Green"}}>{`₦ ${(((income - expense) + (debt)).toLocaleString()) || 0}`}</p>
+                            <p>{`₦ ${isNaN(income) ? 0 : (((income - expense) + (debt)).toLocaleString())}`}</p>
                         </div>
                         <div className='fin_header_items'>
                             <p>{`Running Debt:`}</p>
-                            <p style={{color: "red"}}>{`₦ ${debt.toLocaleString()}`}</p>
+                            <p>{`₦ ${debt.toLocaleString() || 0}`}</p>
                         </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     <h6><strong>Income</strong></h6>
                     <div className='fin_body_items_1'>
                         <p >Egg Sales</p>
-                        <p className='profit_indicator'>{`₦ `}{salesSum.toLocaleString()}</p>
+                        <p className='profit_indicator'>{`₦ `}{isNaN(salesSum) ? 0 : salesSum.toLocaleString()}</p>
                     </div>
                     <div className='fin_body_items_1'>
                         <p>Compost</p>
@@ -139,7 +139,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     </div>
                     <div className='fin_body_items_1'>
                         <h5>Total</h5>
-                        <h5 className='profit_indicator'>{`₦ ${income.toLocaleString()}`}</h5>
+                        <h5 className='profit_indicator'>{`₦ ${isNaN(income) ? 0 : income.toLocaleString()}`}</h5>
                     </div>
                     <hr />
                     <h6><strong>Expenses</strong></h6>
@@ -158,7 +158,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
                     <hr />
                     <div className='fin_body_items_1'>
                         <h5><strong>Net</strong></h5>
-                        <h5 className={`${(income-expense > 0 ? 'profit_indicator' : 'loss_indicator')}`}>{`₦ ${(income - expense).toLocaleString()}`}</h5>
+                        <h5 className={`${(income-expense > 0 ? 'profit_indicator' : 'loss_indicator')}`}>{`₦ ${isNaN(income) ? 0 : (income - expense).toLocaleString()}`}</h5>
                     </div>
                 </div>
             </div>
