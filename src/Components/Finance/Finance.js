@@ -69,7 +69,7 @@ const Finance = ({ feed, msc, compost, salesSum, expense, income, user, handleSi
         <div className="fin">
             <div className=''>
             <div style={{display: 'none'}} id="alert">
-                <Alert show={show} variant="danger" fade>
+                <Alert show={show} variant="danger" fade="true">
                     <Alert.Heading>Alert!</Alert.Heading>
                     <p>
                         Please set the price of various crates sizes from the <Alert.Link href="settings">Settings</Alert.Link> page first, before you proceed. 

@@ -182,10 +182,10 @@ function App() {
                 <Route key={11} index element={<Landing handleSingOut={handleSignOut} user={user}/>} />
                 <Route key={22} path="signin" element={<SignIn user={user} updating={updating} loginErr={loginErr} handleSignIn={handleSignIn}/>} />
                 <Route key={33} path="register" element={<Register user={user} updating={updating} regErr={loginErr} handleRegister={handleRegister}/>} />
+                    <Route key={66} path="finance" element={<Finance handleSignOut={handleSignOut} user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route key={44} path="dashboard" element={<Home line2={line2} line1={line1} handleSignOut={handleSignOut} user={user} income={income} expense={expense} bar={egg}/>} />
                     <Route key={55} path="record" element={<Record handleSignOut={handleSignOut} user={user} eggData={egg} compostData={compost}/>} />
-                    <Route key={66} path="finance" element={<Finance handleSignOut={handleSignOut} user={user} feed={feed} msc={msc} compost={compost} salesSum={salesSum} expense={expense} income={income}/>} />
                     <Route key={77} path="settings" element={<Settings handleSignOut={handleSignOut} user={user}/>} />
                     <Route key={88} path="help" element={<Help handleSignOut={handleSignOut} />} />
                 </Route>
