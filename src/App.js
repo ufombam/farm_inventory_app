@@ -96,7 +96,7 @@ function App() {
             pwd: pwd.value
         }
         setUpdating(true);
-        fetch('https://fast-scrubland-53064.herokuapp.com/signin', {
+        fetch('http://localhost:3000/signin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

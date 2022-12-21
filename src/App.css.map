@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,CAAC,CAAC;EACE,UAAU,EAAE,UAAU;CACzB;;AAED,AAAA,IAAI,EAAE,IAAI,CAAC;EACP,WAAW,EAAC,iBAChB;CAAC",
-    "sources": [
-        "App.scss"
-    ],
-    "names": [],
-    "file": "App.css"
-}
+{"version":3,"sources":["App.scss","App.css"],"names":[],"mappings":"AAEA;EACI,sBAAA;ACDJ;;ADIA;EACI,8BAAA;ACDJ","file":"App.css"}

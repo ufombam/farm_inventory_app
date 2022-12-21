@@ -1,15 +1,13 @@
 body, html {
   margin: 0;
   font-size: 1em;
-  font-family: 'Courier New';
+  font-family: "Courier New";
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-/*# sourceMappingURL=index.css.map */
+  box-sizing: border-box;
+}/*# sourceMappingURL=index.css.map */

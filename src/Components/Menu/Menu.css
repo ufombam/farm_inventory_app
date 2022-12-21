@@ -1,0 +1,88 @@
+.menu_container {
+  font-family: Helvetica, sans-serif;
+}
+
+.canvas_header {
+  background-image: white;
+}
+
+.canvas_body {
+  background-image: linear-gradient(rgb(252, 185, 62), #772577);
+  padding: 0px;
+}
+.canvas_body hr {
+  color: white;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+nav .menu_link {
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
+  background-color: rgba(102, 5, 135, 0.507);
+  margin-bottom: 3px;
+  border-radius: 4px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+nav .menu_link:hover {
+  background-color: rgba(82, 69, 83, 0.2);
+  color: white;
+  border-left: 5px solid white;
+  transition: 0.5s;
+}
+nav .icon {
+  position: relative;
+  left: 2px;
+  bottom: 4px;
+  width: 6.5%;
+  height: 3vh;
+  margin-right: 5px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user .avater {
+  height: 30vh;
+  width: 30vh;
+  border-radius: 100%;
+  background-color: white;
+}
+.user .avater img {
+  height: inherit;
+  width: inherit;
+  border-radius: 100%;
+}
+
+.user_details {
+  display: flex;
+  flex-direction: row;
+}
+.user_details_1 {
+  border-radius: 10%;
+  color: white;
+  height: 10%;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  font-size: auto;
+}
+
+@media screen and (max-width: 576px) {
+  nav .menu_link {
+    font-size: 1.2em;
+  }
+  nav .icon {
+    height: 2vh;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  nav .menu_link {
+    font-size: 1.5em;
+  }
+}/*# sourceMappingURL=Menu.css.map */

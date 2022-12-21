@@ -1,0 +1,101 @@
+.summary_body .summary-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.summary_body .summary-card-container .sum {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 30vw;
+  height: 37vh;
+  border-radius: 5px;
+  padding: 15px;
+}
+.summary_body .summary-card-container .sum_header {
+  height: 30px;
+  color: #772577;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+  margin-bottom: 5px;
+}
+.summary_body .summary-card-container .sum_figure1 {
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.23);
+  font-weight: none;
+  font-size: 50px;
+}
+.summary_body .summary-card-container .sum_figure2 {
+  margin-top: 15px;
+  font-weight: none;
+  font-size: 15px;
+  line-height: 10px;
+  -webkit-text-decoration: italic;
+          text-decoration: italic;
+}
+.summary_body .summary-card-container .sum_figure_except {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  font-weight: none;
+  font-size: 15px;
+  line-height: 1px;
+  text-align: start;
+  height: 20vh;
+}
+.summary_body .summary-card-container .sum_figure_except p {
+  margin-right: 2px;
+}
+.summary_body .summary-card-container .sum_msc {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.summary_body .summary-card-container .sum_msc span {
+  font-size: 50px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.23);
+}
+
+@media screen and (max-width: 576px) {
+  .summary_body .summary-card-container {
+    height: 80vh;
+    overflow: auto;
+  }
+  .summary_body .summary-card-container .sum {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 100vw;
+    height: 40vh;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  .summary_body .summary-card-container .sum_figure1 {
+    font-size: 30px;
+  }
+  .summary_body .summary-card-container .sum_msc span {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .summary_body .summary-card-container {
+    height: 80vh;
+    overflow: auto;
+  }
+  .summary_body .summary-card-container .sum {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 45vw;
+    height: 40vh;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  .summary_body .summary-card-container .sum_figure1 {
+    font-size: 33px;
+  }
+  .summary_body .summary-card-container .sum_msc span {
+    font-size: 33px;
+  }
+}/*# sourceMappingURL=Summary.css.map */

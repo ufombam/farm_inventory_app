@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+}
+
+.home_app {
+  padding: 5px;
+  background-color: rgb(253, 247, 253);
+  height: 100vh;
+  font-family: Helvetica, sans-serif;
+}
+.home_app h2 {
+  margin: 0px;
+}
+.home_app .my_card_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 88vh;
+  overflow: auto;
+  justify-content: center;
+  padding: 5px;
+}
+.home_app .my_card_container .card {
+  width: 33vw;
+  height: 40vh;
+  margin-right: 5px;
+}
+.home_app .my_card_container .card-header {
+  background-color: rgb(240, 161, 240);
+  font-size: 1rem;
+}
+.home_app .my_card_container .dough {
+  height: 40vh;
+  width: 15vw;
+}
+.home_app .my_card_container .card-title {
+  margin-bottom: 0px;
+}
+.home_app .my_card_container .card-body {
+  padding: 0px;
+  height: 40vh;
+}
+.home_app .my_card_container .card-body .card-weather {
+  display: flex;
+  flex-direction: column;
+  height: 33.8vh;
+}
+.home_app .my_card_container .card-body .card-weather_temp {
+  padding: 5px;
+  height: 40%;
+  color: white;
+}
+.home_app .my_card_container .card-body .card-weather_temp p {
+  font-size: 50px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.23);
+  margin: 0;
+}
+.home_app .my_card_container .card-body .card-weather_temp span {
+  position: relative;
+  bottom: 10px;
+  float: right;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.home_app .my_card_container .card-body .card-weather_others {
+  height: 60%;
+  margin-top: 43px;
+  padding: 10px;
+  color: white;
+  font-size: 17px;
+  line-height: 10px;
+  text-align: justify;
+}
+.home_app .my_card_container .card-body .card-weather_others span {
+  font-size: 2rem;
+  left: 30%;
+  position: relative;
+  bottom: 30px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.23);
+}
+.home_app .my_card_container .card-body .carousel .carousel-inner .carousel-item a {
+  text-decoration: none;
+}
+.home_app .my_card_container .card-body .carousel .carousel-inner .carousel-item .carousel-news {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 33.5vh;
+}
+.home_app .my_card_container .card-body .carousel .carousel-inner .carousel-item .carousel-news-caption {
+  height: 10vh;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0px 2px;
+  width: 50vw;
+  background: linear-gradient(rgba(255, 255, 255, 0.4862745098), #ffffff);
+  color: black;
+  z-index: 2;
+}
+.home_app .my_card_container .card-body .carousel .carousel-inner .carousel-item .carousel-news-caption p {
+  margin: 0px;
+}
+
+@media screen and (max-width: 576px) {
+  .home_app .my_card_container .card {
+    width: 90vw;
+  }
+  .home_app .my_card_container .dough {
+    width: 50vw;
+    height: 50vh;
+  }
+  .home_app .my_card_container .card-header {
+    font-size: 12px;
+  }
+  .home_app .my_card_container .card-body .card-weather_temp p {
+    font-size: 30px;
+  }
+  .home_app .my_card_container .card-body .card-weather_temp span {
+    font-size: 25px;
+  }
+  .home_app .my_card_container .card-body .card-weather_others {
+    font-size: 15px;
+  }
+  .home_app .my_card_container .card-body .card-weather_others span {
+    font-size: 1.5rem;
+  }
+  .home_app .my_card_container .carousel .carousel-inner .carousel-item .carousel-news .carousel-news-caption {
+    font-size: 10px;
+    width: 90vw;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .home_app .my_card_container .card {
+    width: 45vw;
+    height: 42vh;
+  }
+  .home_app .my_card_container .dough {
+    width: 25vw;
+    height: 42vh;
+  }
+  .home_app .my_card_container .card-header {
+    font-size: 12px;
+  }
+  .home_app .my_card_container .card-body .card-weather_temp p {
+    font-size: 30px;
+  }
+  .home_app .my_card_container .card-body .card-weather_temp span {
+    font-size: 25px;
+  }
+  .home_app .my_card_container .card-body .card-weather_others {
+    font-size: 15px;
+  }
+  .home_app .my_card_container .card-body .card-weather_others span {
+    font-size: 1.5rem;
+  }
+  .home_app .my_card_container .carousel .carousel-inner .carousel-item .carousel-news .carousel-news-caption {
+    font-size: 10px;
+    width: 90vw;
+  }
+}/*# sourceMappingURL=Home.css.map */

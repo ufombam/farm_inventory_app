@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+.signin_app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: none;
+  height: 100vh;
+  font-family: Helvetica, sans-serif;
+}
+.signin_app .signin_app_border {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  border: 0.005px solid rgba(172, 167, 167, 0.615);
+  text-align: center;
+  height: 60vh;
+  width: 40vw;
+  border-radius: 15px;
+  color: #772577;
+}
+.signin_app .signin_app_border input {
+  width: 30vw;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  height: 7vh;
+  font-size: 1.1em;
+  padding: 5px;
+  border: 2px solid rgba(172, 167, 167, 0.615);
+}
+.signin_app .signin_app_border input:focus {
+  outline: none;
+}
+.signin_app .signin_app_border button {
+  height: 5vh;
+  width: 21vw;
+  font-size: 1.1em;
+  border-radius: 5px;
+  background-color: #772577;
+  color: white;
+  border: none;
+}
+.signin_app .signin_app_border button .sign_link {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1em;
+}
+.signin_app .signin_app_border button:focus, .signin_app .signin_app_border button:hover {
+  background-color: rgb(108, 39, 140);
+}
+.signin_app .signin_app_border p {
+  font-size: 1.1em;
+}
+
+@media screen and (max-width: 576px) {
+  .signin_app .signin_app_border {
+    height: 60vh;
+    width: 90vw;
+    border-radius: 15px;
+    color: #772577;
+  }
+  .signin_app .signin_app_border img {
+    height: 10vh;
+  }
+  .signin_app .signin_app_border input {
+    width: 75vw;
+    font-size: 14px;
+  }
+  .signin_app .signin_app_border button {
+    height: 5vh;
+    width: 30vw;
+    font-size: 14px;
+  }
+  .signin_app .signin_app_border p {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .signin_app .signin_app_border {
+    height: 70vh;
+    width: 80vw;
+    border-radius: 15px;
+    color: #772577;
+  }
+  .signin_app .signin_app_border img {
+    height: 12vh;
+  }
+  .signin_app .signin_app_border input {
+    width: 65vw;
+    font-size: 16px;
+  }
+  .signin_app .signin_app_border button {
+    height: 5vh;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .signin_app .signin_app_border p {
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=SignIn.css.map */

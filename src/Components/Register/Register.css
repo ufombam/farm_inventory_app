@@ -1,0 +1,117 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  font-family: Helvetica, sans-serif;
+}
+.register_body {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: flex-start;
+  padding-left: 30px;
+  padding-top: 5px;
+  color: #772577;
+  border-right: 1px solid rgba(152, 144, 144, 0.596);
+  border-left: 1px solid rgba(152, 144, 144, 0.596);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 75vw;
+}
+.register_body img {
+  height: 10vh;
+}
+.register_body input, .register_body select {
+  width: 35vw;
+  height: 7vh;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 4px;
+  font-size: 1.1em;
+  border-radius: 6px;
+  border: 1px solid rgba(152, 144, 144, 0.596);
+}
+.register_body input, .register_body select:focus {
+  outline: none;
+}
+.register_body button {
+  width: 13vw;
+  height: 5vh;
+  border-radius: 6px;
+  background-color: #772577;
+  color: white;
+}
+.register_body button:focus {
+  outline: none;
+}
+.register_body p {
+  font-size: 1em;
+}
+.register_body h2 {
+  font-size: 1.5em;
+}
+.register_body h4 {
+  font-size: 1.2em;
+}
+
+@media screen and (max-width: 576px) {
+  .register {
+    overflow: auto;
+  }
+  .register_body {
+    padding: 8px;
+    width: 90vw;
+    margin-top: 10px;
+  }
+  .register_body img {
+    height: 7vh;
+  }
+  .register_body input, .register_body select {
+    width: 80vw;
+    padding: 4px;
+    font-size: 14px;
+  }
+  .register_body button {
+    width: 30vw;
+  }
+  .register_body p {
+    font-size: 14px;
+  }
+  .register_body h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .register_body h4 {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .register {
+    overflow: auto;
+  }
+  .register_body {
+    padding: 8px;
+    width: 75vw;
+    margin-top: 10px;
+  }
+  .register_body img {
+    height: 8vh;
+  }
+  .register_body input, .register_body select {
+    width: 65vw;
+    padding: 4px;
+    font-size: 16px;
+  }
+  .register_body p {
+    font-size: 16px;
+  }
+  .register_body h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .register_body h4 {
+    font-size: 18px;
+  }
+}/*# sourceMappingURL=Register.css.map */

@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.record_app {
+  background-color: rgb(253, 247, 253);
+  height: 100vh;
+  width: 100vw;
+  color: rgb(31, 29, 29);
+  font-family: Helvetica, sans-serif;
+  padding: 5px;
+}
+.record_app .bx {
+  background-color: rgb(253, 247, 253);
+  color: white;
+  border-bottom: 1px solid rgb(240, 161, 240);
+}
+.record_app .bx .rec_text {
+  color: rgb(31, 29, 29);
+}
+.record_app .bx .rec_text:target {
+  background-color: #772577;
+  border: 1px solid #772577;
+  color: white;
+  border-bottom: 1px solid rgb(240, 161, 240);
+}/*# sourceMappingURL=Record.css.map */

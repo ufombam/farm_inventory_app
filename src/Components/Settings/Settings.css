@@ -1,0 +1,114 @@
+.settings_container {
+  margin-left: 5px;
+  margin-right: 10px;
+  padding: 5px;
+  height: 100vh;
+  width: auto;
+  padding: 6px;
+  font-family: Helvetica, sans-serif;
+  background-image: url("./setting_wheel1.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center right;
+  background-size: 50%;
+}
+.settings_container .form1 input {
+  width: 15vw;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 5vh;
+  font-size: 1.2em;
+  padding: 5px;
+  border: 2px solid rgba(172, 167, 167, 0.615);
+}
+.settings_container .form1 input:focus {
+  outline: none;
+}
+.settings_container .form1 hr {
+  width: 50vw;
+}
+.settings_container .form2 {
+  border: 1px solid rgb(255, 99, 132);
+  background-color: rgba(255, 99, 132, 0.2);
+  height: 40vh;
+  padding: 10px;
+  border-radius: 10px;
+  width: auto;
+}
+.settings_container .form2 input, .settings_container .form2 select {
+  width: 30vw;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 7vh;
+  font-size: 1.2em;
+  padding: 5px;
+  border: 2px solid rgba(172, 167, 167, 0.615);
+}
+.settings_container .form2 input:focus {
+  outline: none;
+}
+.settings_container button {
+  height: 5vh;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 18px;
+  border-radius: 5px;
+  background-color: #772577;
+  color: white;
+  border: none;
+}
+.settings_container button:focus, .settings_container button:hover {
+  background-color: rgb(108, 39, 140);
+}
+
+@media screen and (max-width: 576px) {
+  .settings_container {
+    background-size: 30%;
+  }
+  .settings_container .form1 input {
+    width: 30vw;
+    height: 5vh;
+    font-size: 14px;
+  }
+  .settings_container .form2 {
+    height: 40vh;
+  }
+  .settings_container .form2 input, .settings_container .form2 select {
+    width: 60vw;
+    height: 7vh;
+    font-size: 14px;
+  }
+  .settings_container button {
+    height: 5vh;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .settings_container {
+    background-size: 40%;
+  }
+  .settings_container .form1 input {
+    width: 30vw;
+    height: 5vh;
+    font-size: 16px;
+  }
+  .settings_container .form2 {
+    height: 40vh;
+  }
+  .settings_container .form2 input, .settings_container .form2 select {
+    width: 60vw;
+    height: 7vh;
+    font-size: 16px;
+  }
+  .settings_container button {
+    height: 5vh;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=Settings.css.map */
