@@ -16,7 +16,7 @@ function Record({ eggData, feedData, compostData, user, handleSignOut }) {
     useEffect(() => {
         if (user) {
         //fetch customer record
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/customers/${user.id}`)
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/customers/${user.id}`)
         .then(response => response.json())
         .then(res => {
             setCustomerInput(res)

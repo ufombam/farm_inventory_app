@@ -13,27 +13,27 @@ const Summary = ({ egg, customer, user }) => {
     useEffect(() => {
         if (user) {
             //Fetch feed summary
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/feed/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/feed/${user.id}`)
             .then(data => data.json())
             .then(feed => setFeed(feed))
             .catch(() => console.log('unable to complete request'))
             //Fetch msc summary
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/msc/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/msc/${user.id}`)
             .then(data => data.json())
             .then(msc => setMisce(msc))
             .catch(() => console.log('unable to complete request'))
             //Fetch compost summary
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/compost/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/compost/${user.id}`)
             .then(data => data.json())
             .then(compost => setCompost(compost))
             .catch(() => console.log('unable to complete request'))
             //Fetch egg summary
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/egg/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/egg/${user.id}`)
             .then(data => data.json())
             .then(eggs => setEggs(eggs))
             .catch(() => console.log(`unable to complete request/${user.id}`))
             //Fetch bird summary
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/bird/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/bird/${user.id}`)
             .then(data => data.json())
             .then(bird => setBird(bird[bird.length-1]))
             .catch(() => console.log(`unable to complete request/${user.id}`))

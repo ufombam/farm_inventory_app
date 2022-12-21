@@ -250,14 +250,14 @@ function Home({ income, expense, bar, user, handleSignOut, line1, line2 }) {
                                 backgroundSize: "cover"
                             }}>
                                 <div className='card-weather_temp'>
-                                    <p>{`${!weather ? 0 : weather.main.temp}°C`}</p>
-                                    <span>{`${!weather ? 'fetching weather info' : weather.weather[0].description}`}</span>
+                                    <p>{`${!weather?.main ? 0 : weather.main.temp}°C`}</p>
+                                    <span>{`${!weather?.main ? 'fetching weather info' : weather.weather[0].description}`}</span>
                                 </div>
                                 <div className='card-weather_others'>
-                                    <span>{`${!weather?.main ? 'xxx' : weather.name},${!weather ? 'xx' : weather.sys.country}`}</span>
-                                    <p>{`Pressure: ${!weather ? 0 : weather.main.pressure} hPa`}</p>
-                                    <p>{`Humidty: ${!weather ? 0 : weather.main.humidity} %`}</p>
-                                    <p>{`Wind Speed: ${!weather ? 0 : weather.wind.speed}m/s`}</p>
+                                    <span>{`${!weather?.main ? 'xxx' : weather.name},${!weather?.main ? 'xx' : weather.sys.country}`}</span>
+                                    <p>{`Pressure: ${!weather?.main ? 0 : weather.main.pressure} hPa`}</p>
+                                    <p>{`Humidty: ${!weather?.main ? 0 : weather.main.humidity} %`}</p>
+                                    <p>{`Wind Speed: ${!weather?.main ? 0 : weather.wind.speed}m/s`}</p>
                                 </div>
                         </div>
                     </Card.Body>

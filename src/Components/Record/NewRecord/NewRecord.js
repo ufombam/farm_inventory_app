@@ -10,7 +10,7 @@ const NewRecord = ({ user }) => {
     useEffect(() => {
         if (user) {
         let names = [];
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/names/${user.id}`)
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/names/${user.id}`)
         .then(res => res.json())
         .then(res => {
             res.forEach(x => {
@@ -41,7 +41,7 @@ const NewRecord = ({ user }) => {
             },
             userid: user.id
         };
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/egg/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/egg/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -69,7 +69,7 @@ const NewRecord = ({ user }) => {
             userid: user.id,
             used: feed_used.value
         }
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/feed/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/feed/${user.id}`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -95,7 +95,7 @@ const NewRecord = ({ user }) => {
             culled: culled.value,
             userid: user.id
         }
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/bird/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/bird/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -119,7 +119,7 @@ const NewRecord = ({ user }) => {
             debt: customer_debt.value,
             userid: user.id
         }
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/customers/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/customers/${user.id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -154,7 +154,7 @@ const NewRecord = ({ user }) => {
             name: customer_input.value,
             userid: user.id
         };
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/customers/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/customers/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -179,7 +179,7 @@ const NewRecord = ({ user }) => {
             profit: compost_profit.value,
             userid: user.id
         }
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/compost/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/compost/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -233,7 +233,7 @@ const NewRecord = ({ user }) => {
             description: description.value,
             userid: user.id
         }
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/msc/${user.id}`, {
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/msc/${user.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

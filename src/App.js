@@ -31,25 +31,25 @@ function App() {
     useEffect(() => {
         if (user) {
             //fetch line2 chart coordinates
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/compost/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/compost/${user.id}`)
             .then(response => response.json())
             .then(res => {
                 setLine2(res)
             })
             //fetch line1 chart coordinates
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/sales/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/sales/${user.id}`)
             .then(response => response.json())
             .then(data => {
                 setLine1(data)
             }).catch(() => console.log('Unable to complete request'))
             //fetch bar chart coordinates
-            fetch(`https://fast-scrubland-53064.herokuapp.com/record/egg/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/egg/${user.id}`)
             .then(response => response.json())
             .then(data => {
                 setEgg(data)
             }).catch(() => console.log('unable to complete request'))
             //Fetch sales sum
-            fetch(`https://fast-scrubland-53064.herokuapp.com/finance/sales/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/finance/sales/${user.id}`)
             .then(data => data.json())
             .then(sale => setSales({
                 big: Number(sale[0].big),
@@ -57,7 +57,7 @@ function App() {
             }))
             .catch(() => console.log('unable to complete request'))
             //Fetch Compost sum
-            fetch(`https://fast-scrubland-53064.herokuapp.com/finance/compost/${user.id}`)
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/finance/compost/${user.id}`)
             .then(data => data.json())
             .then(comp => setCompost(Number(comp[0].sum)))
             .catch(() => console.log('unable to complete request'))
@@ -67,12 +67,12 @@ function App() {
     useEffect(() => {
         //fetch feed
         if (user) {
-        fetch(`https://fast-scrubland-53064.herokuapp.com/finance/feed/${user.id}`)
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/finance/feed/${user.id}`)
         .then(data => data.json())
         .then(myFeed => setFeed((Number(myFeed[0].sum))))
         .catch(() => console.log('unable to complete request'))
         //Fetch Compost
-        fetch(`https://fast-scrubland-53064.herokuapp.com/finance/msc/${user.id}`)
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/finance/msc/${user.id}`)
         .then(data => data.json())
         .then(misc => setMsc(Number(misc[0].sum)))
         .catch(() => console.log('unable to complete request'))
@@ -96,7 +96,7 @@ function App() {
             pwd: pwd.value
         }
         setUpdating(true);
-        fetch('http://localhost:3000/signin', {
+        fetch('http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/signin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -135,7 +135,7 @@ function App() {
             state: state.value
         }
         setUpdating(true);
-        fetch('https://fast-scrubland-53064.herokuapp.com/register', {
+        fetch('http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/register', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

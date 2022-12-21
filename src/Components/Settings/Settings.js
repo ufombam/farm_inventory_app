@@ -9,7 +9,7 @@ const Settings = ({ user, handleSignOut }) => {
     useEffect(() => {
         if (user) {
         let names = [];
-        fetch(`https://fast-scrubland-53064.herokuapp.com/record/names/${user.id}`)
+        fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/names/${user.id}`)
         .then(res => res.json())
         .then(res => {
             res.forEach(x => {
@@ -31,7 +31,7 @@ const Settings = ({ user, handleSignOut }) => {
                 small: rate2.value,
                 userid: user.id
             }
-            fetch(`https://fast-scrubland-53064.herokuapp.com/finance/rate/${user.id}`, {
+            fetch(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/finance/rate/${user.id}`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -52,7 +52,7 @@ const Settings = ({ user, handleSignOut }) => {
             const delete_customer = {
                 name: customer_del.value,
             }
-            axios.delete(`https://fast-scrubland-53064.herokuapp.com/record/customers/${user.id}`, {data: delete_customer})
+            axios.delete(`http://ec2-3-236-55-167.compute-1.amazonaws.com:5000/record/customers/${user.id}`, {data: delete_customer})
         }
 
     return( 
